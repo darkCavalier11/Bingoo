@@ -37,7 +37,7 @@ struct ContentView: View {
                 generateRandomGridTileElements()
             }
             Button {
-                
+                generateRandomGridTileElements()
             } label: {
                 Image(systemName: "goforward")
                     .resizable()
@@ -54,6 +54,7 @@ struct ContentView: View {
     }
     
     func generateRandomGridTileElements() {
+        gridTileElements.removeAll()
         var unusedNumbers: [Int] = []
         for i in 0..<25 {
             unusedNumbers.append(i + 1)

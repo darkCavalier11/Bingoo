@@ -30,16 +30,45 @@ struct GridTile: View {
     static var itemSize: CGSize {
         return CGSize(width: rectangleFrame.width + 2.0 * itemPadding, height: rectangleFrame.height + 2.0 * itemPadding)
     }
+    
+    @State private var xShadowOffset = 4.0
+    @State private var yShadowOffset = 4.0
+    @State private var scaleFactor = 1.0
+    @State private var textRotationFactor = 0.0
+    @State private var gridTileForegroundColor = Color.white
+    
     var body: some View {
         ZStack {
             Rectangle()
                 .frame(width: Self.rectangleFrame.width, height: Self.rectangleFrame.height)
                 .cornerRadius(12)
-                .shadow(color: .orange, radius: 0, x: 4, y: 4)
-                .foregroundColor(.white)
+                .shadow(color: .orange, radius: 0, x: xShadowOffset, y: yShadowOffset)
+                .scaleEffect(scaleFactor)
+                .foregroundColor(gridTileForegroundColor)
                 .padding(Self.itemPadding)
+                
             Text("\(number)")
                 .font(.system(size: 36, weight: .bold, design: .monospaced))
+                .rotationEffect(Angle(radians: textRotationFactor))
+        }
+        .onTapGesture {
+            withAnimation(.easeInOut(duration: 0.4)) {
+                scaleFactor = 1.2
+                textRotationFactor = Double.pi * 6
+            }
+            Task {
+                try await Task.sleep(for: .seconds(0.4))
+                await MainActor.run {
+                    withAnimation {
+                        xShadowOffset = 0
+                        yShadowOffset = 0
+                        gridTileForegroundColor = .accent
+                        scaleFactor = 1.0
+                    }
+                    
+                }
+            }
+            
         }
     }
 }
