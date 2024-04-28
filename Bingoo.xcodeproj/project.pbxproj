@@ -14,6 +14,10 @@
 		95178CF92BDCD888005C80FA /* BingooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95178CF82BDCD888005C80FA /* BingooTests.swift */; };
 		95178D032BDCD888005C80FA /* BingooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95178D022BDCD888005C80FA /* BingooUITests.swift */; };
 		95178D052BDCD888005C80FA /* BingooUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95178D042BDCD888005C80FA /* BingooUITestsLaunchTests.swift */; };
+		953501B22BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */; };
+		953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953501B62BDCE0AE00EB1C2F /* GridTile.swift */; };
+		95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436B2BDE529000B93A15 /* GridTileModel.swift */; };
+		95CA436E2BDE5A8C00B93A15 /* GridHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,11 @@
 		95178CFE2BDCD888005C80FA /* BingooUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BingooUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95178D022BDCD888005C80FA /* BingooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingooUITests.swift; sourceTree = "<group>"; };
 		95178D042BDCD888005C80FA /* BingooUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingooUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Bold.ttf"; sourceTree = "<group>"; };
+		953501B42BDCDEEE00EB1C2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		953501B62BDCE0AE00EB1C2F /* GridTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTile.swift; sourceTree = "<group>"; };
+		95CA436B2BDE529000B93A15 /* GridTileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileModel.swift; sourceTree = "<group>"; };
+		95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHeaderText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +104,13 @@
 		95178CE52BDCD887005C80FA /* Bingoo */ = {
 			isa = PBXGroup;
 			children = (
+				953501B42BDCDEEE00EB1C2F /* Info.plist */,
 				95178CE62BDCD887005C80FA /* BingooApp.swift */,
 				95178CE82BDCD887005C80FA /* ContentView.swift */,
-				95178CEA2BDCD888005C80FA /* Assets.xcassets */,
+				953501B52BDCE09200EB1C2F /* Components */,
 				95178CEC2BDCD888005C80FA /* Bingoo.entitlements */,
+				95CA436A2BDE527D00B93A15 /* Models */,
+				95178D112BDCDD46005C80FA /* Assets */,
 				95178CED2BDCD888005C80FA /* Preview Content */,
 			);
 			path = Bingoo;
@@ -127,6 +139,32 @@
 				95178D042BDCD888005C80FA /* BingooUITestsLaunchTests.swift */,
 			);
 			path = BingooUITests;
+			sourceTree = "<group>";
+		};
+		95178D112BDCDD46005C80FA /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				95178CEA2BDCD888005C80FA /* Assets.xcassets */,
+				953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		953501B52BDCE09200EB1C2F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				953501B62BDCE0AE00EB1C2F /* GridTile.swift */,
+				95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		95CA436A2BDE527D00B93A15 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				95CA436B2BDE529000B93A15 /* GridTileModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +271,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				953501B22BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf in Resources */,
 				95178CEF2BDCD888005C80FA /* Preview Assets.xcassets in Resources */,
 				95178CEB2BDCD888005C80FA /* Assets.xcassets in Resources */,
 			);
@@ -260,7 +299,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				95178CE92BDCD887005C80FA /* ContentView.swift in Sources */,
+				953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */,
 				95178CE72BDCD887005C80FA /* BingooApp.swift in Sources */,
+				95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */,
+				95CA436E2BDE5A8C00B93A15 /* GridHeaderText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +464,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Bingoo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bingoo/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -458,6 +501,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Bingoo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bingoo/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
