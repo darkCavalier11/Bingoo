@@ -38,10 +38,10 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                generateRandomGridTileElements()
+                bingoState.generateRandomGridTileElements()
             }
             Button {
-                generateRandomGridTileElements()
+                bingoState.generateRandomGridTileElements()
             } label: {
                 Image(systemName: "goforward")
                     .resizable()
@@ -57,20 +57,6 @@ struct ContentView: View {
         }
     }
     
-    func generateRandomGridTileElements() {
-        bingoState.clearGridElements()
-        var unusedNumbers: [Int] = []
-        for i in 0..<25 {
-            unusedNumbers.append(i + 1)
-        }
-        
-        for i in 0..<25 {
-            let randomNumber = unusedNumbers.randomElement()!
-            let index = unusedNumbers.firstIndex(of: randomNumber)!
-            unusedNumbers.remove(at: index)
-            bingoState.appendGridElement(GridTileModel(number: randomNumber, position: i, isSelected: false))
-        }
-    }
     func positionGridHeaderText(index: Int) -> CGSize {
         let xOffset = Double(index) * GridHeaderText.itemSize.width
         return CGSize(width: xOffset - gridFrame.width / 2 + GridHeaderText.itemSize.width / 2, height: 0)
