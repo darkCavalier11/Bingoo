@@ -12,8 +12,7 @@ struct GridTileModel: Identifiable {
     let id = UUID()
     let number: Int
     var position: Int
-    var isSelected: Bool = false
-    
+    var isSelected: Bool
     
     var row: Int {
         return position / 5
@@ -28,6 +27,4 @@ struct GridTileModel: Identifiable {
         self.position = position
         self.isSelected = isSelected
     }
-    
-    
 }
