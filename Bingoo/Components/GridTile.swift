@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct GridTile: View {
-    let number: Int
-    init(number: Int) {
-        self.number = number
-    }
+    let gridTileModel: GridTileModel
+    let setSelected: (_ index: Int) -> Void
+    
     private static var rectangleFrame: CGSize {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
@@ -47,11 +46,15 @@ struct GridTile: View {
                 .foregroundColor(gridTileForegroundColor)
                 .padding(Self.itemPadding)
                 
-            Text("\(number)")
+            Text("\(gridTileModel.number)")
                 .font(.system(size: 36, weight: .bold, design: .monospaced))
                 .rotationEffect(Angle(radians: textRotationFactor))
         }
         .onTapGesture {
+            if gridTileModel.isSelected {
+                return
+            }
+            setSelected(gridTileModel.position)
             withAnimation(.easeInOut(duration: 0.4)) {
                 scaleFactor = 1.2
                 textRotationFactor = Double.pi * 6
@@ -68,11 +71,12 @@ struct GridTile: View {
                     
                 }
             }
-            
         }
     }
 }
 
 #Preview {
-    GridTile(number: 0)
+    GridTile(gridTileModel: GridTileModel(number: 0, position: 0, isSelected: false)) { index in
+        
+    }
 }

@@ -9,10 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     private let gridFrame = CGSize(width: GridTile.itemSize.height * 5, height: GridTile.itemSize.width * 5)
-    @State var gridTileElements: [GridTileModel] = []
+    @Environment(BingoState.self) var bingoState
     
     let bingo: [Character] = ["B","I","N","G","O"]
     var body: some View {
+        @Bindable var bingoState: BingoState = bingoState
+        
         NavigationStack {
             ZStack {
                 Rectangle()
@@ -28,8 +30,10 @@ struct ContentView: View {
                 Rectangle()
                     .frame(width: gridFrame.width, height: gridFrame.height)
                     .foregroundColor(.white)
-                ForEach(gridTileElements, id: \.position) { element in
-                    GridTile(number: element.number)
+                ForEach(bingoState.gridElements) { element in
+                    GridTile(gridTileModel: element) { index in
+                        bingoState.setSelectedFor(index: index)
+                    }
                         .offset(positionElement(row: element.row, column: element.column))
                 }
             }
@@ -54,7 +58,7 @@ struct ContentView: View {
     }
     
     func generateRandomGridTileElements() {
-        gridTileElements.removeAll()
+        bingoState.clearGridElements()
         var unusedNumbers: [Int] = []
         for i in 0..<25 {
             unusedNumbers.append(i + 1)
@@ -64,7 +68,7 @@ struct ContentView: View {
             let randomNumber = unusedNumbers.randomElement()!
             let index = unusedNumbers.firstIndex(of: randomNumber)!
             unusedNumbers.remove(at: index)
-            gridTileElements.append(GridTileModel(number: randomNumber, position: i))
+            bingoState.appendGridElement(GridTileModel(number: randomNumber, position: i, isSelected: false))
         }
     }
     func positionGridHeaderText(index: Int) -> CGSize {
@@ -80,5 +84,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    @State var bingoState = BingoState()
+    return ContentView()
+        .environment(bingoState)
 }

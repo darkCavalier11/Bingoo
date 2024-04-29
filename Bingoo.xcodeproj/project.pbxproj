@@ -18,6 +18,7 @@
 		953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953501B62BDCE0AE00EB1C2F /* GridTile.swift */; };
 		95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436B2BDE529000B93A15 /* GridTileModel.swift */; };
 		95CA436E2BDE5A8C00B93A15 /* GridHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */; };
+		95CA43702BDE6AB200B93A15 /* BingoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436F2BDE6AB200B93A15 /* BingoState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		953501B62BDCE0AE00EB1C2F /* GridTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTile.swift; sourceTree = "<group>"; };
 		95CA436B2BDE529000B93A15 /* GridTileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileModel.swift; sourceTree = "<group>"; };
 		95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHeaderText.swift; sourceTree = "<group>"; };
+		95CA436F2BDE6AB200B93A15 /* BingoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				953501B42BDCDEEE00EB1C2F /* Info.plist */,
 				95178CE62BDCD887005C80FA /* BingooApp.swift */,
 				95178CE82BDCD887005C80FA /* ContentView.swift */,
+				95CA436F2BDE6AB200B93A15 /* BingoState.swift */,
 				953501B52BDCE09200EB1C2F /* Components */,
 				95178CEC2BDCD888005C80FA /* Bingoo.entitlements */,
 				95CA436A2BDE527D00B93A15 /* Models */,
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95178CE92BDCD887005C80FA /* ContentView.swift in Sources */,
+				95CA43702BDE6AB200B93A15 /* BingoState.swift in Sources */,
 				953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */,
 				95178CE72BDCD887005C80FA /* BingooApp.swift in Sources */,
 				95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */,
