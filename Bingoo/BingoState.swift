@@ -8,16 +8,23 @@
 import Foundation
 
 @Observable
-class BingoState {
-    private(set) var gridElements: [GridTileModel] = []
-    var completedGrids: [CompletedGridType] = []
+public class BingoState {
+    public init() {}
     
-    var totalCompletedTileGroups: Int {
-        completedGrids.count
+    private var _gridElements: [GridTileModel] = []
+    
+    public var gridElements: [GridTileModel] {
+        _gridElements
     }
     
-    enum CompletedGridType {
-        enum DiagonalDirection: String {
+    public var completedGridGroups: [CompletedGridType] = []
+    
+    public var totalCompletedTileGroups: Int {
+        completedGridGroups.count
+    }
+    
+    public enum CompletedGridType: Equatable {
+        public enum DiagonalDirection: String, Equatable {
             case topLeftToBottomRight
             case bottomLeftToTopRight
         }
@@ -27,7 +34,7 @@ class BingoState {
     }
     
     public func setSelectedFor(index: Int) {
-        gridElements[index].isSelected = true
+        _gridElements[index].isSelected = true
         checkAndAddCompletedTileGroups()
     }
     
@@ -41,7 +48,7 @@ class BingoState {
                 }
             }
             if count == 5 {
-                completedGrids.append(.row(i))
+                completedGridGroups.append(.row(i))
             }
         }
         
@@ -54,7 +61,7 @@ class BingoState {
                 }
             }
             if count == 5 {
-                completedGrids.append(.column(j))
+                completedGridGroups.append(.column(j))
             }
         }
         
@@ -69,7 +76,7 @@ class BingoState {
         }
         
         if count == 5 {
-            completedGrids.append(.diagonal(.topLeftToBottomRight))
+            completedGridGroups.append(.diagonal(.topLeftToBottomRight))
         }
         
         /// check if any TL - BR diagonal is filled
@@ -86,7 +93,7 @@ class BingoState {
     }
     
     public func generateRandomGridTileElements() {
-        gridElements = []
+        _gridElements = []
         var unusedNumbers: [Int] = []
         for i in 0..<25 {
             unusedNumbers.append(i + 1)
@@ -96,7 +103,7 @@ class BingoState {
             let randomNumber = unusedNumbers.randomElement()!
             let index = unusedNumbers.firstIndex(of: randomNumber)!
             unusedNumbers.remove(at: index)
-            gridElements.append(GridTileModel(number: randomNumber, position: i, isSelected: false))
+            _gridElements.append(GridTileModel(number: randomNumber, position: i, isSelected: false))
         }
     }
 }

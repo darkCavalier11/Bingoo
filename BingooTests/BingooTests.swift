@@ -6,23 +6,45 @@
 //
 
 import XCTest
+import Bingoo
 
 final class BingooTests: XCTestCase {
-
+    var bingoState: BingoState!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        bingoState = BingoState()
+        bingoState.generateRandomGridTileElements()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        bingoState = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    
+    func testMarkingGridTile() {
+        XCTAssert(bingoState.completedGridGroups.isEmpty)
+        XCTAssert(bingoState.totalCompletedTileGroups == 0)
+        XCTAssert(bingoState.gridElements.count == 25)
+        
+        bingoState.setSelectedFor(index: 0)
+        XCTAssertTrue(bingoState.gridElements[0].isSelected)
+        
+        for i in 1..<25 {
+            XCTAssertFalse(bingoState.gridElements[i].isSelected)
+        }
+    }
+    
+    func testMarkingRow() {
+        let r = [0,1,2,3,4].randomElement()!
+        
+        for i in 0..<5 {
+            bingoState.setSelectedFor(index: r*5 + i)
+        }
+        
+        XCTAssertFalse(bingoState.completedGridGroups.isEmpty)
+        XCTAssert(bingoState.totalCompletedTileGroups == 1)
+        let completedGroupItem = bingoState.completedGridGroups[0]
+        XCTAssert(completedGroupItem == .row(r))
     }
 
     func testPerformanceExample() throws {

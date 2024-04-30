@@ -53,7 +53,6 @@ struct ContentView: View {
             .background(.accent)
             .cornerRadius(10)
             .offset(x: gridFrame.width / 2 - 15)
-            
         }
     }
     
