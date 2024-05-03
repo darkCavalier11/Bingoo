@@ -47,7 +47,9 @@ public class BingoState {
                     count += 1
                 }
             }
-            if count == 5 {
+            if count == 5 && !completedGridGroups.contains(where: { ele in
+                return ele == .row(i)
+            }) {
                 completedGridGroups.append(.row(i))
             }
         }
@@ -60,7 +62,9 @@ public class BingoState {
                     count += 1
                 }
             }
-            if count == 5 {
+            if count == 5 && !completedGridGroups.contains(where: { ele in
+                return ele == .column(j)
+            }) {
                 completedGridGroups.append(.column(j))
             }
         }
@@ -75,7 +79,9 @@ public class BingoState {
             j += 1
         }
         
-        if count == 5 {
+        if count == 5 && !completedGridGroups.contains(where: { ele in
+            return ele == .diagonal(.topLeftToBottomRight)
+        }) {
             completedGridGroups.append(.diagonal(.topLeftToBottomRight))
         }
         
@@ -89,6 +95,12 @@ public class BingoState {
             }
             i -= 1
             j += 1
+        }
+        
+        if count == 5 && !completedGridGroups.contains(where: { ele in
+            return ele == .diagonal(.bottomLeftToTopRight)
+        }) {
+            completedGridGroups.append(.diagonal(.bottomLeftToTopRight))
         }
     }
     

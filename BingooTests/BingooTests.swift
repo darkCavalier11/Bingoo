@@ -46,6 +46,45 @@ final class BingooTests: XCTestCase {
         let completedGroupItem = bingoState.completedGridGroups[0]
         XCTAssert(completedGroupItem == .row(r))
     }
+    
+    func testMarkingColumn() {
+        let r = [0,1,2,3,4].randomElement()!
+        
+        for i in 0..<5 {
+            bingoState.setSelectedFor(index: i*5)
+        }
+        
+        XCTAssertFalse(bingoState.completedGridGroups.isEmpty)
+        XCTAssert(bingoState.totalCompletedTileGroups == 1)
+        let completedGroupItem = bingoState.completedGridGroups[0]
+        XCTAssert(completedGroupItem == .column(0))
+    }
+    
+    func testMarkingTopLeftToBottomRightDiagonal() {
+        let r = [0,1,2,3,4].randomElement()!
+        
+        for i in 0..<5 {
+            bingoState.setSelectedFor(index: i + i*5)
+        }
+        
+        XCTAssertFalse(bingoState.completedGridGroups.isEmpty)
+        XCTAssert(bingoState.totalCompletedTileGroups == 1)
+        let completedGroupItem = bingoState.completedGridGroups[0]
+        XCTAssert(completedGroupItem == .diagonal(.topLeftToBottomRight))
+    }
+    
+    func testMarkingBottomLeftToTopRightDiagonal() {
+        let r = [0,1,2,3,4].randomElement()!
+        
+        for i in 0..<5 {
+            bingoState.setSelectedFor(index: 4 - i + i*5)
+        }
+        
+        XCTAssertFalse(bingoState.completedGridGroups.isEmpty)
+        XCTAssert(bingoState.totalCompletedTileGroups == 1)
+        let completedGroupItem = bingoState.completedGridGroups[0]
+        XCTAssert(completedGroupItem == .diagonal(.bottomLeftToTopRight))
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

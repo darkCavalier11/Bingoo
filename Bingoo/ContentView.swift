@@ -24,7 +24,6 @@ struct ContentView: View {
                     GridHeaderText(letter: bingo[idx])
                         .offset(positionGridHeaderText(index: idx))
                 }
-                
             }
             ZStack {
                 Rectangle()
@@ -53,6 +52,10 @@ struct ContentView: View {
             .background(.accent)
             .cornerRadius(10)
             .offset(x: gridFrame.width / 2 - 15)
+        }
+        .onChange(of: bingoState.completedGridGroups) { prev, curr in
+            print(prev)
+            print(curr)
         }
     }
     
