@@ -83,22 +83,24 @@ struct ContentView: View {
             .background(.accent)
             .cornerRadius(10)
             .offset(x: gridFrame.width / 2 - 15)
-            
-            
         }
         .onChange(of: bingoState.completedGridGroups) { prev, curr in
             if curr.isEmpty {
+                crossLineFrameWidths = Array(repeating: 0.0, count: 12)
+                crossLineFrameHeights = Array(repeating: 0.0, count: 12)
                 return
             }
-            switch curr.last {
-            case .row(let rowIndex):
-                markRow(rowIndex)
-            case .column(let colIndex):
-                markColumn(colIndex)
-            case .diagonal(let diagonalType):
-                markDiagonal(diagonalType)
-            default:
-                print("")
+            for item in curr {
+                switch item {
+                case .row(let rowIndex):
+                    markRow(rowIndex)
+                case .column(let colIndex):
+                    markColumn(colIndex)
+                case .diagonal(let diagonalType):
+                    markDiagonal(diagonalType)
+                default:
+                    print("")
+                }
             }
         }
     }

@@ -105,7 +105,7 @@ public class BingoState {
     }
     
     public func generateRandomGridTileElements() {
-        _gridElements = []
+        reset()
         var unusedNumbers: [Int] = []
         for i in 0..<25 {
             unusedNumbers.append(i + 1)
@@ -117,5 +117,10 @@ public class BingoState {
             unusedNumbers.remove(at: index)
             _gridElements.append(GridTileModel(number: randomNumber, position: i, isSelected: false))
         }
+    }
+    
+    private func reset() {
+        _gridElements = []
+        completedGridGroups = []
     }
 }
