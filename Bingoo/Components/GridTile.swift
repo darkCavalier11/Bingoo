@@ -24,7 +24,18 @@ struct GridTile: View {
         }
     }
     
-    private static let itemPadding = 12.0
+    private static var itemPadding: Double {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            return 6
+        case .pad, .mac:
+            return 12
+        case .tv:
+            return 16
+        default:
+            return 6
+        }
+    }
     
     static var itemSize: CGSize {
         return CGSize(width: rectangleFrame.width + 2.0 * itemPadding, height: rectangleFrame.height + 2.0 * itemPadding)
@@ -47,7 +58,7 @@ struct GridTile: View {
                 .padding(Self.itemPadding)
                 
             Text("\(gridTileModel.number)")
-                .font(.system(size: 36, weight: .bold, design: .monospaced))
+                .font(.title.monospaced().bold())
                 .rotationEffect(Angle(radians: textRotationFactor))
         }
         .onTapGesture {

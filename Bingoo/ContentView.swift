@@ -82,7 +82,23 @@ struct ContentView: View {
             .cornerRadius(10)
             .offset(x: gridFrame.width / 2 - 15)
         }
-        
+        .onChange(of: appState.bingoState.completedGridGroups) { _, curr in
+            if curr.isEmpty {
+                return
+            }
+            
+            for item in curr {
+                switch item {
+                    
+                case .row(let rowIndex):
+                    markRow(rowIndex)
+                case .column(let colIndex):
+                    markColumn(colIndex)
+                case .diagonal(let diagonalType):
+                    markDiagonal(diagonalType)
+                }
+            }
+        }
     }
     
 

@@ -22,7 +22,18 @@ struct GridHeaderText: View {
         }
     }
     
-    private static let itemPadding = 12.0
+    private static var itemPadding: Double {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            return 6
+        case .pad, .mac:
+            return 12
+        case .tv:
+            return 16
+        default:
+            return 6
+        }
+    }
     
     static var itemSize: CGSize {
         return CGSize(width: rectangleFrame.width + 2.0 * itemPadding, height: rectangleFrame.height + 2.0 * itemPadding)
@@ -35,7 +46,7 @@ struct GridHeaderText: View {
                 .foregroundColor(.white)
                 .shadow(color: .accent, radius: 0, x: 6, y: 0)
             Text(letter.description)
-                .font(.system(size: 44, weight: .black, design: .monospaced))
+                .font(.largeTitle.monospaced().weight(.black))
         }
         
     }
