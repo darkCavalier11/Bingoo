@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct BingooApp: App {
-    @State private var bingoState = BingoState()
+    @State private var appState = AppState()
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(bingoState)
+                .environment(appState)
         }
     }
 }

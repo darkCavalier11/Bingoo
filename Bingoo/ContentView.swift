@@ -13,12 +13,10 @@ struct ContentView: View {
     @State private var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
     @State private var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
     
-    @Environment(BingoState.self) var bingoState
+    @Environment(AppState.self) var appState
     
     let bingo: [Character] = ["B","I","N","G","O"]
     var body: some View {
-        @Bindable var bingoState: BingoState = bingoState
-        
         NavigationStack {
             ZStack {
                 Rectangle()
@@ -33,9 +31,9 @@ struct ContentView: View {
                 Rectangle()
                     .frame(width: gridFrame.width, height: gridFrame.height)
                     .foregroundColor(.white)
-                ForEach(bingoState.gridElements) { element in
+                ForEach(appState.bingoState.gridElements) { element in
                     GridTile(gridTileModel: element) { index in
-                        bingoState.setSelectedFor(index: index)
+                        appState.bingoState.setSelectedFor(index: index)
                     }
                         .offset(positionElement(row: element.row, column: element.column))
                 }
@@ -68,10 +66,10 @@ struct ContentView: View {
                     .rotationEffect(Angle(degrees: -45))
             }
             .onAppear {
-                bingoState.generateRandomGridTileElements()
+                appState.bingoState.generateRandomGridTileElements()
             }
             Button {
-                bingoState.generateRandomGridTileElements()
+                appState.bingoState.generateRandomGridTileElements()
             } label: {
                 Image(systemName: "goforward")
                     .resizable()
@@ -84,25 +82,7 @@ struct ContentView: View {
             .cornerRadius(10)
             .offset(x: gridFrame.width / 2 - 15)
         }
-        .onChange(of: bingoState.completedGridGroups) { prev, curr in
-            if curr.isEmpty {
-                crossLineFrameWidths = Array(repeating: 0.0, count: 12)
-                crossLineFrameHeights = Array(repeating: 0.0, count: 12)
-                return
-            }
-            for item in curr {
-                switch item {
-                case .row(let rowIndex):
-                    markRow(rowIndex)
-                case .column(let colIndex):
-                    markColumn(colIndex)
-                case .diagonal(let diagonalType):
-                    markDiagonal(diagonalType)
-                default:
-                    print("")
-                }
-            }
-        }
+        
     }
     
 
@@ -151,7 +131,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    @State var bingoState = BingoState()
+    @State var appState = AppState()
     return ContentView()
-        .environment(bingoState)
+        .environment(appState)
 }
