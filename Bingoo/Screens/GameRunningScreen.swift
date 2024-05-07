@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct GameRunningScreen: View {
     private let gridFrame = CGSize(width: GridTile.itemSize.height * 5, height: GridTile.itemSize.width * 5)
     
     @State private var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
@@ -148,6 +148,6 @@ struct ContentView: View {
 
 #Preview {
     @State var appState = AppState()
-    return ContentView()
+    return GameRunningScreen()
         .environment(appState)
 }

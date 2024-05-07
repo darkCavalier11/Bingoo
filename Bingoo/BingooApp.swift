@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct BingooApp: App {
     @State private var appState = AppState()
-    let userName = UserDefaults.standard.string(forKey: UserDefaultKeys.userName)
+    
+    /// For now we will ignore the Username property, will integrate at the end.
+    @State var userName = UserDefaults.standard.string(forKey: UserDefaultKeys.userName)
     var body: some Scene {
         WindowGroup {
-            contentView
+            ChooseGameTypeScreen()
         }
     }
     
@@ -22,7 +24,7 @@ struct BingooApp: App {
         if userName == nil {
             UserOnboardingScreen()
         } else {
-            ContentView()
+            ChooseGameTypeScreen()
         }
     }
 }
