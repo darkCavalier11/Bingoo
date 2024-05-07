@@ -16,12 +16,25 @@ struct ChooseGameTypeButton: View {
             Rectangle()
                 .frame(width: 10, height: 50)
                 .foregroundStyle(.accent)
+                .cornerRadius(6)
+                .clipped()
             Button {
                 onTap()
             } label: {
-                Label(gameType.rawValue, systemImage: systemImage)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                    .foregroundStyle(.black)
+                Label(
+                    title: { 
+                        Text(gameType.rawValue)
+                            .font(.title.monospaced())
+                            .foregroundStyle(.black)
+                    },
+                    icon: { 
+                        Image(systemName: systemImage)
+                            .font(.title)
+                            .foregroundStyle(.white)
+                            .padding(.init(top: 6, leading: 6, bottom: 6, trailing: 6))
+                            .background(Circle())
+                    }
+                )
             }
             .padding()
         }

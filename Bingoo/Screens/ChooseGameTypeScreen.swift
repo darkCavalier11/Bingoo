@@ -13,7 +13,7 @@ struct ChooseGameTypeScreen: View {
             ChooseGameTypeButton(gameType: .withDevice, systemImage: "cpu") {
                 
             }
-            ChooseGameTypeButton(gameType: .withLocalFriend, systemImage: "person.line.dotted.person") {
+            ChooseGameTypeButton(gameType: .withLocalFriend, systemImage: "person") {
                 
             }
             ChooseGameTypeButton(gameType: .online, systemImage: "network") {
