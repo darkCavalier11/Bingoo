@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserOnboardingScreen: View {
     @State var userName: String = ""
+    @State var showInvalidUserNameAlert = false
     var body: some View {
         VStack(alignment: .center) {
             Text("Let's Begin")
@@ -22,7 +23,11 @@ struct UserOnboardingScreen: View {
             HStack {
                 Spacer()
                 Button {
-                    
+                    guard userName.count > 3 else {
+                        showInvalidUserNameAlert = true
+                        return
+                    }
+                    UserDefaults.standard.setValue(userName, forKey: UserDefaultKeys.userName)
                 } label: {
                     Image(systemName: "chevron.right")
                         .foregroundColor(.white)
@@ -31,6 +36,11 @@ struct UserOnboardingScreen: View {
                 .background(.accent)
                 .cornerRadius(30)
                 .clipped()
+                .alert("Username must be at least 3 characters", isPresented: $showInvalidUserNameAlert) {
+                    Button("OK", role: .cancel) {
+                        
+                    }
+                }
             }
             .frame(width: 400)
         }
