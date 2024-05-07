@@ -9,5 +9,5 @@ import Foundation
 
 @Observable
 class AppState {
-    var bingoState = BingoState()
+    var bingoState = BingoGridModel()
 }

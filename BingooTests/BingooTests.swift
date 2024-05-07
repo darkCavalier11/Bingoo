@@ -9,10 +9,10 @@ import XCTest
 import Bingoo
 
 final class BingooTests: XCTestCase {
-    var bingoState: BingoState!
+    var bingoState: BingoGridModel!
     
     override func setUpWithError() throws {
-        bingoState = BingoState()
+        bingoState = BingoGridModel()
         bingoState.generateRandomGridTileElements()
     }
 

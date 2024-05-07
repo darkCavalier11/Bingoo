@@ -130,7 +130,7 @@ struct ContentView: View {
         
     }
     
-    func markDiagonal(_ diagonalType: BingoState.CompletedGridType.DiagonalDirection) {
+    func markDiagonal(_ diagonalType: BingoGridModel.CompletedGridType.DiagonalDirection) {
         if diagonalType == .topLeftToBottomRight {
             crossLineFrameHeights[10] = 4
             withAnimation {

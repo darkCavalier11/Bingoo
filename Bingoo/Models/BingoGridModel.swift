@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-public class BingoState {
+public class BingoGridModel {
     public init() {}
     
     private var _gridElements: [GridTileModel] = []
