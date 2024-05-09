@@ -15,7 +15,8 @@ struct BingooApp: App {
     @State var userName = UserDefaults.standard.string(forKey: UserDefaultKeys.userName)
     var body: some Scene {
         WindowGroup {
-            ChooseGameTypeScreen()
+            GameRunningScreen()
+                .environment(appState)
         }
     }
     
