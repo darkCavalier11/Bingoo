@@ -6,13 +6,3 @@
 //
 
 import Foundation
-
-class BingoManagerModel {
-    
-}
-
-enum BingoGameType: String, CaseIterable {
-    case withDevice = "With Device"
-    case withLocalFriend = "With Local Friends"
-    case online = "Online"
-}
