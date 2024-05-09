@@ -64,10 +64,9 @@ struct GridTile: View {
                 .rotationEffect(Angle(radians: textRotationFactor))
         }
         .onTapGesture {
-            if gridTileModel.isSelected {
-                return
-            }
             setSelected(gridTileModel.position)
+        }
+        .onChange(of: gridTileModel.isSelected) {
             withAnimation(.easeInOut(duration: 0.4)) {
                 scaleFactor = 1.2
                 textRotationFactor = Double.pi * 6

@@ -22,7 +22,7 @@
 		95CA436E2BDE5A8C00B93A15 /* GridHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */; };
 		95CA43702BDE6AB200B93A15 /* BingoGridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436F2BDE6AB200B93A15 /* BingoGridModel.swift */; };
 		95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */; };
-		95E504AF2BECF59D00BBD744 /* GridTileGroupCrossViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E504AE2BECF59D00BBD744 /* GridTileGroupCrossViews.swift */; };
+		95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */; };
 		95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */; };
 		95EBE3212BEA4CE9009E8F10 /* BingoManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3202BEA4CE9009E8F10 /* BingoManagerModel.swift */; };
 		95EBE3242BEA50DA009E8F10 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3232BEA50DA009E8F10 /* UserDefaultKeys.swift */; };
@@ -68,7 +68,7 @@
 		95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHeaderText.swift; sourceTree = "<group>"; };
 		95CA436F2BDE6AB200B93A15 /* BingoGridModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGridModel.swift; sourceTree = "<group>"; };
 		95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameTypeScreen.swift; sourceTree = "<group>"; };
-		95E504AE2BECF59D00BBD744 /* GridTileGroupCrossViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileGroupCrossViews.swift; sourceTree = "<group>"; };
+		95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileGroupCrossViews.swift; sourceTree = "<group>"; };
 		95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameTypeButton.swift; sourceTree = "<group>"; };
 		95EBE3202BEA4CE9009E8F10 /* BingoManagerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoManagerModel.swift; sourceTree = "<group>"; };
 		95EBE3232BEA50DA009E8F10 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			children = (
 				951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */,
 				95EBE3292BEA8E64009E8F10 /* GameRunningScreen.swift */,
-				95E504AE2BECF59D00BBD744 /* GridTileGroupCrossViews.swift */,
+				95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */,
 				95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */,
 			);
 			path = Screens;
@@ -345,7 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */,
-				95E504AF2BECF59D00BBD744 /* GridTileGroupCrossViews.swift in Sources */,
+				95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */,
 				95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeButton.swift in Sources */,
 				95EBE3242BEA50DA009E8F10 /* UserDefaultKeys.swift in Sources */,
 				95CA43702BDE6AB200B93A15 /* BingoGridModel.swift in Sources */,
