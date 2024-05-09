@@ -8,10 +8,10 @@
 import Foundation
 
 struct BingoUserModel: Identifiable, Codable {
-    var id: String
+    var id: UUID
     var userName: String
     
-    init(id: String, userName: String) {
+    init(id: UUID, userName: String) {
         self.id = id
         self.userName = userName
     }
