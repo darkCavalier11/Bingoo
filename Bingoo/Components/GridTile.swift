@@ -9,7 +9,9 @@ import SwiftUI
 
 struct GridTile: View {
     let gridTileModel: GridTileModel
+    
     let setSelected: (_ index: Int) -> Void
+    
     
     private static var rectangleFrame: CGSize {
         switch UIDevice.current.userInterfaceIdiom {
