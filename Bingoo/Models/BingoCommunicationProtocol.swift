@@ -9,6 +9,6 @@ import Foundation
 
 protocol BingoCommunicationProtocol {
     func onNewUserJoin(user: BingoUserModel)
-    func syncBingoManagerModel(bingoManager model: BingoManagerModel)
-    func onReceive(bingoManager model: BingoManagerModel)
+    func syncBingoManagerModel(bingoManager model: BingoSyncMessageModel)
+    func onReceive(bingoManager model: BingoSyncMessageModel)
 }

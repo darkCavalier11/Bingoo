@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BingoManagerModel: Codable {
+struct BingoSyncMessageModel: Codable {
     var id: UUID
     var userList: [BingoUserModel]
     var currentUserTurnIndex: Int

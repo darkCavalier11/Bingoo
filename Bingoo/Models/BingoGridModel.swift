@@ -123,4 +123,8 @@ public class BingoGridModel {
         _gridElements = []
         completedGridGroups = []
     }
+    
+    public func handleEvent(with bingoManagerModel: BingoSyncMessageModel) {
+        
+    }
 }
