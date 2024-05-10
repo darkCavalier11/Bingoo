@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BingoUserModel: Identifiable, Codable {
+public struct BingoUserModel: Identifiable, Codable {
     var id: UUID
     var userName: String
     

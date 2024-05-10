@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BingoGameType: String, CaseIterable, Codable {
+public enum BingoGameType: String, CaseIterable, Codable {
     case withDevice = "With Device"
     case withLocalFriend = "With Local Friends"
     case online = "Online"
