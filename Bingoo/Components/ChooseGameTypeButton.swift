@@ -11,6 +11,7 @@ struct ChooseGameTypeButton: View {
     let gameType: BingoGameType
     let systemImage: String
     let onTap: () -> Void
+    @State var val = 0
     var body: some View {
         HStack {
             Rectangle()
