@@ -42,6 +42,9 @@ public class BingoGridModel {
     }
     
     public func setSelectedFor(index: Int) {
+        if totalCompletedTileGroups == 5 {
+            return
+        }
         _gridElements[index].isSelected = true
         checkAndAddCompletedTileGroups()
     }

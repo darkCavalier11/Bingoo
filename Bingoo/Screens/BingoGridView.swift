@@ -23,7 +23,7 @@ struct BingoGridView: View {
                     .frame(width: gridFrame.width, height: GridTile.itemSize.height)
                     .foregroundStyle(.white)
                 ForEach(0..<5) { idx in
-                    GridHeaderText(letter: bingo[idx])
+                    GridHeaderText(letter: bingo[idx], isCompleted: appState.bingoState.totalCompletedTileGroups  > idx)
                         .offset(positionGridHeaderText(index: idx))
                 }
             }
