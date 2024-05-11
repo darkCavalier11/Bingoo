@@ -21,6 +21,7 @@
 		95909B602BEFA07B0048081C /* BingoUserModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909B5E2BEFA07B0048081C /* BingoUserModel+CoreDataClass.swift */; };
 		95909B612BEFA07B0048081C /* BingoUserModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909B5F2BEFA07B0048081C /* BingoUserModel+CoreDataProperties.swift */; };
 		95909B632BEFA0A90048081C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909B622BEFA0A90048081C /* Extensions.swift */; };
+		95909B652BEFE1500048081C /* BingoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909B642BEFE1500048081C /* BingoGridView.swift */; };
 		95A3B0EA2BE8952B008C7623 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */; };
 		95B76C052BE7EB6B00FA4476 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B76C042BE7EB6B00FA4476 /* AppState.swift */; };
 		95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436B2BDE529000B93A15 /* GridTileModel.swift */; };
@@ -69,6 +70,7 @@
 		95909B5E2BEFA07B0048081C /* BingoUserModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BingoUserModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		95909B5F2BEFA07B0048081C /* BingoUserModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BingoUserModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		95909B622BEFA0A90048081C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		95909B642BEFE1500048081C /* BingoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGridView.swift; sourceTree = "<group>"; };
 		95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		95B76C042BE7EB6B00FA4476 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		95CA436B2BDE529000B93A15 /* GridTileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileModel.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */,
 				95EBE3292BEA8E64009E8F10 /* GameRunningScreen.swift */,
+				95909B642BEFE1500048081C /* BingoGridView.swift */,
 				95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */,
 				95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */,
 			);
@@ -352,6 +355,7 @@
 			files = (
 				95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */,
 				95909B632BEFA0A90048081C /* Extensions.swift in Sources */,
+				95909B652BEFE1500048081C /* BingoGridView.swift in Sources */,
 				95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */,
 				95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeButton.swift in Sources */,
 				95909B5A2BEF9FD80048081C /* BingoGridModel.swift in Sources */,
