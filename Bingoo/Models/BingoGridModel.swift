@@ -13,6 +13,14 @@ public class BingoGridModel {
     
     private var _gridElements: [GridTileModel] = []
     
+    private(set) var isGameStarted = false
+    
+    private(set) var gameError: Error? = nil
+    private(set) var showError: Bool = false
+
+    private(set) var winnerUser: BingoUserModel? = nil
+    private(set) var winnerGrid: BingoGridModel? = nil
+    
     public var gridElements: [GridTileModel] {
         _gridElements
     }

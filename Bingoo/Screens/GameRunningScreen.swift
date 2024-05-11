@@ -15,6 +15,7 @@ struct GameRunningScreen: View {
     
     @Environment(AppState.self) var appState
     
+    @State private var showError: Bool = false
     let bingo: [Character] = ["B","I","N","G","O"]
     var body: some View {
         NavigationStack {
@@ -42,21 +43,6 @@ struct GameRunningScreen: View {
             .onAppear {
                 appState.bingoState.generateRandomGridTileElements()
             }
-            Button {
-                appState.bingoState.generateRandomGridTileElements()
-                crossLineFrameWidths = Array(repeating: 0.0, count: 12)
-                crossLineFrameHeights = Array(repeating: 0.0, count: 12)
-            } label: {
-                Image(systemName: "goforward")
-                    .resizable()
-                    .scaledToFill()
-                    .foregroundStyle(.white)
-                    .frame(width: 30, height: 30)
-            }
-            .padding()
-            .background(.accent)
-            .cornerRadius(10)
-            .offset(x: gridFrame.width / 2 - 15)
         }
         .onChange(of: appState.bingoState.completedGridGroups) { _, curr in
             if curr.isEmpty {
@@ -65,7 +51,6 @@ struct GameRunningScreen: View {
             
             for item in curr {
                 switch item {
-                    
                 case .row(let rowIndex):
                     markRow(rowIndex)
                 case .column(let colIndex):
@@ -75,8 +60,17 @@ struct GameRunningScreen: View {
                 }
             }
         }
-        .onAppear {
-            
+        .onChange(of: appState.bingoState.showError) { _, curr in
+            if curr {
+                showError = true
+            }
+        }
+        .alert("Error", isPresented: $showError) {
+            Button("OK", role: .none) {
+                
+            }
+        } message: {
+            Text("\(String(describing: appState.bingoState.gameError?.localizedDescription))")
         }
     }
     

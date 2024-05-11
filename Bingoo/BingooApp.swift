@@ -12,18 +12,17 @@ struct BingooApp: App {
     @State private var appState = AppState()
     
     /// For now we will ignore the Username property, will integrate at the end.
-    @State var userName = UserDefaults.standard.string(forKey: UserDefaultKeys.userName)
+    @State private var isUserLoggedIn = BingoUserModel.current?.userName != nil
     var body: some Scene {
         WindowGroup {
-            GameRunningScreen()
-                .environment(appState)
+            contentView
         }
     }
     
     @ViewBuilder
     var contentView: some View {
-        if userName == nil {
-            UserOnboardingScreen()
+        if !isUserLoggedIn {
+            UserOnboardingScreen(isLoggedIn: $isUserLoggedIn)
         } else {
             ChooseGameTypeScreen()
         }

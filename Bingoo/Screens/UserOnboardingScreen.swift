@@ -10,6 +10,8 @@ import SwiftUI
 struct UserOnboardingScreen: View {
     @State var userName: String = ""
     @State var showInvalidUserNameAlert = false
+    @Environment(\.dismiss) var dismiss
+    @Binding var isLoggedIn: Bool
     var body: some View {
         VStack(alignment: .center) {
             Text("Let's Begin")
@@ -27,7 +29,9 @@ struct UserOnboardingScreen: View {
                         showInvalidUserNameAlert = true
                         return
                     }
-                    UserDefaults.standard.setValue(userName, forKey: UserDefaultKeys.userName)
+                    BingoUserModel.updateDetails(userName: userName)
+                    isLoggedIn = true
+                    dismiss()
                 } label: {
                     Image(systemName: "chevron.right")
                         .foregroundColor(.white)
@@ -48,5 +52,6 @@ struct UserOnboardingScreen: View {
 }
 
 #Preview {
-    UserOnboardingScreen()
+    @State var isLoggedIn = true
+    return UserOnboardingScreen(isLoggedIn: $isLoggedIn)
 }
