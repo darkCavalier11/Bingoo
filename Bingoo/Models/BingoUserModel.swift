@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct BingoUserModel: Identifiable, Codable {
-    var id: UUID
+public struct BingoUserModel: Identifiable, Codable {
+    public var id: UUID
     var userName: String
     
     init(id: UUID, userName: String) {

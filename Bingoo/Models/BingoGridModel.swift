@@ -124,7 +124,20 @@ public class BingoGridModel {
         completedGridGroups = []
     }
     
-    public func handleEvent(with bingoManagerModel: BingoSyncMessageModel) {
-        
+    public func handleEvent(with bingoGridMessageModel: BingoGridMessageModel) {
+        switch bingoGridMessageModel.gameState {
+        case .waitingForPlayersToJoin(let currentPlayersOnLobby):
+            <#code#>
+        case .running:
+            <#code#>
+        case .failed(let reason):
+            <#code#>
+        case .completed(let winnerUser):
+            <#code#>
+        }
     }
 }
+
+// TODO: - Implement Winner Dialog and logic
+// TODO: - Implement error Dialog and logic
+// TODO: - Implement User inside coredata
