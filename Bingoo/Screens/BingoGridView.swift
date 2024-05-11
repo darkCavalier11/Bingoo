@@ -10,9 +10,6 @@ import SwiftUI
 struct BingoGridView: View {
     private let gridFrame = CGSize(width: GridTile.itemSize.height * 5, height: GridTile.itemSize.width * 5)
     
-    @State private var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
-    @State private var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
-    
     var gridElements: [GridTileModel]
     @Environment(AppState.self) var appState
     var body: some View {
@@ -37,7 +34,7 @@ struct BingoGridView: View {
                     }
                         .offset(positionElement(row: element.row, column: element.column))
                 }
-                GridTileGroupCrossViews(crossLineFrameWidths: crossLineFrameWidths, crossLineFrameHeights: crossLineFrameHeights)
+                GridTileGroupCrossViews(crossLineFrameWidths: appState.bingoState.crossLineFrameWidths, crossLineFrameHeights: appState.bingoState.crossLineFrameHeights)
             }
         }
         .onAppear {
@@ -74,31 +71,31 @@ struct BingoGridView: View {
     }
     
     func markRow(_ rowIndex: Int) {
-        crossLineFrameHeights[rowIndex] = 4
+        appState.bingoState.crossLineFrameHeights[rowIndex] = 4
         withAnimation {
-            crossLineFrameWidths[rowIndex] = 550
+            appState.bingoState.crossLineFrameWidths[rowIndex] = 550
         }
     }
     
     func markColumn(_ colIndex: Int) {
-        crossLineFrameHeights[colIndex + 5] = 4
+        appState.bingoState.crossLineFrameHeights[colIndex + 5] = 4
         withAnimation {
-            crossLineFrameWidths[colIndex + 5] = 550
+            appState.bingoState.crossLineFrameWidths[colIndex + 5] = 550
         }
         
     }
     
     func markDiagonal(_ diagonalType: BingoGridModel.CompletedGridType.DiagonalDirection) {
         if diagonalType == .topLeftToBottomRight {
-            crossLineFrameHeights[10] = 4
+            appState.bingoState.crossLineFrameHeights[10] = 4
             withAnimation {
-                crossLineFrameWidths[10] = 750
+                appState.bingoState.crossLineFrameWidths[10] = 750
             }
             
         } else {
-            crossLineFrameHeights[11] = 4
+            appState.bingoState.crossLineFrameHeights[11] = 4
             withAnimation {
-                crossLineFrameWidths[11] = 750
+                appState.bingoState.crossLineFrameWidths[11] = 750
             }
         }
     }

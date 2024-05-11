@@ -13,6 +13,12 @@ public class BingoGridModel {
     
     private var _gridElements: [GridTileModel] = []
     
+    public var gridElements: [GridTileModel] {
+        _gridElements
+    }
+    var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
+    var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
+    
     private(set) var isGameStarted = false
     
     private(set) var gameError: Error? = nil
@@ -21,9 +27,7 @@ public class BingoGridModel {
     private(set) var winnerUser: BingoUserModel? = nil
     private(set) var winnerGrid: BingoGridModel? = nil
     
-    public var gridElements: [GridTileModel] {
-        _gridElements
-    }
+    
     
     public var completedGridGroups: [CompletedGridType] = []
     
