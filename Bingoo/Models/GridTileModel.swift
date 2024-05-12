@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-public struct GridTileModel: Identifiable {
-    public let id = UUID()
+public struct GridTileModel: Identifiable, Codable {
+    public var id = UUID()
     public let number: Int
     public var position: Int
     public var isSelected: Bool
