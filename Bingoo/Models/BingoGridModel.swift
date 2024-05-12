@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @Observable
 public class BingoGridModel {
@@ -137,5 +138,35 @@ public class BingoGridModel {
     private func reset() {
         _gridElements = []
         completedGridGroups = []
+    }
+    
+    func markRow(_ rowIndex: Int) {
+        crossLineFrameHeights[rowIndex] = 4
+        withAnimation {
+            crossLineFrameWidths[rowIndex] = 550
+        }
+    }
+    
+    func markColumn(_ colIndex: Int) {
+        crossLineFrameHeights[colIndex + 5] = 4
+        withAnimation {
+            crossLineFrameWidths[colIndex + 5] = 550
+        }
+        
+    }
+    
+    func markDiagonal(_ diagonalType: BingoGridModel.CompletedGridType.DiagonalDirection) {
+        if diagonalType == .topLeftToBottomRight {
+            crossLineFrameHeights[10] = 4
+            withAnimation {
+                crossLineFrameWidths[10] = 750
+            }
+            
+        } else {
+            crossLineFrameHeights[11] = 4
+            withAnimation {
+                crossLineFrameWidths[11] = 750
+            }
+        }
     }
 }

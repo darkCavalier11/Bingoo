@@ -48,11 +48,11 @@ struct BingoGridView: View {
             for item in curr {
                 switch item {
                 case .row(let rowIndex):
-                    markRow(rowIndex)
+                    appState.bingoState.markRow(rowIndex)
                 case .column(let colIndex):
-                    markColumn(colIndex)
+                    appState.bingoState.markColumn(colIndex)
                 case .diagonal(let diagonalType):
-                    markDiagonal(diagonalType)
+                    appState.bingoState.markDiagonal(diagonalType)
                 }
             }
         }
@@ -69,35 +69,7 @@ struct BingoGridView: View {
         let height =  xOffset - gridFrame.height / 2 + GridTile.itemSize.height / 2
         return CGSize(width: width, height: height)
     }
-    
-    func markRow(_ rowIndex: Int) {
-        appState.bingoState.crossLineFrameHeights[rowIndex] = 4
-        withAnimation {
-            appState.bingoState.crossLineFrameWidths[rowIndex] = 550
-        }
-    }
-    
-    func markColumn(_ colIndex: Int) {
-        appState.bingoState.crossLineFrameHeights[colIndex + 5] = 4
-        withAnimation {
-            appState.bingoState.crossLineFrameWidths[colIndex + 5] = 550
-        }
-        
-    }
-    
-    func markDiagonal(_ diagonalType: BingoGridModel.CompletedGridType.DiagonalDirection) {
-        if diagonalType == .topLeftToBottomRight {
-            appState.bingoState.crossLineFrameHeights[10] = 4
-            withAnimation {
-                appState.bingoState.crossLineFrameWidths[10] = 750
-            }
-            
-        } else {
-            appState.bingoState.crossLineFrameHeights[11] = 4
-            withAnimation {
-                appState.bingoState.crossLineFrameWidths[11] = 750
-            }
-        }
-    }
+    // TODO: - Make this part of model changes
+
 }
 
