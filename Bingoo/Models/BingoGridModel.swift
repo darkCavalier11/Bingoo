@@ -28,7 +28,7 @@ public class BingoGridModel {
     private(set) var winnerUser: BingoUserModel? = nil
     private(set) var winnerGrid: BingoGridModel? = nil
     
-    
+    private(set) var currentPlayersOnLobby = [String]()
     
     public var completedGridGroups: [CompletedGridType] = []
     
