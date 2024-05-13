@@ -11,20 +11,20 @@ import SwiftUI
 public struct GridTileModel: Identifiable, Codable {
     public var id = UUID()
     public let number: Int
-    public var position: Int
+    public var index: Int
     public var isSelected: Bool
     
     var row: Int {
-        return position / 5
+        return index / 5
     }
     
     var column: Int {
-        return position % 5
+        return index % 5
     }
     
-    init(number: Int, position: Int, isSelected: Bool) {
+    init(number: Int, index: Int, isSelected: Bool) {
         self.number = number
-        self.position = position
+        self.index = index
         self.isSelected = isSelected
     }
 }

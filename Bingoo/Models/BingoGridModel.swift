@@ -131,7 +131,7 @@ public class BingoGridModel {
             let randomNumber = unusedNumbers.randomElement()!
             let index = unusedNumbers.firstIndex(of: randomNumber)!
             unusedNumbers.remove(at: index)
-            _gridElements.append(GridTileModel(number: randomNumber, position: i, isSelected: false))
+            _gridElements.append(GridTileModel(number: randomNumber, index: i, isSelected: false))
         }
     }
     

@@ -62,7 +62,7 @@ struct GridTile: View {
                 .rotationEffect(Angle(radians: textRotationFactor))
         }
         .onTapGesture {
-            setSelected(gridTileModel.position)
+            setSelected(gridTileModel.index)
         }
         .onChange(of: gridTileModel.isSelected) {
             withAnimation(.easeInOut(duration: 0.4)) {
@@ -86,7 +86,7 @@ struct GridTile: View {
 }
 
 #Preview {
-    GridTile(gridTileModel: GridTileModel(number: 0, position: 0, isSelected: false)) { index in
+    GridTile(gridTileModel: GridTileModel(number: 0, index: 0, isSelected: false)) { index in
         
     }
 }
