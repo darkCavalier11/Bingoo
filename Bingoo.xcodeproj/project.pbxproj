@@ -202,11 +202,9 @@
 		95CA436A2BDE527D00B93A15 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				95F56A102BF9211800C30EDB /* Core Data Models */,
 				95909B592BEF9FD80048081C /* BingoGridModel.swift */,
 				95EBE3202BEA4CE9009E8F10 /* BingoGridMessageModel.swift */,
-				95909B5E2BEFA07B0048081C /* BingoUserModel+CoreDataClass.swift */,
-				95909B5F2BEFA07B0048081C /* BingoUserModel+CoreDataProperties.swift */,
-				95909B5B2BEFA01C0048081C /* BingoCoreDataModels.xcdatamodeld */,
 				95CA436B2BDE529000B93A15 /* GridTileModel.swift */,
 				95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */,
 				95B76C042BE7EB6B00FA4476 /* AppState.swift */,
@@ -220,6 +218,16 @@
 				95909B622BEFA0A90048081C /* Extensions.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		95F56A102BF9211800C30EDB /* Core Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				95909B5E2BEFA07B0048081C /* BingoUserModel+CoreDataClass.swift */,
+				95909B5F2BEFA07B0048081C /* BingoUserModel+CoreDataProperties.swift */,
+				95909B5B2BEFA01C0048081C /* BingoCoreDataModels.xcdatamodeld */,
+			);
+			path = "Core Data Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,8 +737,7 @@
 				95909B5C2BEFA01C0048081C /* BingoCoreDataModels.xcdatamodel */,
 			);
 			currentVersion = 95909B5C2BEFA01C0048081C /* BingoCoreDataModels.xcdatamodel */;
-			name = BingoCoreDataModels.xcdatamodeld;
-			path = /Users/sumit/Documents/ios/UIKit/Projects/Bingoo/Bingoo/Models/BingoCoreDataModels.xcdatamodeld;
+			path = BingoCoreDataModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
