@@ -20,15 +20,7 @@ public class BingoGridModel {
     var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
     var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
     
-    private(set) var isGameStarted = false
-    
-    private(set) var gameError: Error? = nil
-    private(set) var showError: Bool = false
-
-    private(set) var winnerUser: BingoUserModel? = nil
-    private(set) var winnerGrid: BingoGridModel? = nil
-    
-    private(set) var currentPlayersOnLobby = [String]()
+    public var gameRunningState: BingoGameRunningState = .active(isRunning: false)
     
     public var completedGridGroups: [CompletedGridType] = []
     

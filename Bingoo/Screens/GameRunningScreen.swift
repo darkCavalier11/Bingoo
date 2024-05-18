@@ -15,20 +15,7 @@ struct GameRunningScreen: View {
         NavigationStack {
             BingoGridView(gridElements: appState.bingoState.gridElements)
         }
-        .onChange(of: appState.bingoState.showError) { _, curr in
-            if curr {
-                showError = true
-            }
-        }
-        .alert("Error", isPresented: $showError) {
-            Button("OK", role: .none) {
-                
-            }
-        } message: {
-            Text("\(String(describing: appState.bingoState.gameError?.localizedDescription))")
-        }
     }
-
 }
 
 #Preview {
