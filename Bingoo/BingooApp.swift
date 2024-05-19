@@ -10,8 +10,6 @@ import SwiftUI
 @main
 struct BingooApp: App {
     @State private var appState = AppState()
-    
-    /// For now we will ignore the Username property, will integrate at the end.
     @State private var isUserLoggedIn = BingoUserModel.current?.userName != nil
     var body: some Scene {
         WindowGroup {
