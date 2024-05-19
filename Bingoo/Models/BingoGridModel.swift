@@ -20,8 +20,6 @@ public class BingoGridModel {
     var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
     var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
     
-    public var gameRunningState: BingoGameRunningState = .active(isRunning: false)
-    
     public var completedGridGroups: [CompletedGridType] = []
     
     public var totalCompletedTileGroups: Int {
