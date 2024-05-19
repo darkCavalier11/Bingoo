@@ -10,7 +10,7 @@
 
 import Foundation
 
-struct BingoUserProfile: Codable {
+public struct BingoUserProfile: Codable {
     let id: UUID
     let userName: String
     

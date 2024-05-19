@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+public enum BingoMessageModel: Codable {
+    case waitingForPlayerToJoin
+    case started(players: [BingoUserProfile])
+    case receiveUpdateWith(selectedNumber: Int, userProfile: BingoUserProfile)
+    case failure(reason: String)
+    case playerWon(userProfile: BingoUserProfile, gridElements: [GridTileModel])
+}
