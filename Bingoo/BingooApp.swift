@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct BingooApp: App {
     @State private var appState = AppState()
-    @State private var isUserLoggedIn = BingoUserModel.current?.userName != nil
+    @State private var isUserLoggedIn = CDBingoUserModel.current?.userName != nil
     var body: some Scene {
         WindowGroup {
             contentView

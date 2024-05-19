@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 
 @objc(BingoUserModel)
-public class BingoUserModel: NSManagedObject {
+public class CDBingoUserModel: NSManagedObject {
 
 }

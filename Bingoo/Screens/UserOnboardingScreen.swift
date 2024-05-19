@@ -29,7 +29,7 @@ struct UserOnboardingScreen: View {
                         showInvalidUserNameAlert = true
                         return
                     }
-                    BingoUserModel.updateDetails(userName: userName)
+                    CDBingoUserModel.updateDetails(userName: userName)
                     isLoggedIn = true
                     dismiss()
                 } label: {
