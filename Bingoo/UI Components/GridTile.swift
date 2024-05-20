@@ -58,7 +58,7 @@ struct GridTile: View {
                 .padding(Self.itemPadding)
                 
             Text("\(gridTileModel.number)")
-                .font(.title.monospaced().bold())
+                .font(.title2.monospaced().bold())
                 .rotationEffect(Angle(radians: textRotationFactor))
         }
         .onTapGesture {

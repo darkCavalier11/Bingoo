@@ -133,14 +133,14 @@ public class BingoGridModel {
     func markRow(_ rowIndex: Int) {
         crossLineFrameHeights[rowIndex] = 4
         withAnimation {
-            crossLineFrameWidths[rowIndex] = 550
+            crossLineFrameWidths[rowIndex] = GridTile.itemSize.width * 5
         }
     }
     
     func markColumn(_ colIndex: Int) {
         crossLineFrameHeights[colIndex + 5] = 4
         withAnimation {
-            crossLineFrameWidths[colIndex + 5] = 550
+            crossLineFrameWidths[colIndex + 5] = GridTile.itemSize.width * 5
         }
         
     }
@@ -149,13 +149,13 @@ public class BingoGridModel {
         if diagonalType == .topLeftToBottomRight {
             crossLineFrameHeights[10] = 4
             withAnimation {
-                crossLineFrameWidths[10] = 750
+                crossLineFrameWidths[10] = GridTile.itemSize.width * 7
             }
             
         } else {
             crossLineFrameHeights[11] = 4
             withAnimation {
-                crossLineFrameWidths[11] = 750
+                crossLineFrameWidths[11] = GridTile.itemSize.width * 7
             }
         }
     }

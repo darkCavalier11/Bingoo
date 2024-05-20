@@ -15,11 +15,11 @@ struct UserOnboardingScreen: View {
     var body: some View {
         VStack(alignment: .center) {
             Text("Let's Begin")
-                .font(.largeTitle.monospaced().bold())
+                .font(.title.monospaced().bold())
                 .foregroundStyle(.accent)
             TextField("Name", text: $userName)
                 .font(.largeTitle.monospaced().bold())
-                .frame(width: 400)
+                .frame(width: 320)
                 .padding()
             
             HStack {
@@ -46,7 +46,7 @@ struct UserOnboardingScreen: View {
                     }
                 }
             }
-            .frame(width: 400)
+            .frame(width: 320)
         }
     }
 }
