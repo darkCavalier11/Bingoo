@@ -8,16 +8,55 @@
 import SwiftUI
 
 struct ChooseGameTypeScreen: View {
+    @State private var isPresented = false
     var body: some View {
         VStack(alignment: .leading) {
             ChooseGameTypeButton(gameType: .withDevice, systemImage: "cpu") {
                 
             }
-            ChooseGameTypeButton(gameType: .withLocalFriend, systemImage: "person") {
-                
+            HStack {
+                ChooseGameTypeButton(gameType: .withLocalFriend, systemImage: "person") {
+                    
+                }
+                HStack {
+                    Button {
+                        isPresented = true
+                    } label: {
+                        Text("JOIN")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    
+                    Divider()
+                        .frame(height: 25)
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("HOST")
+                    }
+                }
             }
-            ChooseGameTypeButton(gameType: .online, systemImage: "network") {
-
+            
+            HStack {
+                ChooseGameTypeButton(gameType: .online, systemImage: "network") {
+                    
+                }
+                HStack {
+                    Button {
+                        
+                    } label: {
+                        Text("JOIN")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    Divider()
+                        .frame(height: 25)
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("HOST")
+                    }
+                }
             }
         }
     }
