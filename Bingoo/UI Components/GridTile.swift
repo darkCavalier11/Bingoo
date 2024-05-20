@@ -40,12 +40,12 @@ struct GridTile: View {
     static var itemSize: CGSize {
         return CGSize(width: rectangleFrame.width + 2.0 * itemPadding, height: rectangleFrame.height + 2.0 * itemPadding)
     }
-    
+    @Environment(\.colorScheme) var colorScheme
     @State private var xShadowOffset = 4.0
     @State private var yShadowOffset = 4.0
     @State private var scaleFactor = 1.0
     @State private var textRotationFactor = 0.0
-    @State private var gridTileForegroundColor = Color.white
+    @State private var gridTileForegroundColor: Color? = nil
     
     var body: some View {
         ZStack {
@@ -54,7 +54,7 @@ struct GridTile: View {
                 .cornerRadius(12)
                 .shadow(color: .orange, radius: 0, x: xShadowOffset, y: yShadowOffset)
                 .scaleEffect(scaleFactor)
-                .foregroundColor(gridTileForegroundColor)
+                .foregroundStyle(gridTileForegroundColor == nil ? colorScheme == .dark ? .black : .white : gridTileForegroundColor!)
                 .padding(Self.itemPadding)
                 
             Text("\(gridTileModel.number)")

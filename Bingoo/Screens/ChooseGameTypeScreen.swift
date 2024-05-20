@@ -35,6 +35,9 @@ struct ChooseGameTypeScreen: View {
                         Text("HOST")
                     }
                 }
+                .alert(isPresented: $isPresented) {
+                    Alert(title: Text("Hello"))
+                }
             }
             
             HStack {

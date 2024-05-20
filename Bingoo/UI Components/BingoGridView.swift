@@ -18,7 +18,7 @@ struct BingoGridView: View {
             ZStack {
                 Rectangle()
                     .frame(width: gridFrame.width, height: GridTile.itemSize.height)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.background)
                 ForEach(0..<5) { idx in
                     GridHeaderText(letter: bingo[idx], isCompleted: appState.bingoState.totalCompletedTileGroups  > idx)
                         .offset(positionGridHeaderText(index: idx))
@@ -27,7 +27,7 @@ struct BingoGridView: View {
             ZStack {
                 Rectangle()
                     .frame(width: gridFrame.width, height: gridFrame.height)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.background)
                 ForEach(gridElements) { element in
                     GridTile(gridTileModel: element) { index in
                         appState.bingoState.setSelectedFor(index: index)

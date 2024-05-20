@@ -26,7 +26,7 @@ struct ChooseGameTypeButton: View {
                     title: { 
                         Text(gameType.rawValue)
                             .font(.title.monospaced())
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.foreground)
                     },
                     icon: { 
                         Image(systemName: systemImage)
