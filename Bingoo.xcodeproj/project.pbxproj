@@ -20,6 +20,7 @@
 		951C51572BE93F4F00D1E191 /* UserOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */; };
 		953501B22BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */; };
 		953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953501B62BDCE0AE00EB1C2F /* GridTile.swift */; };
+		9579AF062BFB7BFF007E2AA5 /* BingoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */; };
 		95909B5A2BEF9FD80048081C /* BingoGridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909B592BEF9FD80048081C /* BingoGridModel.swift */; };
 		95909B652BEFE1500048081C /* BingoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909B642BEFE1500048081C /* BingoGridView.swift */; };
 		95A3B0EA2BE8952B008C7623 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */; };
@@ -27,6 +28,7 @@
 		95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436B2BDE529000B93A15 /* GridTileModel.swift */; };
 		95CA436E2BDE5A8C00B93A15 /* GridHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */; };
 		95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */; };
+		95DF9F792BFBC3EE00D790F2 /* CustomAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 95DF9F782BFBC3EE00D790F2 /* CustomAlert */; };
 		95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */; };
 		95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */; };
 		95EBE3212BEA4CE9009E8F10 /* BingoMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3202BEA4CE9009E8F10 /* BingoMessageModel.swift */; };
@@ -69,6 +71,7 @@
 		953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Bold.ttf"; sourceTree = "<group>"; };
 		953501B42BDCDEEE00EB1C2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		953501B62BDCE0AE00EB1C2F /* GridTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTile.swift; sourceTree = "<group>"; };
+		9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoDialog.swift; sourceTree = "<group>"; };
 		95909B592BEF9FD80048081C /* BingoGridModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingoGridModel.swift; sourceTree = "<group>"; };
 		95909B642BEFE1500048081C /* BingoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGridView.swift; sourceTree = "<group>"; };
 		95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DF9F792BFBC3EE00D790F2 /* CustomAlert in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,7 @@
 				95178CF72BDCD888005C80FA /* BingooTests */,
 				95178D012BDCD888005C80FA /* BingooUITests */,
 				95178CE42BDCD887005C80FA /* Products */,
+				95DF9F772BFBC3EE00D790F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -198,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				95909B642BEFE1500048081C /* BingoGridView.swift */,
+				9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */,
 				95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */,
 				953501B62BDCE0AE00EB1C2F /* GridTile.swift */,
 				95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */,
@@ -217,6 +223,13 @@
 				95B76C042BE7EB6B00FA4476 /* AppState.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		95DF9F772BFBC3EE00D790F2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		95F56A102BF9211800C30EDB /* Core Data */ = {
@@ -246,6 +259,9 @@
 			dependencies = (
 			);
 			name = Bingoo;
+			packageProductDependencies = (
+				95DF9F782BFBC3EE00D790F2 /* CustomAlert */,
+			);
 			productName = Bingoo;
 			productReference = 95178CE32BDCD887005C80FA /* Bingoo.app */;
 			productType = "com.apple.product-type.application";
@@ -318,6 +334,9 @@
 				Base,
 			);
 			mainGroup = 95178CDA2BDCD887005C80FA;
+			packageReferences = (
+				9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */,
+			);
 			productRefGroup = 95178CE42BDCD887005C80FA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -373,6 +392,7 @@
 				95B76C052BE7EB6B00FA4476 /* AppState.swift in Sources */,
 				951C51572BE93F4F00D1E191 /* UserOnboardingScreen.swift in Sources */,
 				95EBE32A2BEA8E64009E8F10 /* GameRunningScreen.swift in Sources */,
+				9579AF062BFB7BFF007E2AA5 /* BingoDialog.swift in Sources */,
 				953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */,
 				95178CE72BDCD887005C80FA /* BingooApp.swift in Sources */,
 				95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */,
@@ -729,6 +749,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/divadretlaw/CustomAlert.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		95DF9F782BFBC3EE00D790F2 /* CustomAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */;
+			productName = CustomAlert;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9503D1452BFA688D003C9F67 /* BingoCoreDataModels.xcdatamodeld */ = {

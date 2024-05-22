@@ -1,0 +1,42 @@
+{
+  "originHash" : "8e78b1b42f91bada989504211a8f96d5276a928e0fa8cf041170e0608e72700e",
+  "pins" : [
+    {
+      "identity" : "customalert",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divadretlaw/CustomAlert.git",
+      "state" : {
+        "revision" : "ce671704a27e418f606ead1dfb25c622de98bd5b",
+        "version" : "3.6.1"
+      }
+    },
+    {
+      "identity" : "windowkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divadretlaw/WindowKit",
+      "state" : {
+        "revision" : "155ea4e6c772146cd575c1db226fdd1974857a49",
+        "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "windowreader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divadretlaw/WindowReader",
+      "state" : {
+        "revision" : "7e1f994df0ed26a7d7a139f1fce2537d2c931059",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "windowscenereader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divadretlaw/WindowSceneReader",
+      "state" : {
+        "revision" : "0779fbf801a723570f90158aa5e618ff885b6c47",
+        "version" : "3.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}

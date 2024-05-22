@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import CustomAlert
 
 struct ChooseGameTypeScreen: View {
-    @State private var isPresented = false
+    @State private var showChooseDeviceDialog = false
+    @State private var showEnterJoiningCodeDialog = false
+    @State private var joiningCode = ""
     var body: some View {
         VStack(alignment: .leading) {
             ChooseGameTypeButton(gameType: .withDevice, systemImage: "cpu") {
@@ -20,7 +23,7 @@ struct ChooseGameTypeScreen: View {
                 }
                 HStack {
                     Button {
-                        isPresented = true
+                        showChooseDeviceDialog = true
                     } label: {
                         Text("JOIN")
                     }
@@ -35,8 +38,27 @@ struct ChooseGameTypeScreen: View {
                         Text("HOST")
                     }
                 }
-                .alert(isPresented: $isPresented) {
-                    Alert(title: Text("Hello"))
+                .customAlert("Choose Device", isPresented: $showChooseDeviceDialog) {
+                    ForEach(0..<10) { e in
+                        VStack {
+                            Button {
+                                
+                            } label: {
+                                Text("\(e)")
+                            }
+                            .padding()
+                            .font(.title3)
+                        }
+                        Divider()
+                    }
+                    ProgressView()
+                } actions: {
+                    Button(role: .cancel) {
+                        
+                    } label: {
+                        Text("Cancel")
+                            .font(.title)
+                    }
                 }
             }
             
@@ -46,7 +68,7 @@ struct ChooseGameTypeScreen: View {
                 }
                 HStack {
                     Button {
-                        
+                        showEnterJoiningCodeDialog = true
                     } label: {
                         Text("JOIN")
                     }
@@ -58,6 +80,27 @@ struct ChooseGameTypeScreen: View {
                         
                     } label: {
                         Text("HOST")
+                    }
+                }
+            }
+            .customAlert("Enter joining code", isPresented: $showEnterJoiningCodeDialog) {
+                TextField(text: $joiningCode) {
+                    
+                }
+                .font(.title)
+                .keyboardType(.numberPad)
+                .textFieldStyle(.roundedBorder)
+            } actions: {
+                MultiButton {
+                    Button {
+                        
+                    } label: {
+                        Text("Join")
+                    }
+                    Button(role: .cancel) {
+                        
+                    } label: {
+                        Text("Cancel")
                     }
                 }
             }
