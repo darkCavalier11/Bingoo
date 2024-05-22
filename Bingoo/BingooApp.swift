@@ -23,7 +23,7 @@ struct BingooApp: App {
             UserOnboardingScreen(isLoggedIn: $isUserLoggedIn)
         } else {
             if isGameStarted {
-                GameRunningScreen()
+                GameRunningScreen(isGameStarted: $isGameStarted)
                     .environment(AppState())
             } else {
                 ChooseGameTypeScreen(isGameStarted: $isGameStarted)
