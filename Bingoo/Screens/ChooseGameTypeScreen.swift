@@ -12,6 +12,8 @@ struct ChooseGameTypeScreen: View {
     @State private var showChooseDeviceDialog = false
     @State private var showEnterJoiningCodeDialog = false
     @State private var joiningCode = ""
+    @Binding var isGameStarted: Bool
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -36,8 +38,8 @@ struct ChooseGameTypeScreen: View {
                     Divider()
                         .frame(height: 25)
                     
-                    NavigationLink {
-                        GameRunningScreen()
+                    Button {
+                        isGameStarted = true
                     } label: {
                         Text("HOST")
                     }
@@ -79,7 +81,7 @@ struct ChooseGameTypeScreen: View {
                         .frame(height: 25)
                     
                     Button {
-                        
+                        isGameStarted = true
                     } label: {
                         Text("HOST")
                     }
@@ -117,5 +119,6 @@ public enum BingoGameType: String, CaseIterable, Codable {
 }
 
 #Preview {
-    ChooseGameTypeScreen()
+    @State var isGameStarted = false
+    return ChooseGameTypeScreen(isGameStarted: $isGameStarted)
 }

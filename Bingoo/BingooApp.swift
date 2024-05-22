@@ -9,8 +9,8 @@ import SwiftUI
 
 @main
 struct BingooApp: App {
-    @State private var appState = AppState()
     @State private var isUserLoggedIn = CDBingoUserModel.current?.userName != nil
+    @State private var isGameStarted = false
     var body: some Scene {
         WindowGroup {
             contentView
@@ -22,7 +22,13 @@ struct BingooApp: App {
         if !isUserLoggedIn {
             UserOnboardingScreen(isLoggedIn: $isUserLoggedIn)
         } else {
-            ChooseGameTypeScreen()
+            if isGameStarted {
+                GameRunningScreen()
+                    .environment(AppState())
+            } else {
+                ChooseGameTypeScreen(isGameStarted: $isGameStarted)
+            }
+            
         }
     }
 }
