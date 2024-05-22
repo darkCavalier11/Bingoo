@@ -14,13 +14,17 @@ struct ChooseGameTypeScreen: View {
     @State private var joiningCode = ""
     var body: some View {
         VStack(alignment: .leading) {
-            ChooseGameTypeButton(gameType: .withDevice, systemImage: "cpu") {
-                
+            HStack {
+                ChooseGameTypeLabel(gameType: .withDevice, systemImage: "cpu")
+                Button {
+                    
+                } label: {
+                    Text("START")
+                }
+                .buttonStyle(.borderedProminent)
             }
             HStack {
-                ChooseGameTypeButton(gameType: .withLocalFriend, systemImage: "person") {
-                    
-                }
+                ChooseGameTypeLabel(gameType: .withLocalFriend, systemImage: "person")
                 HStack {
                     Button {
                         showChooseDeviceDialog = true
@@ -32,8 +36,8 @@ struct ChooseGameTypeScreen: View {
                     Divider()
                         .frame(height: 25)
                     
-                    Button {
-                        
+                    NavigationLink {
+                        GameRunningScreen()
                     } label: {
                         Text("HOST")
                     }
@@ -63,9 +67,7 @@ struct ChooseGameTypeScreen: View {
             }
             
             HStack {
-                ChooseGameTypeButton(gameType: .online, systemImage: "network") {
-                    
-                }
+                ChooseGameTypeLabel(gameType: .online, systemImage: "network")
                 HStack {
                     Button {
                         showEnterJoiningCodeDialog = true

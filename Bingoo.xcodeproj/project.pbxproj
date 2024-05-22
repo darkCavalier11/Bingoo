@@ -30,7 +30,7 @@
 		95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */; };
 		95DF9F792BFBC3EE00D790F2 /* CustomAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 95DF9F782BFBC3EE00D790F2 /* CustomAlert */; };
 		95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */; };
-		95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */; };
+		95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift */; };
 		95EBE3212BEA4CE9009E8F10 /* BingoMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3202BEA4CE9009E8F10 /* BingoMessageModel.swift */; };
 		95EBE32A2BEA8E64009E8F10 /* GameRunningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3292BEA8E64009E8F10 /* GameRunningScreen.swift */; };
 /* End PBXBuildFile section */
@@ -80,7 +80,7 @@
 		95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHeaderText.swift; sourceTree = "<group>"; };
 		95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameTypeScreen.swift; sourceTree = "<group>"; };
 		95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileGroupCrossViews.swift; sourceTree = "<group>"; };
-		95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameTypeButton.swift; sourceTree = "<group>"; };
+		95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameTypeLabel.swift; sourceTree = "<group>"; };
 		95EBE3202BEA4CE9009E8F10 /* BingoMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoMessageModel.swift; sourceTree = "<group>"; };
 		95EBE3292BEA8E64009E8F10 /* GameRunningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRunningScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -206,7 +206,7 @@
 				9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */,
 				95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */,
 				953501B62BDCE0AE00EB1C2F /* GridTile.swift */,
-				95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */,
+				95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift */,
 				95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */,
 			);
 			path = "UI Components";
@@ -383,7 +383,7 @@
 				95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */,
 				95909B652BEFE1500048081C /* BingoGridView.swift in Sources */,
 				95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */,
-				95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeButton.swift in Sources */,
+				95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift in Sources */,
 				9503D14D2BFA69F5003C9F67 /* BingoUserProfile.swift in Sources */,
 				95909B5A2BEF9FD80048081C /* BingoGridModel.swift in Sources */,
 				95A3B0EA2BE8952B008C7623 /* CoreDataStack.swift in Sources */,
