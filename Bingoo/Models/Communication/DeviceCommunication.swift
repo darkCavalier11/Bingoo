@@ -8,7 +8,11 @@
 import Foundation
 import Combine
 
-class LocalCommunication: BingoCommunication {
+class DeviceCommunication: BingoCommunication {
+  var host: BingoUserProfile?
+  
+  var joinee: BingoUserProfile?
+  
   let deviceGridModel = BingoGridModel()
   
   var messageSubject: CurrentValueSubject<BingoMessageModel, Never> {
