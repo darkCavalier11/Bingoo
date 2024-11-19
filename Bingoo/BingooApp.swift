@@ -11,6 +11,7 @@ import SwiftUI
 struct BingooApp: App {
     @State private var isUserLoggedIn = CDBingoUserModel.current?.userName != nil
     @State private var isGameStarted = false
+    @State private var gameType: BingoGameType = .withDevice
     var body: some Scene {
         WindowGroup {
             contentView
@@ -24,9 +25,16 @@ struct BingooApp: App {
         } else {
             if isGameStarted {
                 GameRunningScreen(isGameStarted: $isGameStarted)
-                    .environment(AppState())
+                    .environment(
+                      AppState(
+                        gameType: gameType
+                      )
+                    )
             } else {
-                ChooseGameTypeScreen(isGameStarted: $isGameStarted)
+                ChooseGameTypeScreen(
+                  isGameStarted: $isGameStarted,
+                  gameType: $gameType
+                )
             }
             
         }

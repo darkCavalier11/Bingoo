@@ -10,16 +10,16 @@ import Foundation
 @Observable
 class AppState {
   var bingoState = BingoGridModel()
-  var comm: BingoCommunication?
+  var comm: BingoCommunication
   
-  func setGameModeComm(_ gameType: BingoGameType) {
+  init(gameType: BingoGameType) {
     switch gameType {
     case .withDevice:
-      comm = LocalCommunication()
+      self.comm = LocalCommunication()
     case .withLocalFriend:
-      break
+      self.comm = LocalCommunication()
     case .online:
-      break
+      self.comm = LocalCommunication()
     }
   }
 }
