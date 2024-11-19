@@ -7,7 +7,9 @@
 
 import SwiftUI
 import CustomAlert
+import Combine
 
+private var cancellable = Set<AnyCancellable>()
 struct GameRunningScreen: View {
     @Environment(AppState.self) var appState
     @Binding var isGameStarted: Bool
@@ -42,7 +44,21 @@ struct GameRunningScreen: View {
             }
         }
         .onAppear {
-          
+          appState.comm.messagePublisher.sink { message in
+            switch message {
+            case .failure(reason: let reason):
+              break
+            case .playerWon(userProfile: let profile, gridElements: let gridElements):
+              break
+            case .started(host: let host, joinee: let joinee):
+              break
+            case .waitingForPlayerToJoin:
+              break
+            case .receiveUpdateWith(selectedNumber: let selectedNumber, userProfile: let userProfile):
+              break
+            }
+          }
+          .store(in: &cancellable)
         }
     }
 }

@@ -15,6 +15,10 @@ class LocalCommunication: BingoCommunication {
     .init(.waitingForPlayerToJoin)
   }
   
+  var messagePublisher: AnyPublisher<BingoMessageModel, Never> {
+    messageSubject.eraseToAnyPublisher()
+  }
+  
   func sendEvent(message: BingoMessageModel) {
     
   }
