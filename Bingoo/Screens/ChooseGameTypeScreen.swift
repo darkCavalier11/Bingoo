@@ -124,6 +124,7 @@ public enum BingoGameType: String, CaseIterable, Codable {
 }
 
 #Preview {
-    @State var isGameStarted = false
-    return ChooseGameTypeScreen(isGameStarted: $isGameStarted)
+  @Previewable @State var isGameStarted = false
+  @Previewable @State var gameType = BingoGameType.withDevice
+  return ChooseGameTypeScreen(isGameStarted: $isGameStarted, gameType: $gameType)
 }

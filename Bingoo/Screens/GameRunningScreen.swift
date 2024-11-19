@@ -47,9 +47,3 @@ struct GameRunningScreen: View {
     }
 }
 
-#Preview {
-    @State var appState = AppState()
-    @State var isGameStarted = false
-    return GameRunningScreen(isGameStarted: $isGameStarted)
-        .environment(appState)
-}
