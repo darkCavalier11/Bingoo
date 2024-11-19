@@ -13,13 +13,14 @@ struct ChooseGameTypeScreen: View {
     @State private var showEnterJoiningCodeDialog = false
     @State private var joiningCode = ""
     @Binding var isGameStarted: Bool
+    @Environment(AppState.self) var appState
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 ChooseGameTypeLabel(gameType: .withDevice, systemImage: "cpu")
                 Button {
-                    
+                  appState.setGameModeComm(.withDevice)
                 } label: {
                     Text("START")
                 }

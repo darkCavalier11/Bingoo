@@ -34,7 +34,10 @@ struct BingoGridView: View {
                     }
                         .offset(positionElement(row: element.row, column: element.column))
                 }
-                GridTileGroupCrossViews(crossLineFrameWidths: appState.bingoState.crossLineFrameWidths, crossLineFrameHeights: appState.bingoState.crossLineFrameHeights)
+                GridTileGroupCrossViews(
+                  crossLineFrameWidths: appState.bingoState.crossLineFrameWidths,
+                  crossLineFrameHeights: appState.bingoState.crossLineFrameHeights
+                )
             }
         }
         .onAppear {
@@ -68,6 +71,7 @@ struct BingoGridView: View {
         let width = yOffset - gridFrame.width / 2 + GridTile.itemSize.width / 2
         let height =  xOffset - gridFrame.height / 2 + GridTile.itemSize.height / 2
         return CGSize(width: width, height: height)
+      
     }
     // TODO: - Make this part of model changes
 

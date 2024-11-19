@@ -41,6 +41,9 @@ struct GameRunningScreen: View {
                 }
             }
         }
+        .onAppear {
+          
+        }
     }
 }
 
