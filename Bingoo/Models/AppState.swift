@@ -15,11 +15,11 @@ class AppState {
   init(gameType: BingoGameType) {
     switch gameType {
     case .withDevice:
-      self.comm = LocalCommunication()
+      self.comm = DeviceCommunication()
     case .withLocalFriend:
-      self.comm = LocalCommunication()
+      self.comm = DeviceCommunication()
     case .online:
-      self.comm = LocalCommunication()
+      self.comm = DeviceCommunication()
     }
   }
 }

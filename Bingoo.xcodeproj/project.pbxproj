@@ -9,7 +9,12 @@
 /* Begin PBXBuildFile section */
 		95029F4A2CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95029F482CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld */; };
 		95029F4C2CECABA200523453 /* BingoCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F4B2CECABA200523453 /* BingoCommunication.swift */; };
-		95029F4E2CECAC3700523453 /* LocalCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F4D2CECAC3700523453 /* LocalCommunication.swift */; };
+		95029F4E2CECAC3700523453 /* DeviceCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F4D2CECAC3700523453 /* DeviceCommunication.swift */; };
+		95029F502CECFC9A00523453 /* PeerCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F4F2CECFC9A00523453 /* PeerCommunication.swift */; };
+		95029F522CECFCAE00523453 /* OnlineCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F512CECFCAE00523453 /* OnlineCommunication.swift */; };
+		95029F542CECFD8A00523453 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95029F532CECFD8A00523453 /* GoogleService-Info.plist */; };
+		95029F572CECFE7700523453 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 95029F562CECFE7700523453 /* FirebaseDatabase */; };
+		95029F592CECFEE400523453 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F582CECFEE400523453 /* AppDelegate.swift */; };
 		9503D14A2BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503D1482BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift */; };
 		9503D14B2BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503D1492BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift */; };
 		9503D14D2BFA69F5003C9F67 /* BingoUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503D14C2BFA69F5003C9F67 /* BingoUserProfile.swift */; };
@@ -57,7 +62,11 @@
 /* Begin PBXFileReference section */
 		95029F492CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BingoCoreDataModels.xcdatamodel; sourceTree = "<group>"; };
 		95029F4B2CECABA200523453 /* BingoCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCommunication.swift; sourceTree = "<group>"; };
-		95029F4D2CECAC3700523453 /* LocalCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCommunication.swift; sourceTree = "<group>"; };
+		95029F4D2CECAC3700523453 /* DeviceCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCommunication.swift; sourceTree = "<group>"; };
+		95029F4F2CECFC9A00523453 /* PeerCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerCommunication.swift; sourceTree = "<group>"; };
+		95029F512CECFCAE00523453 /* OnlineCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineCommunication.swift; sourceTree = "<group>"; };
+		95029F532CECFD8A00523453 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		95029F582CECFEE400523453 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9503D1482BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBingoUserModel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9503D1492BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBingoUserModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9503D14C2BFA69F5003C9F67 /* BingoUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoUserProfile.swift; sourceTree = "<group>"; };
@@ -94,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95029F572CECFE7700523453 /* FirebaseDatabase in Frameworks */,
 				95DF9F792BFBC3EE00D790F2 /* CustomAlert in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,7 +130,9 @@
 			children = (
 				95EBE3202BEA4CE9009E8F10 /* BingoMessageModel.swift */,
 				95029F4B2CECABA200523453 /* BingoCommunication.swift */,
-				95029F4D2CECAC3700523453 /* LocalCommunication.swift */,
+				95029F4D2CECAC3700523453 /* DeviceCommunication.swift */,
+				95029F4F2CECFC9A00523453 /* PeerCommunication.swift */,
+				95029F512CECFCAE00523453 /* OnlineCommunication.swift */,
 			);
 			path = Communication;
 			sourceTree = "<group>";
@@ -150,7 +162,9 @@
 			isa = PBXGroup;
 			children = (
 				953501B42BDCDEEE00EB1C2F /* Info.plist */,
+				95029F532CECFD8A00523453 /* GoogleService-Info.plist */,
 				95178CE62BDCD887005C80FA /* BingooApp.swift */,
+				95029F582CECFEE400523453 /* AppDelegate.swift */,
 				951C51552BE93F3A00D1E191 /* Screens */,
 				953501B52BDCE09200EB1C2F /* UI Components */,
 				95178CEC2BDCD888005C80FA /* Bingoo.entitlements */,
@@ -225,7 +239,6 @@
 				95F56A102BF9211800C30EDB /* Core Data */,
 				95909B592BEF9FD80048081C /* BingoGridModel.swift */,
 				95CA436B2BDE529000B93A15 /* GridTileModel.swift */,
-				9503D14C2BFA69F5003C9F67 /* BingoUserProfile.swift */,
 				95B76C042BE7EB6B00FA4476 /* AppState.swift */,
 			);
 			path = Models;
@@ -244,6 +257,7 @@
 				95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */,
 				9503D1482BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift */,
 				95029F482CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld */,
+				9503D14C2BFA69F5003C9F67 /* BingoUserProfile.swift */,
 				9503D1492BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift */,
 			);
 			path = "Core Data";
@@ -267,6 +281,7 @@
 			name = Bingoo;
 			packageProductDependencies = (
 				95DF9F782BFBC3EE00D790F2 /* CustomAlert */,
+				95029F562CECFE7700523453 /* FirebaseDatabase */,
 			);
 			productName = Bingoo;
 			productReference = 95178CE32BDCD887005C80FA /* Bingoo.app */;
@@ -342,6 +357,7 @@
 			mainGroup = 95178CDA2BDCD887005C80FA;
 			packageReferences = (
 				9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */,
+				95029F552CECFE7700523453 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 95178CE42BDCD887005C80FA /* Products */;
 			projectDirPath = "";
@@ -360,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				953501B22BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf in Resources */,
+				95029F542CECFD8A00523453 /* GoogleService-Info.plist in Resources */,
 				95178CEF2BDCD888005C80FA /* Preview Assets.xcassets in Resources */,
 				95178CEB2BDCD888005C80FA /* Assets.xcassets in Resources */,
 			);
@@ -386,10 +403,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95029F592CECFEE400523453 /* AppDelegate.swift in Sources */,
 				95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */,
+				95029F522CECFCAE00523453 /* OnlineCommunication.swift in Sources */,
 				95909B652BEFE1500048081C /* BingoGridView.swift in Sources */,
 				95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */,
 				95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift in Sources */,
+				95029F502CECFC9A00523453 /* PeerCommunication.swift in Sources */,
 				9503D14D2BFA69F5003C9F67 /* BingoUserProfile.swift in Sources */,
 				95909B5A2BEF9FD80048081C /* BingoGridModel.swift in Sources */,
 				95A3B0EA2BE8952B008C7623 /* CoreDataStack.swift in Sources */,
@@ -403,7 +423,7 @@
 				95178CE72BDCD887005C80FA /* BingooApp.swift in Sources */,
 				95029F4A2CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld in Sources */,
 				95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */,
-				95029F4E2CECAC3700523453 /* LocalCommunication.swift in Sources */,
+				95029F4E2CECAC3700523453 /* DeviceCommunication.swift in Sources */,
 				9503D14A2BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift in Sources */,
 				9503D14B2BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift in Sources */,
 				95CA436E2BDE5A8C00B93A15 /* GridHeaderText.swift in Sources */,
@@ -759,6 +779,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		95029F552CECFE7700523453 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
 		9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/divadretlaw/CustomAlert.git";
@@ -770,6 +798,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		95029F562CECFE7700523453 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95029F552CECFE7700523453 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
 		95DF9F782BFBC3EE00D790F2 /* CustomAlert */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */;

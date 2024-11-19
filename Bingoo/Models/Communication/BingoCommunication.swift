@@ -12,4 +12,6 @@ protocol BingoCommunication: AnyObject {
   func sendEvent(message: BingoMessageModel)
   var messagePublisher: AnyPublisher<BingoMessageModel, Never> { get }
   var canSendEvent: Bool { get }
+  var host: BingoUserProfile? { get }
+  var joinee: BingoUserProfile? { get }
 }

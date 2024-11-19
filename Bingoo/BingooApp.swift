@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct BingooApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+  
     @State private var isUserLoggedIn = CDBingoUserModel.current?.userName != nil
     @State private var isGameStarted = false
     @State private var gameType: BingoGameType = .withDevice

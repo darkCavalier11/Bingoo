@@ -44,18 +44,28 @@ struct GameRunningScreen: View {
             }
         }
         .onAppear {
+          let currentUserProfile = BingoUserProfile.current
           appState.comm.messagePublisher.sink { message in
             switch message {
             case .failure(reason: let reason):
-              break
+              isGameStarted = false
             case .playerWon(userProfile: let profile, gridElements: let gridElements):
-              break
+              print("Player won \(profile.userName)")
             case .started(host: let host, joinee: let joinee):
-              break
+              print("Started game with Host: \(host.userName) & Joinee: \(joinee.userName)")
             case .waitingForPlayerToJoin:
-              break
+              print("Waiting for player to join")
             case .receiveUpdateWith(selectedNumber: let selectedNumber, userProfile: let userProfile):
-              break
+              appState.bingoState.setSelectedFor(index: selectedNumber)
+              
+              if appState.bingoState.totalCompletedTileGroups == 5 {
+                appState.comm.sendEvent(
+                  message: .playerWon(
+                    userProfile: currentUserProfile,
+                    gridElements: appState.bingoState.gridElements
+                  )
+                )
+              }
             }
           }
           .store(in: &cancellable)
