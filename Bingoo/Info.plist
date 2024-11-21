@@ -4,8 +4,8 @@
 <dict>
 	<key>NSBonjourServices</key>
 	<array>
-		<string>_sendMessage-BingooApp._tcp</string>
-		<string>_sendMessage-BingooApp._udp</string>
+		<string>_sendMsgModel-Bingoo._tcp</string>
+		<string>_sendMsgModel-Bingoo._udp</string>
 	</array>
 	<key>UIAppFonts</key>
 	<array>

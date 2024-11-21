@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/divadretlaw/CustomAlert.git",
       "state" : {
-        "revision" : "ce671704a27e418f606ead1dfb25c622de98bd5b",
-        "version" : "3.6.1"
+        "revision" : "d9de26fd92c8fe521d84aedb9eb56fb176f646de",
+        "version" : "3.8.2"
       }
     },
     {
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/divadretlaw/WindowKit",
       "state" : {
-        "revision" : "155ea4e6c772146cd575c1db226fdd1974857a49",
-        "version" : "2.1.1"
+        "revision" : "d9a7d0fffaf1ddf390f88f5a0d1cd970df8d0309",
+        "version" : "2.5.2"
       }
     },
     {
@@ -141,8 +141,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/divadretlaw/WindowReader",
       "state" : {
-        "revision" : "7e1f994df0ed26a7d7a139f1fce2537d2c931059",
-        "version" : "2.0.0"
+        "revision" : "295d4e6c1aacd3c6a79e47c70f7b2745b8e0399e",
+        "version" : "2.0.1"
       }
     },
     {
@@ -150,8 +150,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/divadretlaw/WindowSceneReader",
       "state" : {
-        "revision" : "0779fbf801a723570f90158aa5e618ff885b6c47",
-        "version" : "3.0.0"
+        "revision" : "1f37f310e15a9a58014f2dbfce29526e5f3f4567",
+        "version" : "3.1.2"
       }
     }
   ],

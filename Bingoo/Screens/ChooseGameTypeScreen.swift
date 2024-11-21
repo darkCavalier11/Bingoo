@@ -14,6 +14,7 @@ struct ChooseGameTypeScreen: View {
     @State private var joiningCode = ""
     @Binding var isGameStarted: Bool
     @Binding var gameType: BingoGameType
+    @State private var lnsc = LocalNetworkSessionCoordinator()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -31,10 +32,14 @@ struct ChooseGameTypeScreen: View {
                 .buttonStyle(.borderedProminent)
             }
             HStack {
-                ChooseGameTypeLabel(gameType: .withLocalFriend, systemImage: "person")
+                ChooseGameTypeLabel(
+                  gameType: .withLocalFriend,
+                  systemImage: "person"
+                )
                 HStack {
                     Button {
-                        showChooseDeviceDialog = true
+                      lnsc.startBrowsing()
+                      showChooseDeviceDialog = true
                     } label: {
                         Text("JOIN")
                     }
@@ -44,18 +49,21 @@ struct ChooseGameTypeScreen: View {
                         .frame(height: 25)
                     
                     Button {
-                        isGameStarted = true
+//                      isGameStarted = true
+                      lnsc.startAdvertising()
                     } label: {
                         Text("HOST")
                     }
                 }
-                .customAlert("Choose Device", isPresented: $showChooseDeviceDialog) {
-                    ForEach(0..<10) { e in
+                .customAlert("Choose Device", isPresented: $showChooseDeviceDialog
+                ) {
+                  ForEach(Array(lnsc.allDevices), id: \.self) { peerID in
                         VStack {
                             Button {
-                                
+                              lnsc.invitePeer(peerID: peerID)
+                              
                             } label: {
-                                Text("\(e)")
+                              Text("\(peerID.displayName)")
                             }
                             .padding()
                             .font(.title3)
@@ -68,7 +76,6 @@ struct ChooseGameTypeScreen: View {
                         
                     } label: {
                         Text("Cancel")
-                            .font(.title)
                     }
                 }
             }
