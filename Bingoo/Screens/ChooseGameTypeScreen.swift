@@ -7,16 +7,30 @@
 
 import SwiftUI
 import CustomAlert
+import MultipeerConnectivity
+import Combine
 
+private var cancellable = Set<AnyCancellable>()
 struct ChooseGameTypeScreen: View {
     @State private var showChooseDeviceDialog = false
     @State private var showEnterJoiningCodeDialog = false
+    
     @State private var isHostingStartedForPeer = false
+    @State private var showPeerJoiningDialog = false
+    @State private var peerID: MCPeerID?
+    
     @State private var joiningCode = ""
     @Binding var isGameStarted: Bool
     @Binding var gameType: BingoGameType
     @State private var lnsc = LocalNetworkSessionCoordinator()
     
+  func resetValues() {
+    showChooseDeviceDialog = false
+    showEnterJoiningCodeDialog = false
+    isHostingStartedForPeer = false
+    showPeerJoiningDialog = false
+  }
+  
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -40,6 +54,7 @@ struct ChooseGameTypeScreen: View {
                 HStack {
                     Button {
                       lnsc.startBrowsing()
+                      resetValues()
                       showChooseDeviceDialog = true
                     } label: {
                         Text("JOIN")
@@ -51,6 +66,7 @@ struct ChooseGameTypeScreen: View {
                     
                     Button {
                       lnsc.startAdvertising()
+                      resetValues()
                       isHostingStartedForPeer = true
                     } label: {
                       isHostingStartedForPeer ? AnyView(ProgressView()) : AnyView(Text("HOST"))
@@ -80,12 +96,38 @@ struct ChooseGameTypeScreen: View {
                     }
                 }
             }
+            .onAppear {
+              lnsc.incomingInvitationPeers.receive(on: DispatchQueue.main)
+                .sink { peerID in
+                  guard let peerID else { return }
+                  self.peerID = peerID
+                  showPeerJoiningDialog = true
+                }
+                .store(in: &cancellable)
+            }
+            .customAlert(isPresented: $showPeerJoiningDialog) {
+              Text("Do you want to start a game with \(peerID?.displayName ?? "-")?")
+            } actions: {
+              MultiButton {
+                Button {
+                  lnsc.acceptingInvitationPeerSubject.send(self.peerID)
+                } label: {
+                  Text("Accept")
+                }
+                Button(role: .cancel) {
+                  
+                } label: {
+                  Text("Cancel")
+                }
+              }
+            }
             
             HStack {
                 ChooseGameTypeLabel(gameType: .online, systemImage: "network")
                 HStack {
                     Button {
                         showEnterJoiningCodeDialog = true
+                      resetValues()
                     } label: {
                         Text("JOIN")
                     }
@@ -95,6 +137,7 @@ struct ChooseGameTypeScreen: View {
                     
                     Button {
                         isGameStarted = true
+                      resetValues()
                     } label: {
                         Text("HOST")
                     }

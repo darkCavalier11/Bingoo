@@ -25,6 +25,7 @@
 		95178D032BDCD888005C80FA /* BingooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95178D022BDCD888005C80FA /* BingooUITests.swift */; };
 		95178D052BDCD888005C80FA /* BingooUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95178D042BDCD888005C80FA /* BingooUITestsLaunchTests.swift */; };
 		951C51572BE93F4F00D1E191 /* UserOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */; };
+		951E3A932CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951E3A922CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift */; };
 		953501B22BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */; };
 		953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953501B62BDCE0AE00EB1C2F /* GridTile.swift */; };
 		9579AF062BFB7BFF007E2AA5 /* BingoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */; };
@@ -81,6 +82,7 @@
 		95178D022BDCD888005C80FA /* BingooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingooUITests.swift; sourceTree = "<group>"; };
 		95178D042BDCD888005C80FA /* BingooUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingooUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingScreen.swift; sourceTree = "<group>"; };
+		951E3A922CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkSessionCoordinator.swift; sourceTree = "<group>"; };
 		953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Bold.ttf"; sourceTree = "<group>"; };
 		953501B42BDCDEEE00EB1C2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		953501B62BDCE0AE00EB1C2F /* GridTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTile.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				95029F4B2CECABA200523453 /* BingoCommunication.swift */,
 				95029F4D2CECAC3700523453 /* DeviceCommunication.swift */,
 				95029F4F2CECFC9A00523453 /* PeerCommunication.swift */,
+				951E3A922CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift */,
 				95029F512CECFCAE00523453 /* OnlineCommunication.swift */,
 			);
 			path = Communication;
@@ -412,6 +415,7 @@
 				95029F502CECFC9A00523453 /* PeerCommunication.swift in Sources */,
 				9503D14D2BFA69F5003C9F67 /* BingoUserProfile.swift in Sources */,
 				95909B5A2BEF9FD80048081C /* BingoGridModel.swift in Sources */,
+				951E3A932CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift in Sources */,
 				95A3B0EA2BE8952B008C7623 /* CoreDataStack.swift in Sources */,
 				95EBE3212BEA4CE9009E8F10 /* BingoMessageModel.swift in Sources */,
 				95029F4C2CECABA200523453 /* BingoCommunication.swift in Sources */,
