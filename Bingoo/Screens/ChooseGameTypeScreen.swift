@@ -126,6 +126,25 @@ struct ChooseGameTypeScreen: View {
                 }
               }
             }
+            .onAppear {
+              lnsc?.messagePublisher
+                .receive(on: DispatchQueue.main)
+                .sink { message in
+                  if case BingoMessageModel.started(host: let host, joinee: let joinee) = message {
+                    isGameStarted = true
+                  }
+                }
+                .store(in: &cancellable)
+              
+              onlineCommunication?.messagePublisher
+                .receive(on: DispatchQueue.main)
+                .sink { message in
+                  if case BingoMessageModel.started(host: let host, joinee: let joinee) = message {
+                    isGameStarted = true
+                  }
+                }
+                .store(in: &cancellable)
+            }
             
             HStack {
                 ChooseGameTypeLabel(gameType: .online, systemImage: "network")

@@ -29,8 +29,15 @@ struct BingoGridView: View {
                     .frame(width: gridFrame.width, height: gridFrame.height)
                     .foregroundStyle(.background)
                 ForEach(gridElements) { element in
-                    GridTile(gridTileModel: element) { index in
-                        appState.bingoState.setSelectedFor(index: index)
+                  GridTile(gridTileModel: element) { index in
+                    if appState.comm.canSendEvent {
+                      try? appState.comm.sendEvent(
+                        message: .receiveUpdateWith(
+                          selectedNumber: index,
+                          userProfile: BingoUserProfile.current
+                        )
+                      )
+                    }
                     }
                         .offset(positionElement(row: element.row, column: element.column))
                 }
