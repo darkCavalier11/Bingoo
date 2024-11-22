@@ -12,14 +12,8 @@ class AppState {
   var bingoState = BingoGridModel()
   var comm: BingoCommunication
   
-  init(gameType: BingoGameType) {
-    switch gameType {
-    case .withDevice:
-      self.comm = DeviceCommunication()
-    case .withLocalFriend:
-      self.comm = DeviceCommunication()
-    case .online:
-      self.comm = DeviceCommunication()
-    }
+  init(bingoState: BingoGridModel = BingoGridModel(), comm: BingoCommunication) {
+    self.bingoState = bingoState
+    self.comm = comm
   }
 }

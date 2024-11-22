@@ -21,7 +21,7 @@ struct ChooseGameTypeScreen: View {
     
     @State private var joiningCode = ""
     @Binding var isGameStarted: Bool
-    @Binding var gameType: BingoGameType
+    @Binding var comm: BingoCommunication
     @State private var lnsc: LocalNetworkSessionCoordinator?
     @State private var onlineCommunication: OnlineCommunication?
   
@@ -43,7 +43,7 @@ struct ChooseGameTypeScreen: View {
                 )
                 Button {
                   isGameStarted = true
-                  gameType = .withDevice
+                  comm = DeviceCommunication()
                 } label: {
                     Text("START")
                 }
@@ -56,10 +56,22 @@ struct ChooseGameTypeScreen: View {
                 )
                 HStack {
                     Button {
-                      lnsc = LocalNetworkSessionCoordinator(isHost: false)
-                      lnsc?.startBrowsing()
                       resetValues()
+                      lnsc = LocalNetworkSessionCoordinator(isHost: false)
+                      comm = lnsc!
+                      lnsc?.startBrowsing()
                       showChooseDeviceDialog = true
+                      lnsc?.messagePublisher
+                        .receive(on: DispatchQueue.main)
+                        .sink { message in
+                          if case BingoMessageModel.started(
+                            host: let host,
+                            joinee: let joinee
+                          ) = message {
+                            isGameStarted = true
+                          }
+                        }
+                        .store(in: &cancellable)
                     } label: {
                         Text("JOIN")
                     }
@@ -69,12 +81,32 @@ struct ChooseGameTypeScreen: View {
                         .frame(height: 25)
                     
                     Button {
-                      lnsc = LocalNetworkSessionCoordinator(isHost: true)
-                      lnsc?.startAdvertising()
                       resetValues()
+                      lnsc = LocalNetworkSessionCoordinator(isHost: true)
+                      comm = lnsc!
+                      lnsc?.startAdvertising()
                       isHostingStartedForPeer = true
+                      lnsc?
+                        .incomingInvitationPeers
+                        .sink { peerID in
+                          guard let peerID else { return }
+                          self.peerID = peerID
+                          showPeerJoiningDialog = true
+                        }
+                        .store(in: &cancellable)
+                      lnsc?.messagePublisher
+                        .receive(on: DispatchQueue.main)
+                        .sink { message in
+                          if case BingoMessageModel.started(
+                            host: let host,
+                            joinee: let joinee
+                          ) = message {
+                            isGameStarted = true
+                          }
+                        }
+                        .store(in: &cancellable)
                     } label: {
-                      isHostingStartedForPeer ? AnyView(ProgressView()) : AnyView(Text("HOST"))
+                      isHostingStartedForPeer ? AnyView(ProgressView().frame(width: 50)) : AnyView(Text("HOST"))
                     }
                 }
                 .customAlert("Choose Device", isPresented: $showChooseDeviceDialog
@@ -101,14 +133,10 @@ struct ChooseGameTypeScreen: View {
                     }
                 }
             }
-            .onAppear {
-              lnsc?.incomingInvitationPeers.receive(on: DispatchQueue.main)
-                .sink { peerID in
-                  guard let peerID else { return }
-                  self.peerID = peerID
-                  showPeerJoiningDialog = true
-                }
-                .store(in: &cancellable)
+            .onDisappear {
+              lnsc?.stopBrowing()
+              lnsc?.stopAdvertising()
+              resetValues()
             }
             .customAlert(isPresented: $showPeerJoiningDialog) {
               Text("Do you want to start a game with \(peerID?.displayName ?? "-")?")
@@ -125,25 +153,6 @@ struct ChooseGameTypeScreen: View {
                   Text("Cancel")
                 }
               }
-            }
-            .onAppear {
-              lnsc?.messagePublisher
-                .receive(on: DispatchQueue.main)
-                .sink { message in
-                  if case BingoMessageModel.started(host: let host, joinee: let joinee) = message {
-                    isGameStarted = true
-                  }
-                }
-                .store(in: &cancellable)
-              
-              onlineCommunication?.messagePublisher
-                .receive(on: DispatchQueue.main)
-                .sink { message in
-                  if case BingoMessageModel.started(host: let host, joinee: let joinee) = message {
-                    isGameStarted = true
-                  }
-                }
-                .store(in: &cancellable)
             }
             
             HStack {
@@ -163,6 +172,15 @@ struct ChooseGameTypeScreen: View {
                     Button {
                       let joiningCode = "\(Int.random(in: 100000...999999))"
                       onlineCommunication = OnlineCommunication(joiningCode: joiningCode, isHost: true)
+                      comm = onlineCommunication!
+                      onlineCommunication?.messagePublisher
+                        .receive(on: DispatchQueue.main)
+                        .sink { message in
+                          if case BingoMessageModel.started(host: let host, joinee: let joinee) = message {
+                            isGameStarted = true
+                          }
+                        }
+                        .store(in: &cancellable)
                       resetValues()
                     } label: {
                         Text("HOST")
@@ -180,6 +198,15 @@ struct ChooseGameTypeScreen: View {
                 MultiButton {
                     Button {
                       onlineCommunication = OnlineCommunication(joiningCode: joiningCode, isHost: false)
+                      comm = onlineCommunication!
+                      onlineCommunication?.messagePublisher
+                        .receive(on: DispatchQueue.main)
+                        .sink { message in
+                          if case BingoMessageModel.started(host: let host, joinee: let joinee) = message {
+                            isGameStarted = true
+                          }
+                        }
+                        .store(in: &cancellable)
                     } label: {
                         Text("Join")
                     }
@@ -198,10 +225,4 @@ public enum BingoGameType: String, CaseIterable, Codable {
     case withDevice = "With Device"
     case withLocalFriend = "With Local Friends"
     case online = "Online"
-}
-
-#Preview {
-  @Previewable @State var isGameStarted = false
-  @Previewable @State var gameType = BingoGameType.withDevice
-  return ChooseGameTypeScreen(isGameStarted: $isGameStarted, gameType: $gameType)
 }

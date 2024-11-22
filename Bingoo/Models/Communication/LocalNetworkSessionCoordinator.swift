@@ -173,6 +173,12 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
             joinee: userProfile
           )
         )
+        messageSubject.send(
+          .started(
+            host: BingoUserProfile.current,
+            joinee: userProfile
+          )
+        )
       }
     }
   }
