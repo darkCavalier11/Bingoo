@@ -11,6 +11,7 @@ import CustomAlert
 struct ChooseGameTypeScreen: View {
     @State private var showChooseDeviceDialog = false
     @State private var showEnterJoiningCodeDialog = false
+    @State private var isHostingStartedForPeer = false
     @State private var joiningCode = ""
     @Binding var isGameStarted: Bool
     @Binding var gameType: BingoGameType
@@ -49,10 +50,10 @@ struct ChooseGameTypeScreen: View {
                         .frame(height: 25)
                     
                     Button {
-//                      isGameStarted = true
                       lnsc.startAdvertising()
+                      isHostingStartedForPeer = true
                     } label: {
-                        Text("HOST")
+                      isHostingStartedForPeer ? AnyView(ProgressView()) : AnyView(Text("HOST"))
                     }
                 }
                 .customAlert("Choose Device", isPresented: $showChooseDeviceDialog
