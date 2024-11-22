@@ -16,7 +16,7 @@ class DeviceCommunication: BingoCommunication {
   let deviceGridModel = BingoGridModel()
   
   var messageSubject: CurrentValueSubject<BingoMessageModel, Never> {
-    .init(.waitingForPlayerToJoin)
+    .init(.waitingForPlayerToJoin(hostProfile: BingoUserProfile.current))
   }
   
   var messagePublisher: AnyPublisher<BingoMessageModel, Never> {

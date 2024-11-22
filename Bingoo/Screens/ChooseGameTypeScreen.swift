@@ -23,12 +23,15 @@ struct ChooseGameTypeScreen: View {
     @Binding var isGameStarted: Bool
     @Binding var gameType: BingoGameType
     @State private var lnsc: LocalNetworkSessionCoordinator?
-    
+    @State private var onlineCommunication: OnlineCommunication?
+  
   func resetValues() {
     showChooseDeviceDialog = false
     showEnterJoiningCodeDialog = false
     isHostingStartedForPeer = false
     showPeerJoiningDialog = false
+    lnsc?.stopBrowing()
+    lnsc?.stopAdvertising()
   }
   
     var body: some View {
@@ -139,7 +142,8 @@ struct ChooseGameTypeScreen: View {
                         .frame(height: 25)
                     
                     Button {
-                        isGameStarted = true
+                      let joiningCode = "\(Int.random(in: 100000...999999))"
+                      onlineCommunication = OnlineCommunication(joiningCode: joiningCode, isHost: true)
                       resetValues()
                     } label: {
                         Text("HOST")
@@ -148,7 +152,7 @@ struct ChooseGameTypeScreen: View {
             }
             .customAlert("Enter joining code", isPresented: $showEnterJoiningCodeDialog) {
                 TextField(text: $joiningCode) {
-                    
+                  
                 }
                 .font(.title)
                 .keyboardType(.numberPad)
@@ -156,7 +160,7 @@ struct ChooseGameTypeScreen: View {
             } actions: {
                 MultiButton {
                     Button {
-                        
+                      onlineCommunication = OnlineCommunication(joiningCode: joiningCode, isHost: false)
                     } label: {
                         Text("Join")
                     }

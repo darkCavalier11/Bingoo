@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol BingoCommunication: AnyObject {
-  func sendEvent(message: BingoMessageModel)
+  func sendEvent(message: BingoMessageModel) throws
   var messagePublisher: AnyPublisher<BingoMessageModel, Never> { get }
   var canSendEvent: Bool { get }
   var host: BingoUserProfile? { get }

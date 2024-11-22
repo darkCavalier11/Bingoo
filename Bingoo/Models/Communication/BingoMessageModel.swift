@@ -8,7 +8,7 @@
 import Foundation
 
 enum BingoMessageModel: Codable {
-  case waitingForPlayerToJoin
+  case waitingForPlayerToJoin(hostProfile: BingoUserProfile)
   case playerJoined(userProfile: BingoUserProfile)
   case started(host: BingoUserProfile, joinee: BingoUserProfile)
   case receiveUpdateWith(selectedNumber: Int, userProfile: BingoUserProfile)

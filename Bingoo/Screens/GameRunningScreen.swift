@@ -61,7 +61,7 @@ struct GameRunningScreen: View {
               appState.bingoState.setSelectedFor(index: selectedNumber)
               
               if appState.bingoState.totalCompletedTileGroups == 5 {
-                appState.comm.sendEvent(
+                try? appState.comm.sendEvent(
                   message: .playerWon(
                     userProfile: currentUserProfile,
                     gridElements: appState.bingoState.gridElements

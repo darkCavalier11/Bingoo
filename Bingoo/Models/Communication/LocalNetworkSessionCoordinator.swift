@@ -12,7 +12,18 @@ import MultipeerConnectivity
 private var cancellable = Set<AnyCancellable>()
 
 @Observable
-class LocalNetworkSessionCoordinator: NSObject {
+class LocalNetworkSessionCoordinator: NSObject, BingoCommunication {
+  private let messageSubject: CurrentValueSubject<BingoMessageModel, Never> = .init(.waitingForPlayerToJoin(hostProfile: BingoUserProfile.current))
+  var messagePublisher: AnyPublisher<BingoMessageModel, Never> {
+    messageSubject.eraseToAnyPublisher()
+  }
+  
+  var canSendEvent: Bool = false
+  
+  var host: BingoUserProfile?
+  
+  var joinee: BingoUserProfile?
+  
   let isHost: Bool
   private let advertiser: MCNearbyServiceAdvertiser
   private let browser: MCNearbyServiceBrowser
@@ -74,12 +85,12 @@ class LocalNetworkSessionCoordinator: NSObject {
     )
   }
   
-  public func sendMessage(peerID: MCPeerID, msg: BingoMessageModel) throws {
+  func sendEvent(message: BingoMessageModel) throws {
     let encoder = JSONEncoder()
-    let data = try encoder.encode(msg)
+    let data = try encoder.encode(message)
     try session.send(
       data,
-      toPeers: [peerID],
+      toPeers: Array(connectedDevices),
       // .reliable = TCP
       // .unreliable = UDP
       // Remember that we have added two set of configuration on the Info.plist
@@ -87,6 +98,7 @@ class LocalNetworkSessionCoordinator: NSObject {
       // so we choose TCP/.reliable.
       with: .reliable
     )
+    messageSubject.send(message)
   }
 }
 
@@ -133,11 +145,11 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
     if state == .connected {
       connectedDevices.insert(peerID)
       if !isHost {
-        try? sendMessage(peerID: peerID, msg: .playerJoined(userProfile: BingoUserProfile.current))
+        try? sendEvent(message: .playerJoined(userProfile: BingoUserProfile.current))
       }
     } else {
       connectedDevices.remove(peerID)
-      try? sendMessage(peerID: peerID, msg: .failure(reason: "\(BingoUserProfile.current.userName) disconnected"))
+      try? sendEvent(message: .failure(reason: "\(BingoUserProfile.current.userName) disconnected"))
     }
   }
   
@@ -147,8 +159,20 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
     fromPeer peerID: MCPeerID
   ) {
     let decoder = JSONDecoder()
-    guard let msg = try? decoder.decode(BingoMessageModel.self, from: data) else {
+    guard let message = try? decoder.decode(BingoMessageModel.self, from: data) else {
       return
+    }
+    messageSubject.send(message)
+    if case BingoMessageModel.playerJoined(userProfile: let userProfile) = message {
+      host = BingoUserProfile.current
+      joinee = userProfile
+ 
+      try? sendEvent(
+        message: .started(
+          host: BingoUserProfile.current,
+          joinee: userProfile
+        )
+      )
     }
   }
   
