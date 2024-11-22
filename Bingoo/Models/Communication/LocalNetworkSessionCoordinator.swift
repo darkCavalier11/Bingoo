@@ -13,6 +13,7 @@ private var cancellable = Set<AnyCancellable>()
 
 @Observable
 class LocalNetworkSessionCoordinator: NSObject {
+  let isHost: Bool
   private let advertiser: MCNearbyServiceAdvertiser
   private let browser: MCNearbyServiceBrowser
   private let session: MCSession
@@ -23,13 +24,12 @@ class LocalNetworkSessionCoordinator: NSObject {
     return allDevices.subtracting(connectedDevices)
   }
   private(set) var message: String = ""
-  var isHost = false
   
   private let incomingInvitationPeerSubject = CurrentValueSubject<MCPeerID?, Never>(nil)
   var incomingInvitationPeers: AnyPublisher<MCPeerID?, Never>!
   let acceptingInvitationPeerSubject = CurrentValueSubject<MCPeerID?, Never>(nil)
   
-  init(peerID: MCPeerID = .init(displayName: UIDevice.current.name)) {
+  init(isHost: Bool, peerID: MCPeerID = .init(displayName: UIDevice.current.name)) {
     advertiser = .init(
       peer: peerID,
       discoveryInfo: nil,
@@ -40,6 +40,7 @@ class LocalNetworkSessionCoordinator: NSObject {
       serviceType: .messageSendingService
     )
     session = .init(peer: peerID)
+    self.isHost = isHost
     super.init()
     incomingInvitationPeers = incomingInvitationPeerSubject.eraseToAnyPublisher()
     
@@ -100,7 +101,6 @@ extension LocalNetworkSessionCoordinator: MCNearbyServiceAdvertiserDelegate {
     acceptingInvitationPeerSubject.sink { [weak self] peerID in
       guard peerID != nil else { return }
       invitationHandler(true, self?.session)
-      self?.isHost = true
     }
     .store(in: &cancellable)
   }

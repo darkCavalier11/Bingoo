@@ -22,7 +22,7 @@ struct ChooseGameTypeScreen: View {
     @State private var joiningCode = ""
     @Binding var isGameStarted: Bool
     @Binding var gameType: BingoGameType
-    @State private var lnsc = LocalNetworkSessionCoordinator()
+    @State private var lnsc: LocalNetworkSessionCoordinator?
     
   func resetValues() {
     showChooseDeviceDialog = false
@@ -53,7 +53,8 @@ struct ChooseGameTypeScreen: View {
                 )
                 HStack {
                     Button {
-                      lnsc.startBrowsing()
+                      lnsc = LocalNetworkSessionCoordinator(isHost: false)
+                      lnsc?.startBrowsing()
                       resetValues()
                       showChooseDeviceDialog = true
                     } label: {
@@ -65,7 +66,8 @@ struct ChooseGameTypeScreen: View {
                         .frame(height: 25)
                     
                     Button {
-                      lnsc.startAdvertising()
+                      lnsc = LocalNetworkSessionCoordinator(isHost: true)
+                      lnsc?.startAdvertising()
                       resetValues()
                       isHostingStartedForPeer = true
                     } label: {
@@ -74,10 +76,10 @@ struct ChooseGameTypeScreen: View {
                 }
                 .customAlert("Choose Device", isPresented: $showChooseDeviceDialog
                 ) {
-                  ForEach(Array(lnsc.allDevices), id: \.self) { peerID in
+                  ForEach(Array(lnsc?.allDevices ?? []), id: \.self) { peerID in
                         VStack {
                             Button {
-                              lnsc.invitePeer(peerID: peerID)
+                              lnsc?.invitePeer(peerID: peerID)
                               
                             } label: {
                               Text("\(peerID.displayName)")
@@ -97,7 +99,7 @@ struct ChooseGameTypeScreen: View {
                 }
             }
             .onAppear {
-              lnsc.incomingInvitationPeers.receive(on: DispatchQueue.main)
+              lnsc?.incomingInvitationPeers.receive(on: DispatchQueue.main)
                 .sink { peerID in
                   guard let peerID else { return }
                   self.peerID = peerID
@@ -110,7 +112,7 @@ struct ChooseGameTypeScreen: View {
             } actions: {
               MultiButton {
                 Button {
-                  lnsc.acceptingInvitationPeerSubject.send(self.peerID)
+                  lnsc?.acceptingInvitationPeerSubject.send(self.peerID)
                 } label: {
                   Text("Accept")
                 }
