@@ -146,10 +146,10 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
     didReceive data: Data,
     fromPeer peerID: MCPeerID
   ) {
-    guard let text = String(data: data, encoding: .utf8) else {
+    let decoder = JSONDecoder()
+    guard let msg = try? decoder.decode(BingoMessageModel.self, from: data) else {
       return
     }
-    message = "\(peerID.displayName) => \(text)"
   }
   
   func session(
