@@ -20,7 +20,10 @@ struct BingoGridView: View {
                     .frame(width: gridFrame.width, height: GridTile.itemSize.height)
                     .foregroundStyle(.background)
                 ForEach(0..<5) { idx in
-                    GridHeaderText(letter: bingo[idx], isCompleted: appState.bingoState.totalCompletedTileGroups  > idx)
+                    GridHeaderText(
+                      letter: bingo[idx],
+                      isCompleted: appState.bingoState.totalCompletedTileGroups  > idx
+                    )
                         .offset(positionGridHeaderText(index: idx))
                 }
             }
@@ -38,8 +41,8 @@ struct BingoGridView: View {
                         )
                       )
                     }
-                    }
-                        .offset(positionElement(row: element.row, column: element.column))
+                  }
+                  .offset(positionElement(row: element.row, column: element.column))
                 }
                 GridTileGroupCrossViews(
                   crossLineFrameWidths: appState.bingoState.crossLineFrameWidths,
