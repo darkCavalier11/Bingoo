@@ -51,6 +51,8 @@ struct GameRunningScreen: View {
               isGameStarted = false
             case .playerWon(userProfile: let profile, gridElements: let gridElements):
               print("Player won \(profile.userName)")
+            case .playerJoined(userProfile: let userProfile):
+              print("Player joined \(userProfile)")
             case .started(host: let host, joinee: let joinee):
               print("Started game with Host: \(host.userName) & Joinee: \(joinee.userName)")
             case .waitingForPlayerToJoin:

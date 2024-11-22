@@ -23,6 +23,7 @@ class LocalNetworkSessionCoordinator: NSObject {
     return allDevices.subtracting(connectedDevices)
   }
   private(set) var message: String = ""
+  var isHost = false
   
   private let incomingInvitationPeerSubject = CurrentValueSubject<MCPeerID?, Never>(nil)
   var incomingInvitationPeers: AnyPublisher<MCPeerID?, Never>!
@@ -72,9 +73,11 @@ class LocalNetworkSessionCoordinator: NSObject {
     )
   }
   
-  public func sendHello(peerID: MCPeerID) throws {
+  public func sendMessage(peerID: MCPeerID, msg: BingoMessageModel) throws {
+    let encoder = JSONEncoder()
+    let data = try encoder.encode(msg)
     try session.send(
-      "Hello, World ❤️.".data(using: .utf8)!,
+      data,
       toPeers: [peerID],
       // .reliable = TCP
       // .unreliable = UDP
@@ -97,6 +100,7 @@ extension LocalNetworkSessionCoordinator: MCNearbyServiceAdvertiserDelegate {
     acceptingInvitationPeerSubject.sink { [weak self] peerID in
       guard peerID != nil else { return }
       invitationHandler(true, self?.session)
+      self?.isHost = true
     }
     .store(in: &cancellable)
   }
@@ -128,8 +132,12 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
   ) {
     if state == .connected {
       connectedDevices.insert(peerID)
+      if !isHost {
+        try? sendMessage(peerID: peerID, msg: .playerJoined(userProfile: BingoUserProfile.current))
+      }
     } else {
       connectedDevices.remove(peerID)
+      try? sendMessage(peerID: peerID, msg: .failure(reason: "\(BingoUserProfile.current.userName) disconnected"))
     }
   }
   

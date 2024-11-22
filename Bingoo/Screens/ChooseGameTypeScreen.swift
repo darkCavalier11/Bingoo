@@ -126,8 +126,9 @@ struct ChooseGameTypeScreen: View {
                 ChooseGameTypeLabel(gameType: .online, systemImage: "network")
                 HStack {
                     Button {
-                        showEnterJoiningCodeDialog = true
                       resetValues()
+                      showEnterJoiningCodeDialog = true
+                      
                     } label: {
                         Text("JOIN")
                     }
