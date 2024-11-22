@@ -30,8 +30,16 @@ class OnlineCommunication: NSObject, BingoCommunication {
     
     super.init()
     databasePath?
-    .observe(.value) { snapshot in
-      print(snapshot.value)
+    .observe(.value) { [weak self] snapshot in
+      guard let json = snapshot.value as? [String: Any] else { return }
+      guard let data = try? JSONSerialization.data(withJSONObject: json) else { return }
+      let decoder = JSONDecoder()
+      guard let message = try? decoder.decode(BingoMessageModel.self, from: data) else { return }
+      if case BingoMessageModel.playerJoined(userProfile: let userProfile) = message,
+         self?.isHost == true {
+        self?.sendEvent(message: .started(host: BingoUserProfile.current, joinee: userProfile))
+      }
+      self?.messageSubject.send(message)
     }
     
     if !isHost {

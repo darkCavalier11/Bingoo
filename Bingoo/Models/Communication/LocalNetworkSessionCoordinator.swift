@@ -166,13 +166,14 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
     if case BingoMessageModel.playerJoined(userProfile: let userProfile) = message {
       host = BingoUserProfile.current
       joinee = userProfile
- 
-      try? sendEvent(
-        message: .started(
-          host: BingoUserProfile.current,
-          joinee: userProfile
+      if isHost {
+        try? sendEvent(
+          message: .started(
+            host: BingoUserProfile.current,
+            joinee: userProfile
+          )
         )
-      )
+      }
     }
   }
   
