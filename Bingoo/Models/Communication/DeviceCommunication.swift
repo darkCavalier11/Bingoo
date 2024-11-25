@@ -43,7 +43,7 @@ class DeviceCommunication: BingoCommunication {
       Task {
         deviceGridModel.setSelectedFor(index: index)
         if deviceGridModel.totalCompletedTileGroups == 5 {
-          messageSubject.send(.playerWon(userProfile: joinee!, gridElements: deviceGridModel.gridElements))
+          messageSubject.send(.playerWon(userProfile: joinee!, bingoState: deviceGridModel))
           messageSubject.send(completion: .finished)
           return
         }
@@ -55,8 +55,8 @@ class DeviceCommunication: BingoCommunication {
         guard let deviceSelectedNumber = nonSelectedIndices.randomElement() else { return }
         let index = deviceSelectedNumber.index
         deviceGridModel.setSelectedFor(index: index)
-        if deviceGridModel.totalCompletedTileGroups == 0 {
-          messageSubject.send(.playerWon(userProfile: joinee!, gridElements: deviceGridModel.gridElements))
+        if deviceGridModel.totalCompletedTileGroups == 5 {
+          messageSubject.send(.playerWon(userProfile: joinee!, bingoState: deviceGridModel))
           messageSubject.send(completion: .finished)
         }
         messageSubject.send(.receiveUpdateWith(selectedNumber: index, userProfile: profile))
@@ -68,7 +68,7 @@ class DeviceCommunication: BingoCommunication {
       }
     }
     
-    if case BingoMessageModel.playerWon(userProfile: let userProfile, gridElements: let gridElements) = message {
+    if case BingoMessageModel.playerWon(userProfile: let userProfile, bingoState: let gridModel) = message {
       messageSubject.send(message)
       messageSubject.send(completion: .finished)
     }

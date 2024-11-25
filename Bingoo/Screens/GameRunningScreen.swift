@@ -21,15 +21,15 @@ struct GameRunningScreen: View {
     
     @State private var showExitDialog = false
   
-  private struct WinnerProfile: Identifiable {
+    private struct WinnerProfile: Identifiable {
       let id = UUID()
       let profile: BingoUserProfile
-      let gridElements: [GridTileModel]
+      let gridModel: BingoGridModel
     }
   
     var body: some View {
         ZStack {
-            BingoGridView(gridElements: appState.bingoState.gridElements)
+          BingoGridView(bingoState: appState.bingoState, comm: appState.comm)
             Button {
                 showExitDialog = true
             } label: {
@@ -62,9 +62,9 @@ struct GameRunningScreen: View {
             case .failure(reason: let reason):
               self.errorHappened = true
               self.errorReason = reason
-            case .playerWon(userProfile: let profile, gridElements: let gridElements):
+            case .playerWon(userProfile: let profile, bingoState: let gridModel):
               print("Player won \(profile.userName)")
-              self.winnerProfile = WinnerProfile(profile: profile, gridElements: gridElements)
+              self.winnerProfile = WinnerProfile(profile: profile, gridModel: gridModel)
             case .playerJoined(userProfile: let userProfile):
               print("Player joined \(userProfile)")
               self.joinee = userProfile
@@ -81,7 +81,7 @@ struct GameRunningScreen: View {
                 try? appState.comm.sendEvent(
                   message: .playerWon(
                     userProfile: currentUserProfile,
-                    gridElements: appState.bingoState.gridElements
+                    bingoState: appState.bingoState
                   )
                 )
               }
@@ -98,7 +98,7 @@ struct GameRunningScreen: View {
           VStack {
             Text("\(winnerProfile.profile.userName) won the game!")
               .font(.title)
-            BingoGridView(gridElements: winnerProfile.gridElements)
+            BingoGridView(bingoState: winnerProfile.gridModel)
           }
           .onDisappear {
             isGameStarted = false

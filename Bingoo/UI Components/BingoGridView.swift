@@ -10,8 +10,8 @@ import SwiftUI
 struct BingoGridView: View {
     private let gridFrame = CGSize(width: GridTile.itemSize.height * 5, height: GridTile.itemSize.width * 5)
     
-    var gridElements: [GridTileModel]
-    @Environment(AppState.self) var appState
+    var bingoState: BingoGridModel
+    var comm: BingoCommunication?
     var body: some View {
         let bingo: [Character] = ["B","I","N","G","O"]
         VStack {
@@ -22,7 +22,7 @@ struct BingoGridView: View {
                 ForEach(0..<5) { idx in
                     GridHeaderText(
                       letter: bingo[idx],
-                      isCompleted: appState.bingoState.totalCompletedTileGroups  > idx
+                      isCompleted: bingoState.totalCompletedTileGroups  > idx
                     )
                         .offset(positionGridHeaderText(index: idx))
                 }
@@ -31,10 +31,10 @@ struct BingoGridView: View {
                 Rectangle()
                     .frame(width: gridFrame.width, height: gridFrame.height)
                     .foregroundStyle(.background)
-                ForEach(gridElements) { element in
+              ForEach(bingoState.gridElements) { element in
                   GridTile(gridTileModel: element) { index in
-                    if appState.comm.canSendEvent {
-                      try? appState.comm.sendEvent(
+                    if comm?.canSendEvent == true {
+                      try? comm?.sendEvent(
                         message: .receiveUpdateWith(
                           selectedNumber: index,
                           userProfile: BingoUserProfile.current
@@ -45,15 +45,15 @@ struct BingoGridView: View {
                   .offset(positionElement(row: element.row, column: element.column))
                 }
                 GridTileGroupCrossViews(
-                  crossLineFrameWidths: appState.bingoState.crossLineFrameWidths,
-                  crossLineFrameHeights: appState.bingoState.crossLineFrameHeights
+                  crossLineFrameWidths: bingoState.crossLineFrameWidths,
+                  crossLineFrameHeights: bingoState.crossLineFrameHeights
                 )
             }
         }
         .onAppear {
-            appState.bingoState.generateRandomGridTileElements()
+            bingoState.generateRandomGridTileElements()
         }
-        .onChange(of: appState.bingoState.completedGridGroups) { _, curr in
+        .onChange(of: bingoState.completedGridGroups) { _, curr in
             if curr.isEmpty {
                 return
             }
@@ -61,11 +61,11 @@ struct BingoGridView: View {
             for item in curr {
                 switch item {
                 case .row(let rowIndex):
-                    appState.bingoState.markRow(rowIndex)
+                    bingoState.markRow(rowIndex)
                 case .column(let colIndex):
-                    appState.bingoState.markColumn(colIndex)
+                    bingoState.markColumn(colIndex)
                 case .diagonal(let diagonalType):
-                    appState.bingoState.markDiagonal(diagonalType)
+                    bingoState.markDiagonal(diagonalType)
                 }
             }
         }

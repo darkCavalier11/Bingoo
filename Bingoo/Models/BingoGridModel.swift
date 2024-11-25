@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 
 @Observable
-public class BingoGridModel {
+public class BingoGridModel: Codable {
     public init() {}
     
     private var _gridElements: [GridTileModel] = []
-    
+
     public var gridElements: [GridTileModel] {
         _gridElements
     }
@@ -26,8 +26,8 @@ public class BingoGridModel {
         completedGridGroups.count
     }
     
-    public enum CompletedGridType: Equatable {
-        public enum DiagonalDirection: String, Equatable {
+    public enum CompletedGridType: Equatable, Codable {
+        public enum DiagonalDirection: String, Equatable, Codable {
             case topLeftToBottomRight
             case bottomLeftToTopRight
         }

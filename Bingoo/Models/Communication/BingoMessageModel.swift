@@ -13,5 +13,5 @@ enum BingoMessageModel: Codable {
   case started(host: BingoUserProfile, joinee: BingoUserProfile)
   case receiveUpdateWith(selectedNumber: Int, userProfile: BingoUserProfile)
   case failure(reason: String)
-  case playerWon(userProfile: BingoUserProfile, gridElements: [GridTileModel])
+  case playerWon(userProfile: BingoUserProfile, bingoState: BingoGridModel)
 }
