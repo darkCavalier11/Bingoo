@@ -32,11 +32,11 @@ struct BingoGridView: View {
                     .frame(width: gridFrame.width, height: gridFrame.height)
                     .foregroundStyle(.background)
               ForEach(bingoState.gridElements) { element in
-                  GridTile(gridTileModel: element) { index in
+                  GridTile(gridTileModel: element) { number in
                     if comm?.canSendEvent == true {
                       try? comm?.sendEvent(
                         message: .receiveUpdateWith(
-                          selectedNumber: index,
+                          selectedNumber: number,
                           userProfile: BingoUserProfile.current
                         )
                       )

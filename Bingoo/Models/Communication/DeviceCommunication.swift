@@ -38,10 +38,10 @@ class DeviceCommunication: BingoCommunication {
   }
   
   func sendEvent(message: BingoMessageModel) {
-    if case BingoMessageModel.receiveUpdateWith(selectedNumber: let index, userProfile: let profile) = message {
+    if case BingoMessageModel.receiveUpdateWith(selectedNumber: let selectedNumber, userProfile: let profile) = message {
       messageSubject.send(message)
       Task {
-        deviceGridModel.setSelectedFor(index: index)
+        deviceGridModel.setSelectedFor(num: selectedNumber)
         if deviceGridModel.totalCompletedTileGroups == 5 {
           messageSubject.send(.playerWon(userProfile: joinee!, bingoState: deviceGridModel))
           messageSubject.send(completion: .finished)
@@ -53,13 +53,13 @@ class DeviceCommunication: BingoCommunication {
         try await Task.sleep(for: .milliseconds(1500))
         let nonSelectedIndices = deviceGridModel.gridElements.filter { !$0.isSelected }
         guard let deviceSelectedNumber = nonSelectedIndices.randomElement() else { return }
-        let index = deviceSelectedNumber.index
-        deviceGridModel.setSelectedFor(index: index)
-        if deviceGridModel.totalCompletedTileGroups == 0 {
+        let number = deviceSelectedNumber.number
+        deviceGridModel.setSelectedFor(num: number)
+        if deviceGridModel.totalCompletedTileGroups == 5 {
           messageSubject.send(.playerWon(userProfile: joinee!, bingoState: deviceGridModel))
           messageSubject.send(completion: .finished)
         }
-        messageSubject.send(.receiveUpdateWith(selectedNumber: index, userProfile: profile))
+        messageSubject.send(.receiveUpdateWith(selectedNumber: number, userProfile: profile))
         
         await MainActor.run {
           canSendEvent = true

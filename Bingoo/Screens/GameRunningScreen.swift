@@ -80,7 +80,7 @@ struct GameRunningScreen: View {
             case .receiveUpdateWith(selectedNumber: let selectedNumber, userProfile: let userProfile):
               Task {
                 await MainActor.run {
-                  appState.bingoState.setSelectedFor(index: selectedNumber)
+                  appState.bingoState.setSelectedFor(num: selectedNumber)
                   
                   if appState.bingoState.totalCompletedTileGroups >= 5 {
                     try? appState.comm.sendEvent(

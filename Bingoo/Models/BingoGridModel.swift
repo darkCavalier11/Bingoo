@@ -38,12 +38,15 @@ public class BingoGridModel: Codable {
         case diagonal(DiagonalDirection)
     }
     
-    public func setSelectedFor(index: Int) {
+    public func setSelectedFor(num: Int) {
         if totalCompletedTileGroups == 5 {
             return
         }
-        _gridElements[index].isSelected = true
-        checkAndAddCompletedTileGroups()
+      guard let numberIndex = _gridElements.firstIndex(where: { $0.number == num }) else {
+        return
+      }
+      _gridElements[numberIndex].isSelected = true
+      checkAndAddCompletedTileGroups()
     }
     
     private func checkAndAddCompletedTileGroups() {

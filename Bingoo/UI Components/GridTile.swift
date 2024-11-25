@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GridTile: View {
     let gridTileModel: GridTileModel
-    let setSelected: (_ index: Int) -> Void
+    let setSelected: (_ number: Int) -> Void
     
     private static var rectangleFrame: CGSize {
         switch UIDevice.current.userInterfaceIdiom {
@@ -65,7 +65,7 @@ struct GridTile: View {
                 .rotationEffect(Angle(radians: textRotationFactor))
         }
         .onTapGesture {
-            setSelected(gridTileModel.index)
+          setSelected(gridTileModel.number)
         }
         .onChange(of: gridTileModel.isSelected) {
             withAnimation(.easeInOut(duration: 0.4)) {
