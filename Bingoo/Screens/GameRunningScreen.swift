@@ -17,15 +17,16 @@ struct GameRunningScreen: View {
     @State var errorReason: String?
     @State private var host: BingoUserProfile?
     @State private var joinee: BingoUserProfile?
-    @State private var winnerProfile: BingoUserProfile?
-    @State private var winnerGrid: [GridTileModel]? {
-      didSet {
-        showWinnerGrid = true
-      }
-    }
-    @State private var showWinnerGrid = false
+    @State private var winnerProfile: WinnerProfile?
     
     @State private var showExitDialog = false
+  
+  private struct WinnerProfile: Identifiable {
+      let id = UUID()
+      let profile: BingoUserProfile
+      let gridElements: [GridTileModel]
+    }
+  
     var body: some View {
         ZStack {
             BingoGridView(gridElements: appState.bingoState.gridElements)
@@ -63,8 +64,7 @@ struct GameRunningScreen: View {
               self.errorReason = reason
             case .playerWon(userProfile: let profile, gridElements: let gridElements):
               print("Player won \(profile.userName)")
-              self.winnerGrid = gridElements
-              self.winnerProfile = profile
+              self.winnerProfile = WinnerProfile(profile: profile, gridElements: gridElements)
             case .playerJoined(userProfile: let userProfile):
               print("Player joined \(userProfile)")
               self.joinee = userProfile
@@ -94,11 +94,11 @@ struct GameRunningScreen: View {
             isGameStarted = false
           }
         }
-        .sheet(isPresented: $showWinnerGrid) {
+        .sheet(item: $winnerProfile) { winnerProfile in
           VStack {
-            Text("\(winnerProfile?.userName ?? "-") won the game!")
+            Text("\(winnerProfile.profile.userName) won the game!")
               .font(.title)
-//            BingoGridView(gridElements: winnerGrid!)
+            BingoGridView(gridElements: winnerProfile.gridElements)
           }
           .onDisappear {
             isGameStarted = false
