@@ -16,11 +16,13 @@ class OnlineCommunication: NSObject, BingoCommunication {
     messageSubject.eraseToAnyPublisher()
   }
   
-  var canSendEvent: Bool = false
+  private var cancellable = Set<AnyCancellable>()
   
   var host: BingoUserProfile?
   
   var joinee: BingoUserProfile?
+  
+  var roundCompleted = 0
   
   let joiningCode: String
   let isHost: Bool
@@ -29,6 +31,15 @@ class OnlineCommunication: NSObject, BingoCommunication {
     self.isHost = isHost
     
     super.init()
+    
+    messageSubject
+      .sink { [weak self] message in
+        if case BingoMessageModel.receiveUpdateWith(selectedNumber: _, userProfile: _) = message {
+          self?.roundCompleted += 1
+        }
+      }
+      .store(in: &cancellable)
+    
     databasePath?
     .observe(.value) { [weak self] snapshot in
       guard let json = snapshot.value as? [String: Any] else { return }
@@ -40,6 +51,13 @@ class OnlineCommunication: NSObject, BingoCommunication {
         self?.sendEvent(message: .started(host: BingoUserProfile.current, joinee: userProfile))
       }
       self?.messageSubject.send(message)
+      
+      if case BingoMessageModel.playerWon(userProfile: _, bingoState: _) = message {
+        self?.messageSubject.send(completion: .finished)
+      }
+      if case BingoMessageModel.failure(reason: _) = message {
+        self?.messageSubject.send(completion: .finished)
+      }
     }
     
     if !isHost {
@@ -50,7 +68,6 @@ class OnlineCommunication: NSObject, BingoCommunication {
   }
   
   private lazy var databasePath: DatabaseReference? = {
-    // 2
     let ref = Database.database()
       .reference()
       .child(joiningCode)
@@ -63,5 +80,14 @@ class OnlineCommunication: NSObject, BingoCommunication {
     guard let json = try? JSONSerialization.jsonObject(with: data) else { return }
     guard let dict = json as? [String: Any] else { return }
     databasePath?.setValue(dict)
+  }
+  
+  var canSendEvent: Bool {
+    if isHost && roundCompleted%2 == 0 {
+      return true
+    } else if !isHost && roundCompleted%2 != 0 {
+      return true
+    }
+    return false
   }
 }

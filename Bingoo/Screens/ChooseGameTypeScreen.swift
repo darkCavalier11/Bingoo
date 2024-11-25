@@ -14,12 +14,16 @@ private var cancellable = Set<AnyCancellable>()
 struct ChooseGameTypeScreen: View {
     @State private var showChooseDeviceDialog = false
     @State private var showEnterJoiningCodeDialog = false
+    @State private var showGeneratedJoiningCode = false
     
     @State private var isHostingStartedForPeer = false
     @State private var showPeerJoiningDialog = false
+    
     @State private var peerID: MCPeerID?
     
-    @State private var joiningCode = ""
+    @State private var textFieldJoiningCode = ""
+    @State private var generatedJoiningCode: OnlineJoiningCode?
+  
     @Binding var isGameStarted: Bool
     @Binding var comm: BingoCommunication
     @State private var lnsc: LocalNetworkSessionCoordinator?
@@ -170,8 +174,11 @@ struct ChooseGameTypeScreen: View {
                         .frame(height: 25)
                     
                     Button {
-                      let joiningCode = "\(Int.random(in: 100000...999999))"
-                      onlineCommunication = OnlineCommunication(joiningCode: joiningCode, isHost: true)
+                      generatedJoiningCode = OnlineJoiningCode(code: "\(Int.random(in: 100000...999999))")
+                      onlineCommunication = OnlineCommunication(
+                        joiningCode: generatedJoiningCode!.code,
+                        isHost: true
+                      )
                       comm = onlineCommunication!
                       onlineCommunication?.messagePublisher
                         .receive(on: DispatchQueue.main)
@@ -187,8 +194,23 @@ struct ChooseGameTypeScreen: View {
                     }
                 }
             }
+            .customAlert(item: $generatedJoiningCode) { code in
+              VStack {
+                Text("Share this joining code with your partner.")
+                Text(code.code)
+                  .font(.title.monospacedDigit())
+                  .padding()
+              }
+              
+            } actions: { _ in
+              Button(role: .cancel) {
+                
+              } label: {
+                Text("Cancel")
+              }
+            }
             .customAlert("Enter joining code", isPresented: $showEnterJoiningCodeDialog) {
-                TextField(text: $joiningCode) {
+              TextField(text: $textFieldJoiningCode) {
                   
                 }
                 .font(.title)
@@ -197,7 +219,10 @@ struct ChooseGameTypeScreen: View {
             } actions: {
                 MultiButton {
                     Button {
-                      onlineCommunication = OnlineCommunication(joiningCode: joiningCode, isHost: false)
+                      onlineCommunication = OnlineCommunication(
+                        joiningCode: textFieldJoiningCode,
+                        isHost: false
+                      )
                       comm = onlineCommunication!
                       onlineCommunication?.messagePublisher
                         .receive(on: DispatchQueue.main)
@@ -217,6 +242,9 @@ struct ChooseGameTypeScreen: View {
                     }
                 }
             }
+            .customAlert(isPresented: $showEnterJoiningCodeDialog) {
+              Text("Enter joining code")
+            }
         }
     }
 }
@@ -225,4 +253,9 @@ public enum BingoGameType: String, CaseIterable, Codable {
     case withDevice = "With Device"
     case withLocalFriend = "With Local Friends"
     case online = "Online"
+}
+
+struct OnlineJoiningCode: Identifiable {
+  let code: String
+  let id = UUID()
 }

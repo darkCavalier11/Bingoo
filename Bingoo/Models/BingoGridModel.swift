@@ -14,14 +14,32 @@ public class BingoGridModel: Codable {
       generateRandomGridTileElements()
     }
     
-    private var _gridElements: [GridTileModel] = []
+    private(set) var gridElements: [GridTileModel] = []
 
-    public var gridElements: [GridTileModel] {
-        _gridElements
-    }
+    
     var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
     var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
-    
+  
+  enum CodingKeys: String, CodingKey {
+    case gridElements
+    case crossLineFrameWidths
+    case crossLineFrameHeights
+  }
+  
+  public required init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    gridElements = try container.decode([GridTileModel].self, forKey: .gridElements)
+    crossLineFrameWidths = try container.decode([Double].self, forKey: .crossLineFrameWidths)
+    crossLineFrameHeights = try container.decode([Double].self, forKey: .crossLineFrameHeights)
+  }
+  
+  public func encode(to encoder: any Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(gridElements, forKey: .gridElements)
+    try container.encode(crossLineFrameWidths, forKey: .crossLineFrameWidths)
+    try container.encode(crossLineFrameHeights, forKey: .crossLineFrameHeights)
+  }
+  
   public var completedGridGroups: [CompletedGridType] = [] {
     didSet {
       if completedGridGroups.isEmpty {
@@ -59,10 +77,10 @@ public class BingoGridModel: Codable {
         if totalCompletedTileGroups == 5 {
             return
         }
-      guard let numberIndex = _gridElements.firstIndex(where: { $0.number == num }) else {
+      guard let numberIndex = gridElements.firstIndex(where: { $0.number == num }) else {
         return
       }
-      _gridElements[numberIndex].isSelected = true
+      gridElements[numberIndex].isSelected = true
       checkAndAddCompletedTileGroups()
     }
     
@@ -143,12 +161,12 @@ public class BingoGridModel: Codable {
             let randomNumber = unusedNumbers.randomElement()!
             let index = unusedNumbers.firstIndex(of: randomNumber)!
             unusedNumbers.remove(at: index)
-            _gridElements.append(GridTileModel(number: randomNumber, index: i, isSelected: false))
+            gridElements.append(GridTileModel(number: randomNumber, index: i, isSelected: false))
         }
     }
     
     private func reset() {
-        _gridElements = []
+        gridElements = []
         completedGridGroups = []
     }
     
