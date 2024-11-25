@@ -52,7 +52,8 @@ struct GameRunningScreen: View {
                 }
                 
                 Button {
-                    isGameStarted = false
+                  isGameStarted = false
+                  try? appState.comm.sendEvent(message: .failure(reason: "\(BingoUserProfile.current.userName) exited the game."))
                 } label: {
                     Text("Exit")
                 }

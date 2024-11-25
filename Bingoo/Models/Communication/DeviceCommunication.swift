@@ -38,8 +38,8 @@ class DeviceCommunication: BingoCommunication {
   }
   
   func sendEvent(message: BingoMessageModel) {
+    messageSubject.send(message)
     if case BingoMessageModel.receiveUpdateWith(selectedNumber: let selectedNumber, userProfile: let profile) = message {
-      messageSubject.send(message)
       Task {
         deviceGridModel.setSelectedFor(num: selectedNumber)
         if deviceGridModel.totalCompletedTileGroups >= 5 {
@@ -73,12 +73,10 @@ class DeviceCommunication: BingoCommunication {
       }
     }
     
-    if case BingoMessageModel.playerWon(userProfile: let _, bingoState: let _) = message {
-      messageSubject.send(message)
+    if case BingoMessageModel.playerWon(userProfile: _, bingoState: _) = message {
       messageSubject.send(completion: .finished)
     }
-    if case BingoMessageModel.failure(reason: let _) = message {
-      messageSubject.send(message)
+    if case BingoMessageModel.failure(reason: _) = message {
       messageSubject.send(completion: .finished)
     }
   }

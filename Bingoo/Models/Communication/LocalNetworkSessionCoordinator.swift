@@ -9,20 +9,20 @@ import Foundation
 import Combine
 import MultipeerConnectivity
 
-private var cancellable = Set<AnyCancellable>()
+
 
 @Observable
-class LocalNetworkSessionCoordinator: NSObject, BingoCommunication {
+class LocalNetworkSessionCoordinator: NSObject {
   private let messageSubject: CurrentValueSubject<BingoMessageModel, Never> = .init(.waitingForPlayerToJoin(hostProfile: BingoUserProfile.current))
   var messagePublisher: AnyPublisher<BingoMessageModel, Never> {
     messageSubject.eraseToAnyPublisher()
   }
-  
-  var canSendEvent: Bool = false
-  
+  private var cancellable = Set<AnyCancellable>()
   var host: BingoUserProfile?
   
   var joinee: BingoUserProfile?
+  
+  var roundCompleted = 0
   
   let isHost: Bool
   private let advertiser: MCNearbyServiceAdvertiser
@@ -40,7 +40,7 @@ class LocalNetworkSessionCoordinator: NSObject, BingoCommunication {
   var incomingInvitationPeers: AnyPublisher<MCPeerID?, Never>!
   let acceptingInvitationPeerSubject = CurrentValueSubject<MCPeerID?, Never>(nil)
   
-  init(isHost: Bool, peerID: MCPeerID = .init(displayName: UIDevice.current.name)) {
+  init(isHost: Bool, peerID: MCPeerID = .init(displayName: BingoUserProfile.current.userName)) {
     advertiser = .init(
       peer: peerID,
       discoveryInfo: nil,
@@ -58,6 +58,14 @@ class LocalNetworkSessionCoordinator: NSObject, BingoCommunication {
     advertiser.delegate = self
     browser.delegate = self
     session.delegate = self
+    
+    messageSubject
+      .sink { [weak self] message in
+        if case BingoMessageModel.receiveUpdateWith(selectedNumber: _, userProfile: _) = message {
+          self?.roundCompleted += 1
+        }
+      }
+      .store(in: &cancellable)
   }
   
   public func startAdvertising() {
@@ -83,22 +91,6 @@ class LocalNetworkSessionCoordinator: NSObject, BingoCommunication {
       withContext: nil,
       timeout: 120
     )
-  }
-  
-  func sendEvent(message: BingoMessageModel) throws {
-    let encoder = JSONEncoder()
-    let data = try encoder.encode(message)
-    try session.send(
-      data,
-      toPeers: Array(connectedDevices),
-      // .reliable = TCP
-      // .unreliable = UDP
-      // Remember that we have added two set of configuration on the Info.plist
-      // file at the time of configuration. We want guranteed message delivery
-      // so we choose TCP/.reliable.
-      with: .reliable
-    )
-    messageSubject.send(message)
   }
 }
 
@@ -163,6 +155,7 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
       return
     }
     messageSubject.send(message)
+    
     if case BingoMessageModel.playerJoined(userProfile: let userProfile) = message {
       host = BingoUserProfile.current
       joinee = userProfile
@@ -180,6 +173,13 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
           )
         )
       }
+    }
+    
+    if case BingoMessageModel.playerWon(userProfile: _, bingoState: _) = message {
+      messageSubject.send(completion: .finished)
+    }
+    if case BingoMessageModel.failure(reason: _) = message {
+      messageSubject.send(completion: .finished)
     }
   }
   
@@ -210,6 +210,30 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
   ) {
     
   }
+}
+
+extension LocalNetworkSessionCoordinator: BingoCommunication {
+  func sendEvent(message: BingoMessageModel) throws {
+    let encoder = JSONEncoder()
+    let data = try encoder.encode(message)
+    try session.send(
+      data,
+      toPeers: Array(connectedDevices),
+      with: .reliable
+    )
+    messageSubject.send(message)
+  }
+  
+  
+  var canSendEvent: Bool {
+    if isHost && roundCompleted%2 == 0 {
+      return true
+    } else if !isHost && roundCompleted%2 != 0 {
+      return true
+    }
+    return false
+  }
+
 }
 
 private extension String {

@@ -65,8 +65,8 @@ struct ChooseGameTypeScreen: View {
                         .receive(on: DispatchQueue.main)
                         .sink { message in
                           if case BingoMessageModel.started(
-                            host: let host,
-                            joinee: let joinee
+                            host: _,
+                            joinee: _
                           ) = message {
                             isGameStarted = true
                           }
@@ -98,8 +98,8 @@ struct ChooseGameTypeScreen: View {
                         .receive(on: DispatchQueue.main)
                         .sink { message in
                           if case BingoMessageModel.started(
-                            host: let host,
-                            joinee: let joinee
+                            host: _,
+                            joinee: _
                           ) = message {
                             isGameStarted = true
                           }
