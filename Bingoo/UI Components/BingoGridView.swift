@@ -50,22 +50,6 @@ struct BingoGridView: View {
                 )
             }
         }
-        .onChange(of: bingoState.completedGridGroups) { _, curr in
-            if curr.isEmpty {
-                return
-            }
-            
-            for item in curr {
-                switch item {
-                case .row(let rowIndex):
-                    bingoState.markRow(rowIndex)
-                case .column(let colIndex):
-                    bingoState.markColumn(colIndex)
-                case .diagonal(let diagonalType):
-                    bingoState.markDiagonal(diagonalType)
-                }
-            }
-        }
     }
     
     func positionGridHeaderText(index: Int) -> CGSize {

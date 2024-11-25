@@ -56,7 +56,12 @@ class DeviceCommunication: BingoCommunication {
         let number = deviceSelectedNumber.number
         deviceGridModel.setSelectedFor(num: number)
         if deviceGridModel.totalCompletedTileGroups == 5 {
-          messageSubject.send(.playerWon(userProfile: joinee!, bingoState: deviceGridModel))
+          messageSubject.send(
+            .playerWon(
+              userProfile: joinee!,
+              bingoState: deviceGridModel
+            )
+          )
           messageSubject.send(completion: .finished)
         }
         messageSubject.send(.receiveUpdateWith(selectedNumber: number, userProfile: profile))

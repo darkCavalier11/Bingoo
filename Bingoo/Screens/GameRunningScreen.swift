@@ -67,6 +67,8 @@ struct GameRunningScreen: View {
               self.errorReason = reason
             case .playerWon(userProfile: let profile, bingoState: let gridModel):
               print("Player won \(profile.userName)")
+              print(gridModel.crossLineFrameHeights)
+              print(gridModel.crossLineFrameWidths)
               self.winnerProfile = WinnerProfile(profile: profile, gridModel: gridModel)
             case .playerJoined(userProfile: let userProfile):
               print("Player joined \(userProfile)")

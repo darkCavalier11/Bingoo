@@ -22,7 +22,24 @@ public class BingoGridModel: Codable {
     var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
     var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
     
-    public var completedGridGroups: [CompletedGridType] = []
+  public var completedGridGroups: [CompletedGridType] = [] {
+    didSet {
+      if completedGridGroups.isEmpty {
+        return
+      }
+      
+      for item in completedGridGroups {
+        switch item {
+        case .row(let rowIndex):
+          markRow(rowIndex)
+        case .column(let colIndex):
+          markColumn(colIndex)
+        case .diagonal(let diagonalType):
+          markDiagonal(diagonalType)
+        }
+      }
+    }
+  }
     
     public var totalCompletedTileGroups: Int {
         completedGridGroups.count
