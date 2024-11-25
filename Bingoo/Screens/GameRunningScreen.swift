@@ -29,7 +29,10 @@ struct GameRunningScreen: View {
   
     var body: some View {
         ZStack {
-          BingoGridView(bingoState: appState.bingoState, comm: appState.comm)
+          BingoGridView(
+            bingoState: appState.bingoState,
+            comm: appState.comm
+          )
             Button {
                 showExitDialog = true
             } label: {
@@ -75,15 +78,19 @@ struct GameRunningScreen: View {
             case .waitingForPlayerToJoin:
               print("Waiting for player to join")
             case .receiveUpdateWith(selectedNumber: let selectedNumber, userProfile: let userProfile):
-              appState.bingoState.setSelectedFor(index: selectedNumber)
-              
-              if appState.bingoState.totalCompletedTileGroups >= 5 {
-                try? appState.comm.sendEvent(
-                  message: .playerWon(
-                    userProfile: currentUserProfile,
-                    bingoState: appState.bingoState
-                  )
-                )
+              Task {
+                await MainActor.run {
+                  appState.bingoState.setSelectedFor(index: selectedNumber)
+                  
+                  if appState.bingoState.totalCompletedTileGroups >= 5 {
+                    try? appState.comm.sendEvent(
+                      message: .playerWon(
+                        userProfile: currentUserProfile,
+                        bingoState: appState.bingoState
+                      )
+                    )
+                  }
+                }
               }
             }
           }

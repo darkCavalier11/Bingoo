@@ -55,7 +55,7 @@ class DeviceCommunication: BingoCommunication {
         guard let deviceSelectedNumber = nonSelectedIndices.randomElement() else { return }
         let index = deviceSelectedNumber.index
         deviceGridModel.setSelectedFor(index: index)
-        if deviceGridModel.totalCompletedTileGroups == 5 {
+        if deviceGridModel.totalCompletedTileGroups == 0 {
           messageSubject.send(.playerWon(userProfile: joinee!, bingoState: deviceGridModel))
           messageSubject.send(completion: .finished)
         }

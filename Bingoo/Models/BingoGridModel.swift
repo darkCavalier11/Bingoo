@@ -10,7 +10,9 @@ import SwiftUI
 
 @Observable
 public class BingoGridModel: Codable {
-    public init() {}
+    public init() {
+      generateRandomGridTileElements()
+    }
     
     private var _gridElements: [GridTileModel] = []
 

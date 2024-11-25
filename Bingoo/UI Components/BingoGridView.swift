@@ -10,7 +10,7 @@ import SwiftUI
 struct BingoGridView: View {
     private let gridFrame = CGSize(width: GridTile.itemSize.height * 5, height: GridTile.itemSize.width * 5)
     
-    var bingoState: BingoGridModel
+    @State var bingoState: BingoGridModel
     var comm: BingoCommunication?
     var body: some View {
         let bingo: [Character] = ["B","I","N","G","O"]
@@ -49,9 +49,6 @@ struct BingoGridView: View {
                   crossLineFrameHeights: bingoState.crossLineFrameHeights
                 )
             }
-        }
-        .onAppear {
-            bingoState.generateRandomGridTileElements()
         }
         .onChange(of: bingoState.completedGridGroups) { _, curr in
             if curr.isEmpty {

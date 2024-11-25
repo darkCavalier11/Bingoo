@@ -45,7 +45,6 @@ struct GridTile: View {
     @State private var yShadowOffset = 4.0
     @State private var scaleFactor = 1.0
     @State private var textRotationFactor = 0.0
-    @State private var gridTileForegroundColor: Color? = nil
     
     var body: some View {
         ZStack {
@@ -54,7 +53,11 @@ struct GridTile: View {
                 .cornerRadius(12)
                 .shadow(color: .orange, radius: 0, x: xShadowOffset, y: yShadowOffset)
                 .scaleEffect(scaleFactor)
-                .foregroundStyle(gridTileForegroundColor == nil ? colorScheme == .dark ? .black : .white : gridTileForegroundColor!)
+                .foregroundStyle(
+                  !gridTileModel.isSelected ?
+                  colorScheme == .dark ? .black
+                  : .white : .accent
+                )
                 .padding(Self.itemPadding)
                 
             Text("\(gridTileModel.number)")
@@ -75,7 +78,7 @@ struct GridTile: View {
                     withAnimation {
                         xShadowOffset = 0
                         yShadowOffset = 0
-                        gridTileForegroundColor = .accent
+
                         scaleFactor = 1.0
                     }
                     
@@ -83,6 +86,7 @@ struct GridTile: View {
             }
         }
     }
+  
 }
 
 #Preview {
