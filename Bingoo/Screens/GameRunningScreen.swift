@@ -13,6 +13,17 @@ private var cancellable = Set<AnyCancellable>()
 struct GameRunningScreen: View {
     @Environment(AppState.self) var appState
     @Binding var isGameStarted: Bool
+    @State var errorHappened = false
+    @State var errorReason: String?
+    @State private var host: BingoUserProfile?
+    @State private var joinee: BingoUserProfile?
+    @State private var winnerProfile: BingoUserProfile?
+    @State private var winnerGrid: [GridTileModel]? {
+      didSet {
+        showWinnerGrid = true
+      }
+    }
+    @State private var showWinnerGrid = false
     
     @State private var showExitDialog = false
     var body: some View {
@@ -48,19 +59,25 @@ struct GameRunningScreen: View {
           appState.comm.messagePublisher.sink { message in
             switch message {
             case .failure(reason: let reason):
-              isGameStarted = false
+              self.errorHappened = true
+              self.errorReason = reason
             case .playerWon(userProfile: let profile, gridElements: let gridElements):
               print("Player won \(profile.userName)")
+              self.winnerGrid = gridElements
+              self.winnerProfile = profile
             case .playerJoined(userProfile: let userProfile):
               print("Player joined \(userProfile)")
+              self.joinee = userProfile
             case .started(host: let host, joinee: let joinee):
               print("Started game with Host: \(host.userName) & Joinee: \(joinee.userName)")
+              self.host = host
+              self.joinee = joinee
             case .waitingForPlayerToJoin:
               print("Waiting for player to join")
             case .receiveUpdateWith(selectedNumber: let selectedNumber, userProfile: let userProfile):
               appState.bingoState.setSelectedFor(index: selectedNumber)
               
-              if appState.bingoState.totalCompletedTileGroups == 5 {
+              if appState.bingoState.totalCompletedTileGroups >= 5 {
                 try? appState.comm.sendEvent(
                   message: .playerWon(
                     userProfile: currentUserProfile,
@@ -72,6 +89,24 @@ struct GameRunningScreen: View {
           }
           .store(in: &cancellable)
         }
+        .alert(isPresented: $errorHappened, error: errorReason) {
+          Button("OK") {
+            isGameStarted = false
+          }
+        }
+        .sheet(isPresented: $showWinnerGrid) {
+          VStack {
+            Text("\(winnerProfile?.userName ?? "-") won the game!")
+              .font(.title)
+//            BingoGridView(gridElements: winnerGrid!)
+          }
+          .onDisappear {
+            isGameStarted = false
+          }
+        }
     }
 }
 
+extension String: LocalizedError {
+  public var errorDescription: String? { self }
+}
