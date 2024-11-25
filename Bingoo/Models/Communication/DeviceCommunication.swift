@@ -42,7 +42,7 @@ class DeviceCommunication: BingoCommunication {
       messageSubject.send(message)
       Task {
         deviceGridModel.setSelectedFor(num: selectedNumber)
-        if deviceGridModel.totalCompletedTileGroups == 5 {
+        if deviceGridModel.totalCompletedTileGroups >= 5 {
           messageSubject.send(.playerWon(userProfile: joinee!, bingoState: deviceGridModel))
           messageSubject.send(completion: .finished)
           return
@@ -55,7 +55,7 @@ class DeviceCommunication: BingoCommunication {
         guard let deviceSelectedNumber = nonSelectedIndices.randomElement() else { return }
         let number = deviceSelectedNumber.number
         deviceGridModel.setSelectedFor(num: number)
-        if deviceGridModel.totalCompletedTileGroups == 5 {
+        if deviceGridModel.totalCompletedTileGroups >= 5 {
           messageSubject.send(
             .playerWon(
               userProfile: joinee!,
@@ -73,7 +73,11 @@ class DeviceCommunication: BingoCommunication {
       }
     }
     
-    if case BingoMessageModel.playerWon(userProfile: let userProfile, bingoState: let gridModel) = message {
+    if case BingoMessageModel.playerWon(userProfile: let _, bingoState: let _) = message {
+      messageSubject.send(message)
+      messageSubject.send(completion: .finished)
+    }
+    if case BingoMessageModel.failure(reason: let _) = message {
       messageSubject.send(message)
       messageSubject.send(completion: .finished)
     }
