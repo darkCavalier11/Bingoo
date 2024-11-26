@@ -9,23 +9,37 @@ import SwiftUI
 
 @main
 struct BingooApp: App {
-    @State private var appState = AppState()
-    
-    /// For now we will ignore the Username property, will integrate at the end.
-    @State var userName = UserDefaults.standard.string(forKey: UserDefaultKeys.userName)
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+  
+    @State private var isUserLoggedIn = CDBingoUserModel.current?.userName != nil
+    @State private var isGameStarted = false
+    @State private var gameType: BingoGameType = .withDevice
+    @State private var comm: BingoCommunication = DeviceCommunication()
     var body: some Scene {
         WindowGroup {
-            GameRunningScreen()
-                .environment(appState)
+            contentView
         }
     }
     
     @ViewBuilder
     var contentView: some View {
-        if userName == nil {
-            UserOnboardingScreen()
+        if !isUserLoggedIn {
+            UserOnboardingScreen(isLoggedIn: $isUserLoggedIn)
         } else {
-            ChooseGameTypeScreen()
+            if isGameStarted {
+                GameRunningScreen(isGameStarted: $isGameStarted)
+                    .environment(
+                      AppState(
+                        comm: comm
+                      )
+                    )
+            } else {
+                ChooseGameTypeScreen(
+                  isGameStarted: $isGameStarted,
+                  comm: $comm
+                )
+            }
+            
         }
     }
 }

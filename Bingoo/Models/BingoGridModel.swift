@@ -6,25 +6,65 @@
 //
 
 import Foundation
+import SwiftUI
 
 @Observable
-public class BingoGridModel {
-    public init() {}
-    
-    private var _gridElements: [GridTileModel] = []
-    
-    public var gridElements: [GridTileModel] {
-        _gridElements
+public class BingoGridModel: Codable {
+    public init() {
+      generateRandomGridTileElements()
     }
     
-    public var completedGridGroups: [CompletedGridType] = []
+    private(set) var gridElements: [GridTileModel] = []
+
+    
+    var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
+    var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
+  
+  enum CodingKeys: String, CodingKey {
+    case gridElements
+    case crossLineFrameWidths
+    case crossLineFrameHeights
+  }
+  
+  public required init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    gridElements = try container.decode([GridTileModel].self, forKey: .gridElements)
+    crossLineFrameWidths = try container.decode([Double].self, forKey: .crossLineFrameWidths)
+    crossLineFrameHeights = try container.decode([Double].self, forKey: .crossLineFrameHeights)
+  }
+  
+  public func encode(to encoder: any Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(gridElements, forKey: .gridElements)
+    try container.encode(crossLineFrameWidths, forKey: .crossLineFrameWidths)
+    try container.encode(crossLineFrameHeights, forKey: .crossLineFrameHeights)
+  }
+  
+  public var completedGridGroups: [CompletedGridType] = [] {
+    didSet {
+      if completedGridGroups.isEmpty {
+        return
+      }
+      
+      for item in completedGridGroups {
+        switch item {
+        case .row(let rowIndex):
+          markRow(rowIndex)
+        case .column(let colIndex):
+          markColumn(colIndex)
+        case .diagonal(let diagonalType):
+          markDiagonal(diagonalType)
+        }
+      }
+    }
+  }
     
     public var totalCompletedTileGroups: Int {
         completedGridGroups.count
     }
     
-    public enum CompletedGridType: Equatable {
-        public enum DiagonalDirection: String, Equatable {
+    public enum CompletedGridType: Equatable, Codable {
+        public enum DiagonalDirection: String, Equatable, Codable {
             case topLeftToBottomRight
             case bottomLeftToTopRight
         }
@@ -33,9 +73,15 @@ public class BingoGridModel {
         case diagonal(DiagonalDirection)
     }
     
-    public func setSelectedFor(index: Int) {
-        _gridElements[index].isSelected = true
-        checkAndAddCompletedTileGroups()
+    public func setSelectedFor(num: Int) {
+        if totalCompletedTileGroups == 5 {
+            return
+        }
+      guard let numberIndex = gridElements.firstIndex(where: { $0.number == num }) else {
+        return
+      }
+      gridElements[numberIndex].isSelected = true
+      checkAndAddCompletedTileGroups()
     }
     
     private func checkAndAddCompletedTileGroups() {
@@ -115,25 +161,42 @@ public class BingoGridModel {
             let randomNumber = unusedNumbers.randomElement()!
             let index = unusedNumbers.firstIndex(of: randomNumber)!
             unusedNumbers.remove(at: index)
-            _gridElements.append(GridTileModel(number: randomNumber, position: i, isSelected: false))
+            gridElements.append(GridTileModel(number: randomNumber, index: i, isSelected: false))
         }
     }
     
     private func reset() {
-        _gridElements = []
+        gridElements = []
         completedGridGroups = []
     }
     
-    public func handleEvent(with bingoGridMessageModel: BingoGridMessageModel) {
-        switch bingoGridMessageModel.gameState {
-        case .waitingForPlayersToJoin(let currentPlayersOnLobby):
-            <#code#>
-        case .running:
-            <#code#>
-        case .failed(let reason):
-            <#code#>
-        case .completed(let winnerUser):
-            <#code#>
+    func markRow(_ rowIndex: Int) {
+        crossLineFrameHeights[rowIndex] = 4
+        withAnimation {
+            crossLineFrameWidths[rowIndex] = GridTile.itemSize.width * 5
+        }
+    }
+    
+    func markColumn(_ colIndex: Int) {
+        crossLineFrameHeights[colIndex + 5] = 4
+        withAnimation {
+            crossLineFrameWidths[colIndex + 5] = GridTile.itemSize.width * 5
+        }
+        
+    }
+    
+    func markDiagonal(_ diagonalType: BingoGridModel.CompletedGridType.DiagonalDirection) {
+        if diagonalType == .topLeftToBottomRight {
+            crossLineFrameHeights[10] = 4
+            withAnimation {
+                crossLineFrameWidths[10] = GridTile.itemSize.width * 7
+            }
+            
+        } else {
+            crossLineFrameHeights[11] = 4
+            withAnimation {
+                crossLineFrameWidths[11] = GridTile.itemSize.width * 7
+            }
         }
     }
 }

@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ChooseGameTypeButton: View {
+struct ChooseGameTypeLabel: View {
     let gameType: BingoGameType
     let systemImage: String
-    let onTap: () -> Void
+    @State var val = 0
     var body: some View {
         HStack {
             Rectangle()
@@ -19,13 +19,13 @@ struct ChooseGameTypeButton: View {
                 .cornerRadius(6)
                 .clipped()
             Button {
-                onTap()
+                
             } label: {
                 Label(
                     title: { 
                         Text(gameType.rawValue)
-                            .font(.title.monospaced())
-                            .foregroundStyle(.black)
+                            .font(.headline.monospaced())
+                            .foregroundStyle(.foreground)
                     },
                     icon: { 
                         Image(systemName: systemImage)
@@ -42,7 +42,5 @@ struct ChooseGameTypeButton: View {
 }
 
 #Preview {
-    ChooseGameTypeButton(gameType: .withDevice, systemImage: "cpu") {
-        
-    }
+    ChooseGameTypeLabel(gameType: .withDevice, systemImage: "cpu")
 }

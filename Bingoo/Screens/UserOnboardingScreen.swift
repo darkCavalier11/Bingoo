@@ -10,14 +10,16 @@ import SwiftUI
 struct UserOnboardingScreen: View {
     @State var userName: String = ""
     @State var showInvalidUserNameAlert = false
+    @Environment(\.dismiss) var dismiss
+    @Binding var isLoggedIn: Bool
     var body: some View {
         VStack(alignment: .center) {
             Text("Let's Begin")
-                .font(.largeTitle.monospaced().bold())
+                .font(.title.monospaced().bold())
                 .foregroundStyle(.accent)
             TextField("Name", text: $userName)
                 .font(.largeTitle.monospaced().bold())
-                .frame(width: 400)
+                .frame(width: 320)
                 .padding()
             
             HStack {
@@ -27,7 +29,9 @@ struct UserOnboardingScreen: View {
                         showInvalidUserNameAlert = true
                         return
                     }
-                    UserDefaults.standard.setValue(userName, forKey: UserDefaultKeys.userName)
+                    CDBingoUserModel.updateDetails(userName: userName)
+                    isLoggedIn = true
+                    dismiss()
                 } label: {
                     Image(systemName: "chevron.right")
                         .foregroundColor(.white)
@@ -42,11 +46,12 @@ struct UserOnboardingScreen: View {
                     }
                 }
             }
-            .frame(width: 400)
+            .frame(width: 320)
         }
     }
 }
 
 #Preview {
-    UserOnboardingScreen()
+    @State var isLoggedIn = true
+    return UserOnboardingScreen(isLoggedIn: $isLoggedIn)
 }
