@@ -82,9 +82,10 @@
 		951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingScreen.swift; sourceTree = "<group>"; };
 		951E3A922CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkSessionCoordinator.swift; sourceTree = "<group>"; };
 		953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Bold.ttf"; sourceTree = "<group>"; };
-		953501B42BDCDEEE00EB1C2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		953501B42BDCDEEE00EB1C2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		953501B62BDCE0AE00EB1C2F /* GridTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTile.swift; sourceTree = "<group>"; };
 		9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoDialog.swift; sourceTree = "<group>"; };
+		958052F22CF59196004B2036 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		95909B592BEF9FD80048081C /* BingoGridModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingoGridModel.swift; sourceTree = "<group>"; };
 		95909B642BEFE1500048081C /* BingoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGridView.swift; sourceTree = "<group>"; };
 		95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -140,6 +141,7 @@
 		95178CDA2BDCD887005C80FA = {
 			isa = PBXGroup;
 			children = (
+				958052F22CF59196004B2036 /* README.md */,
 				95178CE52BDCD887005C80FA /* Bingoo */,
 				95178CF72BDCD888005C80FA /* BingooTests */,
 				95178D012BDCD888005C80FA /* BingooUITests */,
