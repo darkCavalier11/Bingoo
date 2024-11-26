@@ -11,6 +11,7 @@ struct GridTile: View {
     let gridTileModel: GridTileModel
     let setSelected: (_ number: Int) -> Void
     
+    
     private static var rectangleFrame: CGSize {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
