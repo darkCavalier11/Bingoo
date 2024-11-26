@@ -12,6 +12,8 @@ View relies heavily on SwiftUI components to build bingo grids, update views and
 
 App uses `CoreData` to store user name during first install.
 
+For getting started on the online communication with realtime d, create a free firebase project and enable Realtime DB. Download the `GoogleService-Info.plist` file and paste it inside App using XCode.
+
 <a href ="https://medium.com/@input.split/step-by-step-guide-to-multipeer-connectivity-c66f6a688cd6"> A detail explanation on multipeer connectivity </a> 
 <a href="https://www.flaticon.com/free-icons/bingo" title="bingo icons">Bingo icons created by Freepik - Flaticon</a>
 
