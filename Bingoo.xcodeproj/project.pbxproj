@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95029F4A2CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95029F482CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld */; };
+		95029F4C2CECABA200523453 /* BingoCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F4B2CECABA200523453 /* BingoCommunication.swift */; };
+		95029F4E2CECAC3700523453 /* DeviceCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F4D2CECAC3700523453 /* DeviceCommunication.swift */; };
+		95029F522CECFCAE00523453 /* OnlineCommunication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F512CECFCAE00523453 /* OnlineCommunication.swift */; };
+		95029F542CECFD8A00523453 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95029F532CECFD8A00523453 /* GoogleService-Info.plist */; };
+		95029F572CECFE7700523453 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 95029F562CECFE7700523453 /* FirebaseDatabase */; };
+		95029F592CECFEE400523453 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95029F582CECFEE400523453 /* AppDelegate.swift */; };
+		9503D14A2BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503D1482BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift */; };
+		9503D14B2BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503D1492BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift */; };
+		9503D14D2BFA69F5003C9F67 /* BingoUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9503D14C2BFA69F5003C9F67 /* BingoUserProfile.swift */; };
 		95178CE72BDCD887005C80FA /* BingooApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95178CE62BDCD887005C80FA /* BingooApp.swift */; };
 		95178CEB2BDCD888005C80FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95178CEA2BDCD888005C80FA /* Assets.xcassets */; };
 		95178CEF2BDCD888005C80FA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95178CEE2BDCD888005C80FA /* Preview Assets.xcassets */; };
@@ -14,20 +24,22 @@
 		95178D032BDCD888005C80FA /* BingooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95178D022BDCD888005C80FA /* BingooUITests.swift */; };
 		95178D052BDCD888005C80FA /* BingooUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95178D042BDCD888005C80FA /* BingooUITestsLaunchTests.swift */; };
 		951C51572BE93F4F00D1E191 /* UserOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */; };
+		951E3A932CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951E3A922CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift */; };
 		953501B22BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */; };
 		953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953501B62BDCE0AE00EB1C2F /* GridTile.swift */; };
-		955212C92BED45DD0032997D /* BingoCommunicationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955212C82BED45DD0032997D /* BingoCommunicationProtocol.swift */; };
+		9579AF062BFB7BFF007E2AA5 /* BingoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */; };
+		958054142CF59ED9004B2036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 958054132CF59ED9004B2036 /* LaunchScreen.storyboard */; };
+		95909B5A2BEF9FD80048081C /* BingoGridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909B592BEF9FD80048081C /* BingoGridModel.swift */; };
+		95909B652BEFE1500048081C /* BingoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95909B642BEFE1500048081C /* BingoGridView.swift */; };
 		95A3B0EA2BE8952B008C7623 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */; };
 		95B76C052BE7EB6B00FA4476 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B76C042BE7EB6B00FA4476 /* AppState.swift */; };
 		95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436B2BDE529000B93A15 /* GridTileModel.swift */; };
 		95CA436E2BDE5A8C00B93A15 /* GridHeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */; };
-		95CA43702BDE6AB200B93A15 /* BingoGridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CA436F2BDE6AB200B93A15 /* BingoGridModel.swift */; };
 		95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */; };
+		95DF9F792BFBC3EE00D790F2 /* CustomAlert in Frameworks */ = {isa = PBXBuildFile; productRef = 95DF9F782BFBC3EE00D790F2 /* CustomAlert */; };
 		95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */; };
-		95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */; };
-		95EBE3212BEA4CE9009E8F10 /* BingoGridMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3202BEA4CE9009E8F10 /* BingoGridMessageModel.swift */; };
-		95EBE3242BEA50DA009E8F10 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3232BEA50DA009E8F10 /* UserDefaultKeys.swift */; };
-		95EBE3262BEA5526009E8F10 /* BingoUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3252BEA5526009E8F10 /* BingoUserModel.swift */; };
+		95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift */; };
+		95EBE3212BEA4CE9009E8F10 /* BingoMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3202BEA4CE9009E8F10 /* BingoMessageModel.swift */; };
 		95EBE32A2BEA8E64009E8F10 /* GameRunningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EBE3292BEA8E64009E8F10 /* GameRunningScreen.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +61,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		95029F492CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BingoCoreDataModels.xcdatamodel; sourceTree = "<group>"; };
+		95029F4B2CECABA200523453 /* BingoCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCommunication.swift; sourceTree = "<group>"; };
+		95029F4D2CECAC3700523453 /* DeviceCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCommunication.swift; sourceTree = "<group>"; };
+		95029F512CECFCAE00523453 /* OnlineCommunication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineCommunication.swift; sourceTree = "<group>"; };
+		95029F532CECFD8A00523453 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		95029F582CECFEE400523453 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9503D1482BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBingoUserModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9503D1492BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBingoUserModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9503D14C2BFA69F5003C9F67 /* BingoUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoUserProfile.swift; sourceTree = "<group>"; };
 		95178CE32BDCD887005C80FA /* Bingoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bingoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95178CE62BDCD887005C80FA /* BingooApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingooApp.swift; sourceTree = "<group>"; };
 		95178CEA2BDCD888005C80FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,21 +81,23 @@
 		95178D022BDCD888005C80FA /* BingooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingooUITests.swift; sourceTree = "<group>"; };
 		95178D042BDCD888005C80FA /* BingooUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingooUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingScreen.swift; sourceTree = "<group>"; };
+		951E3A922CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkSessionCoordinator.swift; sourceTree = "<group>"; };
 		953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ComicNeue-Bold.ttf"; sourceTree = "<group>"; };
-		953501B42BDCDEEE00EB1C2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		953501B42BDCDEEE00EB1C2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		953501B62BDCE0AE00EB1C2F /* GridTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTile.swift; sourceTree = "<group>"; };
-		955212C82BED45DD0032997D /* BingoCommunicationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoCommunicationProtocol.swift; sourceTree = "<group>"; };
+		9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoDialog.swift; sourceTree = "<group>"; };
+		958052F22CF59196004B2036 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		958054132CF59ED9004B2036 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		95909B592BEF9FD80048081C /* BingoGridModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingoGridModel.swift; sourceTree = "<group>"; };
+		95909B642BEFE1500048081C /* BingoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGridView.swift; sourceTree = "<group>"; };
 		95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		95B76C042BE7EB6B00FA4476 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		95CA436B2BDE529000B93A15 /* GridTileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileModel.swift; sourceTree = "<group>"; };
 		95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHeaderText.swift; sourceTree = "<group>"; };
-		95CA436F2BDE6AB200B93A15 /* BingoGridModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGridModel.swift; sourceTree = "<group>"; };
 		95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameTypeScreen.swift; sourceTree = "<group>"; };
 		95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridTileGroupCrossViews.swift; sourceTree = "<group>"; };
-		95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameTypeButton.swift; sourceTree = "<group>"; };
-		95EBE3202BEA4CE9009E8F10 /* BingoGridMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoGridMessageModel.swift; sourceTree = "<group>"; };
-		95EBE3232BEA50DA009E8F10 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
-		95EBE3252BEA5526009E8F10 /* BingoUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoUserModel.swift; sourceTree = "<group>"; };
+		95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameTypeLabel.swift; sourceTree = "<group>"; };
+		95EBE3202BEA4CE9009E8F10 /* BingoMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoMessageModel.swift; sourceTree = "<group>"; };
 		95EBE3292BEA8E64009E8F10 /* GameRunningScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRunningScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95029F572CECFE7700523453 /* FirebaseDatabase in Frameworks */,
+				95DF9F792BFBC3EE00D790F2 /* CustomAlert in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,13 +128,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9503D13A2BF9AD3A003C9F67 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				95EBE3202BEA4CE9009E8F10 /* BingoMessageModel.swift */,
+				95029F4B2CECABA200523453 /* BingoCommunication.swift */,
+				95029F4D2CECAC3700523453 /* DeviceCommunication.swift */,
+				951E3A922CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift */,
+				95029F512CECFCAE00523453 /* OnlineCommunication.swift */,
+			);
+			path = Communication;
+			sourceTree = "<group>";
+		};
 		95178CDA2BDCD887005C80FA = {
 			isa = PBXGroup;
 			children = (
+				958052F22CF59196004B2036 /* README.md */,
 				95178CE52BDCD887005C80FA /* Bingoo */,
 				95178CF72BDCD888005C80FA /* BingooTests */,
 				95178D012BDCD888005C80FA /* BingooUITests */,
 				95178CE42BDCD887005C80FA /* Products */,
+				95DF9F772BFBC3EE00D790F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,10 +166,11 @@
 			isa = PBXGroup;
 			children = (
 				953501B42BDCDEEE00EB1C2F /* Info.plist */,
+				95029F532CECFD8A00523453 /* GoogleService-Info.plist */,
 				95178CE62BDCD887005C80FA /* BingooApp.swift */,
-				95EBE3222BEA50CA009E8F10 /* Utilities */,
+				95029F582CECFEE400523453 /* AppDelegate.swift */,
 				951C51552BE93F3A00D1E191 /* Screens */,
-				953501B52BDCE09200EB1C2F /* Components */,
+				953501B52BDCE09200EB1C2F /* UI Components */,
 				95178CEC2BDCD888005C80FA /* Bingoo.entitlements */,
 				95CA436A2BDE527D00B93A15 /* Models */,
 				95178D112BDCDD46005C80FA /* Assets */,
@@ -168,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				95178CEA2BDCD888005C80FA /* Assets.xcassets */,
+				958054132CF59ED9004B2036 /* LaunchScreen.storyboard */,
 				953501B02BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf */,
 			);
 			path = Assets;
@@ -178,42 +219,53 @@
 			children = (
 				951C51562BE93F4F00D1E191 /* UserOnboardingScreen.swift */,
 				95EBE3292BEA8E64009E8F10 /* GameRunningScreen.swift */,
-				95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */,
 				95CF96372BE94B1D0080F3EB /* ChooseGameTypeScreen.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		953501B52BDCE09200EB1C2F /* Components */ = {
+		953501B52BDCE09200EB1C2F /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				95909B642BEFE1500048081C /* BingoGridView.swift */,
+				9579AF052BFB7BFF007E2AA5 /* BingoDialog.swift */,
+				95E504B02BECF76A00BBD744 /* GridTileGroupCrossViews.swift */,
 				953501B62BDCE0AE00EB1C2F /* GridTile.swift */,
-				95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeButton.swift */,
+				95EBE31E2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift */,
 				95CA436D2BDE5A8C00B93A15 /* GridHeaderText.swift */,
 			);
-			path = Components;
+			path = "UI Components";
 			sourceTree = "<group>";
 		};
 		95CA436A2BDE527D00B93A15 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				95CA436F2BDE6AB200B93A15 /* BingoGridModel.swift */,
-				95EBE3252BEA5526009E8F10 /* BingoUserModel.swift */,
-				95EBE3202BEA4CE9009E8F10 /* BingoGridMessageModel.swift */,
-				955212C82BED45DD0032997D /* BingoCommunicationProtocol.swift */,
+				9503D13A2BF9AD3A003C9F67 /* Communication */,
+				95F56A102BF9211800C30EDB /* Core Data */,
+				95909B592BEF9FD80048081C /* BingoGridModel.swift */,
 				95CA436B2BDE529000B93A15 /* GridTileModel.swift */,
-				95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */,
 				95B76C042BE7EB6B00FA4476 /* AppState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		95EBE3222BEA50CA009E8F10 /* Utilities */ = {
+		95DF9F772BFBC3EE00D790F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				95EBE3232BEA50DA009E8F10 /* UserDefaultKeys.swift */,
 			);
-			path = Utilities;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95F56A102BF9211800C30EDB /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				95A3B0E92BE8952B008C7623 /* CoreDataStack.swift */,
+				9503D1482BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift */,
+				95029F482CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld */,
+				9503D14C2BFA69F5003C9F67 /* BingoUserProfile.swift */,
+				9503D1492BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +284,10 @@
 			dependencies = (
 			);
 			name = Bingoo;
+			packageProductDependencies = (
+				95DF9F782BFBC3EE00D790F2 /* CustomAlert */,
+				95029F562CECFE7700523453 /* FirebaseDatabase */,
+			);
 			productName = Bingoo;
 			productReference = 95178CE32BDCD887005C80FA /* Bingoo.app */;
 			productType = "com.apple.product-type.application";
@@ -304,6 +360,10 @@
 				Base,
 			);
 			mainGroup = 95178CDA2BDCD887005C80FA;
+			packageReferences = (
+				9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */,
+				95029F552CECFE7700523453 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 95178CE42BDCD887005C80FA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,7 +381,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				953501B22BDCDE3F00EB1C2F /* ComicNeue-Bold.ttf in Resources */,
+				95029F542CECFD8A00523453 /* GoogleService-Info.plist in Resources */,
 				95178CEF2BDCD888005C80FA /* Preview Assets.xcassets in Resources */,
+				958054142CF59ED9004B2036 /* LaunchScreen.storyboard in Resources */,
 				95178CEB2BDCD888005C80FA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,21 +409,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95029F592CECFEE400523453 /* AppDelegate.swift in Sources */,
 				95CF96382BE94B1D0080F3EB /* ChooseGameTypeScreen.swift in Sources */,
+				95029F522CECFCAE00523453 /* OnlineCommunication.swift in Sources */,
+				95909B652BEFE1500048081C /* BingoGridView.swift in Sources */,
 				95E504B12BECF76A00BBD744 /* GridTileGroupCrossViews.swift in Sources */,
-				95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeButton.swift in Sources */,
-				95EBE3242BEA50DA009E8F10 /* UserDefaultKeys.swift in Sources */,
-				955212C92BED45DD0032997D /* BingoCommunicationProtocol.swift in Sources */,
-				95CA43702BDE6AB200B93A15 /* BingoGridModel.swift in Sources */,
+				95EBE31F2BEA4C60009E8F10 /* ChooseGameTypeLabel.swift in Sources */,
+				9503D14D2BFA69F5003C9F67 /* BingoUserProfile.swift in Sources */,
+				95909B5A2BEF9FD80048081C /* BingoGridModel.swift in Sources */,
+				951E3A932CF04FAB00595E9F /* LocalNetworkSessionCoordinator.swift in Sources */,
 				95A3B0EA2BE8952B008C7623 /* CoreDataStack.swift in Sources */,
-				95EBE3262BEA5526009E8F10 /* BingoUserModel.swift in Sources */,
-				95EBE3212BEA4CE9009E8F10 /* BingoGridMessageModel.swift in Sources */,
+				95EBE3212BEA4CE9009E8F10 /* BingoMessageModel.swift in Sources */,
+				95029F4C2CECABA200523453 /* BingoCommunication.swift in Sources */,
 				95B76C052BE7EB6B00FA4476 /* AppState.swift in Sources */,
 				951C51572BE93F4F00D1E191 /* UserOnboardingScreen.swift in Sources */,
 				95EBE32A2BEA8E64009E8F10 /* GameRunningScreen.swift in Sources */,
+				9579AF062BFB7BFF007E2AA5 /* BingoDialog.swift in Sources */,
 				953501B72BDCE0AE00EB1C2F /* GridTile.swift in Sources */,
 				95178CE72BDCD887005C80FA /* BingooApp.swift in Sources */,
+				95029F4A2CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld in Sources */,
 				95CA436C2BDE529000B93A15 /* GridTileModel.swift in Sources */,
+				95029F4E2CECAC3700523453 /* DeviceCommunication.swift in Sources */,
+				9503D14A2BFA68D8003C9F67 /* CDBingoUserModel+CoreDataClass.swift in Sources */,
+				9503D14B2BFA68D8003C9F67 /* CDBingoUserModel+CoreDataProperties.swift in Sources */,
 				95CA436E2BDE5A8C00B93A15 /* GridHeaderText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,18 +589,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Bingoo/Bingoo.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Bingoo/Preview Content\"";
+				DEVELOPMENT_TEAM = BKV44GUZM5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bingoo/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "App need to discover and connect with nearby peers.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -556,18 +630,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Bingoo/Bingoo.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Bingoo/Preview Content\"";
+				DEVELOPMENT_TEAM = BKV44GUZM5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bingoo/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "App need to discover and connect with nearby peers.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -713,6 +791,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		95029F552CECFE7700523453 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+		9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/divadretlaw/CustomAlert.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		95029F562CECFE7700523453 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 95029F552CECFE7700523453 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		95DF9F782BFBC3EE00D790F2 /* CustomAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9579AF402BFBC2F3007E2AA5 /* XCRemoteSwiftPackageReference "CustomAlert" */;
+			productName = CustomAlert;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		95029F482CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				95029F492CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodel */,
+			);
+			currentVersion = 95029F492CEC8F3E00523453 /* BingoCoreDataModels.xcdatamodel */;
+			path = BingoCoreDataModels.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 95178CDB2BDCD887005C80FA /* Project object */;
 }

@@ -9,8 +9,7 @@ import SwiftUI
 
 struct GridTile: View {
     let gridTileModel: GridTileModel
-    
-    let setSelected: (_ index: Int) -> Void
+    let setSelected: (_ number: Int) -> Void
     
     
     private static var rectangleFrame: CGSize {
@@ -42,12 +41,11 @@ struct GridTile: View {
     static var itemSize: CGSize {
         return CGSize(width: rectangleFrame.width + 2.0 * itemPadding, height: rectangleFrame.height + 2.0 * itemPadding)
     }
-    
+    @Environment(\.colorScheme) var colorScheme
     @State private var xShadowOffset = 4.0
     @State private var yShadowOffset = 4.0
     @State private var scaleFactor = 1.0
     @State private var textRotationFactor = 0.0
-    @State private var gridTileForegroundColor = Color.white
     
     var body: some View {
         ZStack {
@@ -56,15 +54,19 @@ struct GridTile: View {
                 .cornerRadius(12)
                 .shadow(color: .orange, radius: 0, x: xShadowOffset, y: yShadowOffset)
                 .scaleEffect(scaleFactor)
-                .foregroundColor(gridTileForegroundColor)
+                .foregroundStyle(
+                  !gridTileModel.isSelected ?
+                  colorScheme == .dark ? .black
+                  : .white : .accent
+                )
                 .padding(Self.itemPadding)
                 
             Text("\(gridTileModel.number)")
-                .font(.title.monospaced().bold())
+                .font(.title2.monospaced().bold())
                 .rotationEffect(Angle(radians: textRotationFactor))
         }
         .onTapGesture {
-            setSelected(gridTileModel.position)
+          setSelected(gridTileModel.number)
         }
         .onChange(of: gridTileModel.isSelected) {
             withAnimation(.easeInOut(duration: 0.4)) {
@@ -77,7 +79,7 @@ struct GridTile: View {
                     withAnimation {
                         xShadowOffset = 0
                         yShadowOffset = 0
-                        gridTileForegroundColor = .accent
+
                         scaleFactor = 1.0
                     }
                     
@@ -85,10 +87,11 @@ struct GridTile: View {
             }
         }
     }
+  
 }
 
 #Preview {
-    GridTile(gridTileModel: GridTileModel(number: 0, position: 0, isSelected: false)) { index in
+    GridTile(gridTileModel: GridTileModel(number: 0, index: 0, isSelected: false)) { index in
         
     }
 }

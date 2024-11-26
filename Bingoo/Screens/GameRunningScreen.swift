@@ -6,127 +6,115 @@
 //
 
 import SwiftUI
+import CustomAlert
+import Combine
 
+private var cancellable = Set<AnyCancellable>()
 struct GameRunningScreen: View {
-    private let gridFrame = CGSize(width: GridTile.itemSize.height * 5, height: GridTile.itemSize.width * 5)
-    
-    @State private var crossLineFrameWidths = Array(repeating: 0.0, count: 12)
-    @State private var crossLineFrameHeights = Array(repeating: 0.0, count: 12)
-    
     @Environment(AppState.self) var appState
+    @Binding var isGameStarted: Bool
+    @State var errorHappened = false
+    @State var errorReason: String?
+    @State private var host: BingoUserProfile?
+    @State private var joinee: BingoUserProfile?
+    @State private var winnerProfile: WinnerProfile?
     
-    let bingo: [Character] = ["B","I","N","G","O"]
+    @State private var showExitDialog = false
+  
+    private struct WinnerProfile: Identifiable {
+      let id = UUID()
+      let profile: BingoUserProfile
+      let gridModel: BingoGridModel
+    }
+  
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Rectangle()
-                    .frame(width: gridFrame.width, height: GridTile.itemSize.height)
-                    .foregroundStyle(.white)
-                ForEach(0..<5) { idx in
-                    GridHeaderText(letter: bingo[idx])
-                        .offset(positionGridHeaderText(index: idx))
-                }
-            }
-            ZStack {
-                Rectangle()
-                    .frame(width: gridFrame.width, height: gridFrame.height)
-                    .foregroundColor(.white)
-                ForEach(appState.bingoState.gridElements) { element in
-                    GridTile(gridTileModel: element) { index in
-                        appState.bingoState.setSelectedFor(index: index)
-                    }
-                        .offset(positionElement(row: element.row, column: element.column))
-                }
-                GridTileGroupCrossViews(crossLineFrameWidths: crossLineFrameWidths, crossLineFrameHeights: crossLineFrameHeights)
-            }
-            .onAppear {
-                appState.bingoState.generateRandomGridTileElements()
-            }
+        ZStack {
+          BingoGridView(
+            bingoState: appState.bingoState,
+            comm: appState.comm
+          )
             Button {
-                appState.bingoState.generateRandomGridTileElements()
-                crossLineFrameWidths = Array(repeating: 0.0, count: 12)
-                crossLineFrameHeights = Array(repeating: 0.0, count: 12)
+                showExitDialog = true
             } label: {
-                Image(systemName: "goforward")
-                    .resizable()
-                    .scaledToFill()
-                    .foregroundStyle(.white)
-                    .frame(width: 30, height: 30)
+                Text("Exit")
             }
-            .padding()
-            .background(.accent)
-            .cornerRadius(10)
-            .offset(x: gridFrame.width / 2 - 15)
+            .offset(x: GridTile.itemSize.width * 2.5 - 10, y: GridTile.itemSize.height * 4.5)
+            .buttonStyle(.borderedProminent)
         }
-        .onChange(of: appState.bingoState.completedGridGroups) { _, curr in
-            if curr.isEmpty {
-                return
-            }
-            
-            for item in curr {
-                switch item {
+        .customAlert("Exit", isPresented: $showExitDialog) {
+            Text("Are you sure want to exit?")
+        } actions: {
+            MultiButton {
+                Button(role: .cancel) {
                     
-                case .row(let rowIndex):
-                    markRow(rowIndex)
-                case .column(let colIndex):
-                    markColumn(colIndex)
-                case .diagonal(let diagonalType):
-                    markDiagonal(diagonalType)
+                } label: {
+                    Text("Cancel")
+                }
+                
+                Button {
+                  isGameStarted = false
+                  try? appState.comm.sendEvent(message: .failure(reason: "\(BingoUserProfile.current.userName) exited the game."))
+                } label: {
+                    Text("Exit")
                 }
             }
         }
         .onAppear {
-            
-        }
-    }
-    
-
-    
-    func positionGridHeaderText(index: Int) -> CGSize {
-        let xOffset = Double(index) * GridHeaderText.itemSize.width
-        return CGSize(width: xOffset - gridFrame.width / 2 + GridHeaderText.itemSize.width / 2, height: 0)
-    }
-    func positionElement(row: Int, column: Int) -> CGSize {
-        let xOffset = Double(row) * GridTile.itemSize.width
-        let yOffset = Double(column) * GridTile.itemSize.height
-        let width = yOffset - gridFrame.width / 2 + GridTile.itemSize.width / 2
-        let height =  xOffset - gridFrame.height / 2 + GridTile.itemSize.height / 2
-        return CGSize(width: width, height: height)
-    }
-    
-    func markRow(_ rowIndex: Int) {
-        crossLineFrameHeights[rowIndex] = 4
-        withAnimation {
-            crossLineFrameWidths[rowIndex] = 550
-        }
-    }
-    
-    func markColumn(_ colIndex: Int) {
-        crossLineFrameHeights[colIndex + 5] = 4
-        withAnimation {
-            crossLineFrameWidths[colIndex + 5] = 550
-        }
-        
-    }
-    
-    func markDiagonal(_ diagonalType: BingoGridModel.CompletedGridType.DiagonalDirection) {
-        if diagonalType == .topLeftToBottomRight {
-            crossLineFrameHeights[10] = 4
-            withAnimation {
-                crossLineFrameWidths[10] = 750
+          let currentUserProfile = BingoUserProfile.current
+          appState.comm.messagePublisher.sink { message in
+            switch message {
+            case .failure(reason: let reason):
+              self.errorHappened = true
+              self.errorReason = reason
+            case .playerWon(userProfile: let profile, bingoState: let gridModel):
+              print("Player won \(profile.userName)")
+              self.winnerProfile = WinnerProfile(profile: profile, gridModel: gridModel)
+            case .playerJoined(userProfile: let userProfile):
+              print("Player joined \(userProfile)")
+              self.joinee = userProfile
+            case .started(host: let host, joinee: let joinee):
+              print("Started game with Host: \(host.userName) & Joinee: \(joinee.userName)")
+              self.host = host
+              self.joinee = joinee
+            case .waitingForPlayerToJoin:
+              print("Waiting for player to join")
+            case .receiveUpdateWith(selectedNumber: let selectedNumber, userProfile: let userProfile):
+              Task {
+                await MainActor.run {
+                  appState.bingoState.setSelectedFor(num: selectedNumber)
+                  
+                  if appState.bingoState.totalCompletedTileGroups >= 5 {
+                    try? appState.comm.sendEvent(
+                      message: .playerWon(
+                        userProfile: currentUserProfile,
+                        bingoState: appState.bingoState
+                      )
+                    )
+                  }
+                }
+              }
             }
-            
-        } else {
-            crossLineFrameHeights[11] = 4
-            withAnimation {
-                crossLineFrameWidths[11] = 750
-            }
+          }
+          .store(in: &cancellable)
+        }
+        .alert(isPresented: $errorHappened, error: errorReason) {
+          Button("OK") {
+            isGameStarted = false
+          }
+        }
+        .sheet(item: $winnerProfile) { winnerProfile in
+          VStack {
+            Text("\(winnerProfile.profile.userName) won the game!")
+              .font(.title)
+            BingoGridView(bingoState: winnerProfile.gridModel)
+          }
+          .onDisappear {
+            isGameStarted = false
+          }
         }
     }
 }
 
-#Preview {
-    @State var appState = AppState()
-    return GameRunningScreen()
-        .environment(appState)
+extension String: LocalizedError {
+  public var errorDescription: String? { self }
 }

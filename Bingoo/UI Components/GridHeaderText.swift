@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct GridHeaderText: View {
+    @Environment(\.colorScheme) var colorScheme
     let letter: Character
+    var isCompleted = false
     private static var rectangleFrame: CGSize {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
@@ -43,8 +45,8 @@ struct GridHeaderText: View {
         ZStack {
             Circle()
                 .frame(width: Self.rectangleFrame.width, height: Self.rectangleFrame.height)
-                .foregroundColor(.white)
-                .shadow(color: .accent, radius: 0, x: 6, y: 0)
+                .foregroundColor(isCompleted ? .accent : colorScheme == .light ? .white : .black)
+                .shadow(color: .accent, radius: 0, x: isCompleted ? 0 : 6, y: 0)
             Text(letter.description)
                 .font(.largeTitle.monospaced().weight(.black))
         }
