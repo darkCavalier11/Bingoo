@@ -1,4 +1,4 @@
-![](https://i.imgur.com/Nfvv1V5.png)
+![](https://i.imgur.com/7YtbKN3.png)
 #  Bingoo App
 
 This is a simple app for playing bingo. It uses 3 mode of communication. 
@@ -14,6 +14,6 @@ App uses `CoreData` to store user name during first install.
 
 For getting started on the online communication with realtime d, create a free firebase project and enable Realtime DB. Download the `GoogleService-Info.plist` file and paste it inside App using XCode.
 
-<a href ="https://medium.com/@input.split/step-by-step-guide-to-multipeer-connectivity-c66f6a688cd6"> A detail explanation on multipeer connectivity </a> 
-<a href="https://www.flaticon.com/free-icons/bingo" title="bingo icons">Bingo icons created by Freepik - Flaticon</a>
+- <a href ="https://medium.com/@input.split/step-by-step-guide-to-multipeer-connectivity-c66f6a688cd6"> A detail explanation on multipeer connectivity </a> 
+- <a href="https://www.flaticon.com/free-icons/bingo" title="bingo icons">Bingo icons created by Freepik - Flaticon</a>
 
