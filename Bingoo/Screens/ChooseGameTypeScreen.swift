@@ -158,7 +158,11 @@ struct ChooseGameTypeScreen: View {
                 }
               }
             }
-            
+          
+          Text("Make sure your friend's device is close and ask him/her to click join once you host or vice-versa.")
+            .padding(.horizontal)
+            .font(.caption)
+            .foregroundStyle(.gray)
             HStack {
                 ChooseGameTypeLabel(gameType: .online, systemImage: "network")
                 HStack {
