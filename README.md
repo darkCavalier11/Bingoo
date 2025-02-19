@@ -1,4 +1,4 @@
-![](https://i.imgur.com/SRyJsZN.png)
+![](https://i.imgur.com/tnTnZS9.png)
 #  Bingoo App
 
 ![](https://i.imgur.com/H4SiUFP.png)
