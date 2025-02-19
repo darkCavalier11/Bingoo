@@ -19,4 +19,4 @@ For getting started on the online communication with realtime d, create a free f
 - <a href ="https://medium.com/@input.split/step-by-step-guide-to-multipeer-connectivity-c66f6a688cd6"> A detail explanation on multipeer connectivity </a> 
 - <a href="https://www.flaticon.com/free-icons/bingo" title="bingo icons">Bingo icons created by Freepik - Flaticon</a>
 
-If you want to download the app, [drop a mail](mailto://sumit.pradhan65@gmail.com), and i you will receive a TestFlight link.
+If you want to download the app, [drop a mail](mailto://sumit.pradhan65@gmail.com), and you will receive a TestFlight link.
