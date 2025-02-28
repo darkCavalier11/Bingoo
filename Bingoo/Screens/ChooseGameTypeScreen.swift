@@ -10,12 +10,12 @@ import CustomAlert
 import MultipeerConnectivity
 import Combine
 
+
 private var cancellable = Set<AnyCancellable>()
 struct ChooseGameTypeScreen: View {
     @State private var showChooseDeviceDialog = false
     @State private var showEnterJoiningCodeDialog = false
     @State private var showGeneratedJoiningCode = false
-    
     @State private var isHostingStartedForPeer = false
     @State private var showPeerJoiningDialog = false
     

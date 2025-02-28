@@ -8,6 +8,8 @@ This is a simple app for playing bingo. It uses 3 mode of communication.
 - Multipeer communication using `MultipeerConnectivity` framework 
 - Firebase Realtime DB for online communication
 
+![](https://i.imgur.com/owH8G5A.jpeg)
+
 Application uses a MVVM pattern using Observables and Models provided default by SwiftUI and Combine. Each view is independent of the communication system we are using underneath. Each communication system conform to `BingoCommunication` protocol, which view uses as a base for conducting the game. Internally when we choose which type of the above 3 game we want to play, a communication system of that type initialised and injected into appstate for view to use later. An advantage of this approach is if any future communication comes along, it can easily integrated without messing with views of models.
 
 View relies heavily on SwiftUI components to build bingo grids, update views and stuff. 
